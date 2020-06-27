@@ -41,7 +41,7 @@ class HandsInfoController extends Controller
         $paieInfo = new PaieInformation();
         $national = new CarteNational();
         $ss = new SecuriteSociale();
-        
+        $status = new HandPaieStatus();
         
         $hand->numeroactenaissance = $request->numeroactenaissance;
         $hand->nameFr = $request->nameFr;
@@ -64,7 +64,6 @@ class HandsInfoController extends Controller
         $hand->situationFamilialeFr = $request->situationFamilialeFr;
         $hand->situationFamilialeAr = $request->situationFamilialeAr;
         $hand->nbrenfant = $request->nbrenfant;
-        $hand->NSS = $request->NSS;
         $hand->obs = $request->obs;
         $hand->save();
         
@@ -91,6 +90,14 @@ class HandsInfoController extends Controller
         $ss->DateDebutAssurance = $request->DateDebutAssurance;
         $hand->securitesociale()->save($ss);
         
+        $statusPaiement = $request->statusPaiement;
+        $status->status = $statusPaiement;
+        if($statusPaiement == 'En attente'){
+            $status->raisonEnAttente = $request->raisonEnAttente;
+            $status->EnAttentedateComissionPension = $request->EnAttentedateComissionPension;
+        }
+        $hand->status()->save($status);
+
         session()->flash('success', "L'handicapée a été ajouter avec success");
 
         return redirect(route('dashboard'));
@@ -151,7 +158,6 @@ class HandsInfoController extends Controller
             'situationFamilialeFr' => $request->situationFamilialeFr,
             'situationFamilialeAr' => $request->situationFamilialeAr,
             'nbrenfant' => $request->nbrenfant,
-            'NSS' => $request->NSS,
             'obs' => $request->obs,
         ]);
 
@@ -220,56 +226,72 @@ class HandsInfoController extends Controller
         $hand = Hand::withTrashed()->where('id',$id)->first();
         $rappel = new Rappel();
         $status = HandPaieStatus::where('hand_id',$hand->id);
-        // Restore hand 
-        $hand->restore();   
-        // Update Paie Statuts : return to en-cours
-        $status->update([
-            'status'=>$request->status,
-            'motif'=>NULL,
-            'dateSupprission'=>NULL,
-            'justification'=>NULL,
-            'declarepar'=>NULL
-        ]);
-       //Update Suspension History Table
-       $history = HandSuspentionHistory::where('hand_id',$hand->id)->latest('id')->first();
-       $history->update([
-           'dateRemi' => $request->dateRemi
-       ]);
+        $hand->restore(); 
 
-        if($request->meriteRappel == 'oui'){
-            $dateDebut = $request->dateDebut;
-            $dateFin = $request->dateFin;
-            $dateTimeDebut = new DateTime($dateDebut);
-            $dateTimeFin = new DateTime($dateFin);
-            $nbrMois= ($dateTimeDebut->diff($dateTimeFin)->m) + ($dateTimeDebut->diff($dateTimeFin)->y*12) + 1; 
-            $montant = 0;
-            $dateSeprator = '2019-09-30';
-            $dateSeprator2 = '2019-10-01';
-            $dateTimeSeperator = new DateTime($dateSeprator);
-            $dateTimeSeperatorF = new DateTime($dateSeprator2);
-            if($dateFin < $dateSeprator){
-                $montant = $nbrMois * 4000;
-            }else if($dateDebut > $dateSeprator){
-                $montant = $nbrMois * 10000;
-            }else{
-                $firstDif = ($dateTimeDebut->diff($dateTimeSeperator)->m) + ($dateTimeDebut->diff($dateTimeSeperator)->y*12) + 1; 
-                $secondDif = ($dateTimeSeperatorF->diff($dateTimeFin)->m) + ($dateTimeSeperatorF->diff($dateTimeFin)->y*12) + 1; 
-                $montant = ($firstDif * 4000) + ($secondDif * 10000);
+        
+        
+
+        if($request->status == "en cours"){
+            $status->update([
+                'status'=>$request->status,
+                'motifAr'=>NULL,
+                'dateSupprission'=>NULL,
+                'justification'=>NULL,
+                'declarepar'=>NULL,
+                'raisonEnAttente'=>NULL,
+                'EnAttentedateComissionPension'=>NULL
+            ]);
+
+            if($request->meriteRappel == 'oui'){
+                $dateDebut = $request->dateDebut;
+                $dateFin = $request->dateFin;
+                $dateTimeDebut = new DateTime($dateDebut);
+                $dateTimeFin = new DateTime($dateFin);
+                $nbrMois= ($dateTimeDebut->diff($dateTimeFin)->m) + ($dateTimeDebut->diff($dateTimeFin)->y*12) + 1; 
+                $montant = 0;
+                $dateSeprator = '2019-09-30';
+                $dateSeprator2 = '2019-10-01';
+                $dateTimeSeperator = new DateTime($dateSeprator);
+                $dateTimeSeperatorF = new DateTime($dateSeprator2);
+                if($dateFin < $dateSeprator){
+                    $montant = $nbrMois * 4000;
+                }else if($dateDebut > $dateSeprator){
+                    $montant = $nbrMois * 10000;
+                }else{
+                    $firstDif = ($dateTimeDebut->diff($dateTimeSeperator)->m) + ($dateTimeDebut->diff($dateTimeSeperator)->y*12) + 1; 
+                    $secondDif = ($dateTimeSeperatorF->diff($dateTimeFin)->m) + ($dateTimeSeperatorF->diff($dateTimeFin)->y*12) + 1; 
+                    $montant = ($firstDif * 4000) + ($secondDif * 10000);
+                }
+                
+    
+                // add rappel to database
+                $rappel->DateDebut= $dateDebut;
+                $rappel->DateFin= $dateFin;
+                $rappel->montant= 0;
+                $rappel->nombreMois= $nbrMois;
+                $rappel->montant = $montant;
+                $rappel->save();
+                $hand->rappels()->attach($rappel);
             }
-            
 
-            // add rappel to database
-            $rappel->DateDebut= $dateDebut;
-            $rappel->DateFin= $dateFin;
-            $rappel->montant= 0;
-            $rappel->nombreMois= $nbrMois;
-            $rappel->montant = $montant;
-            $rappel->save();
-            $hand->rappels()->attach($rappel);
+            $history = HandSuspentionHistory::where('hand_id',$hand->id)->latest('id')->first();
+            $history->update([
+                'dateRemi' => $request->dateRemi
+            ]);
+            session()->flash('success', 'La situation du ' . $hand->nameFr . ' à été régle. ');
+        }else if($request->status == 'En attente'){
+            $status->update([
+                'status'=>$request->status,
+                'motifAr'=>NULL,
+                'dateSupprission'=>NULL,
+                'justification'=>NULL,
+                'declarepar'=>NULL,
+                'raisonEnAttente'=> $request->raisonEnAttente,
+                'EnAttentedateComissionPension'=>isset($request->EnAttentedateComissionPension) ? $request->EnAttentedateComissionPension : NULL
+            ]);
+            session()->flash('warning', 'La situation du ' . $hand->nameFr . ' à été mette en Attente. ');
         }
         
-        session()->flash('success', 'La situation du ' . $hand->nameFr . ' à été régle. ');
-
         return redirect(route('dashboard'));
     }
 }

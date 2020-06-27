@@ -1,5 +1,15 @@
 <?php
 
+use App\Budget;
+
+
+Route::get('/checkBudget', function(){
+    $budget = new Budget();
+    $consommationBudget = $budget->BudgetConsomme(date('Y'));
+    dump($consommationBudget['4615']);
+    dump($consommationBudget['3313']);
+});
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -15,6 +25,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/ListHands/Suspendu', "listHandController@suspendu")->name('listhands.suspendu');
     Route::get('/ListHands/Arrete', "listHandController@arrete")->name('listhands.arrete');
     Route::get('/ListHands/EnCours', "listHandController@encours")->name('listhands.encours');
+    Route::get('/ListHands/EnAttente', "listHandController@enAttente")->name('listhands.enattente');
     Route::resource('/paie' , 'PaieMensuelleController');
     Route::get('/paiement/export' , 'PaieMensuelleController@export')->name('paie.export');
     Route::get('/paiement/Cnas/{papier}' , 'PaieMensuelleController@Cnas')->name('paie.Cnas');
@@ -25,6 +36,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/paiement/repartition' , 'PaieMensuelleController@Repartition')->name('paie.repartition');
     Route::get('/paiement/engagement/{papier}' , 'PaieMensuelleController@Engagement')->name('paie.engagement');
     Route::get('/paiement/mondate/{papier}' , 'PaieMensuelleController@Mondate')->name('paie.mondate');
+    Route::patch('/budget/updateBudgetSupplimentaire', 'BudgetController@BudgetSupplimenatire')->name('budget.updateBudgetSupplimentaire');
     Route::get('/budget/DownloadBudgetConsomptionPaie' , 'BudgetController@DownloadBudgetConsomptionPaie')->name('budget.DownloadBudgetConsomptionPaie'); 
     Route::get('/budget/DownloadBudgetConsomptionCnas' , 'BudgetController@DownloadBudgetConsomptionCnas')->name('budget.DownloadBudgetConsomptionCnas'); 
     Route::resource('/budget' , 'BudgetController');
@@ -44,4 +56,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/renouvellement/Init', 'RenouvelementDossierController@Init')->name('renouvellement.intia');
     Route::resource('/renouvellement', 'RenouvelementDossierController');
     Route::post('/monthlyStatistics', 'StaticticsController@StatistiqueMensuelle');
+    Route::get('/cds','CdController@index')->name('cds.index');
 });
+
+

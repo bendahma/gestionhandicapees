@@ -30,7 +30,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Chapitre 46-15 article U</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{ number_format($count*10000,2,',',' ') }} DZ</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{ number_format($count*config('paie.MontantPaie'),2,',',' ') }} DZ</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
@@ -45,7 +45,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Chapitre 33-13 article 02</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{ number_format($count*1000,2,',',' ') }} DZ</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{ number_format($count*config('paie.MontantAssurance'),2,',',' ') }} DZ</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>

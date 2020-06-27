@@ -21,21 +21,6 @@ class BudgetController extends Controller
         return view('admin.budget.add');
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
     public function update(Request $request, $annee)
     {
         $budget = Budget::where('annee',$annee)->first();
@@ -48,11 +33,6 @@ class BudgetController extends Controller
         
         return redirect(route('dashboard'));
         
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 
     public function DownloadBudgetConsomptionPaie(){
@@ -564,5 +544,26 @@ class BudgetController extends Controller
         $template->saveAs(storage_path('StatBudget.docx'));
         return response()->download(storage_path('StatBudget.docx'));
 
+    }
+
+    public function BudgetSupplimenatire(Request $request){
+        $budget = Budget::where('annee',$request->budgetSupplimentaireAnnee)->first();
+
+        
+        $budget->update([
+            'budgetSupplimentaireMondatement'=>$request->budgetSupplimenatireMondatement,
+            'budgetSupplimentaireAssurance'=>$request->budgetSupplimentaireAssurance,
+        ]);
+        
+        /* 
+            - Function SyncBudget execute when a new Budget Supplimenatire is added
+            - syncBudget Add the new budget supplimentaire to the reste of budget then add the budget supplimentaire to the total
+                of budget supplimentaire in case there was more than juste one and reset the var budget supp to 0
+        */
+        $budget->syncBudget($request->budgetSupplimentaireAnnee);
+
+        session()->flash('success','Le budget supplimentaire d\'annee ' . date('Y') . ' a été ajouter avec success');
+
+        return redirect(route('dashboard'));
     }
 }

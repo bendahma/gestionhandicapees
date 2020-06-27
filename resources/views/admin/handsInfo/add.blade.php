@@ -175,7 +175,7 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="name" class="font-weight-bold">N° carte *</label>
-                                <input type="text" class="form-control" id="" required name="numeroCart" placeholder="N° carte handicapée ..." value="{{isset($hand) ? $hand->cartehand->numeroCart : ''}}">
+                                <input type="number" class="form-control" id="" required name="numeroCart" placeholder="N° carte handicapée ..." value="{{isset($hand) ? $hand->cartehand->numeroCart : ''}}">
                               </div>
                          </div>
                         <div class="col-lg-3">
@@ -199,7 +199,7 @@
                         <div class="col-lg-1 ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">% *</label>
-                                <input type="text" class="form-control" name="pourcentage" id="" required placeholder="%" value="{{isset($hand) ? $hand->cartehand->pourcentage : ''}}">
+                                <input type="number" class="form-control" name="pourcentage" id="" required placeholder="%" value="{{isset($hand) ? $hand->cartehand->pourcentage : ''}}">
                             </div>
                         </div>   
                     </div>
@@ -278,6 +278,35 @@
                             </div>
                         </div>
                     </div>
+                    @if (!isset($hand))
+                    <h4 class="text-danger font-weight-bold">Etat Du paiement</h3>
+                        <hr>
+                        <div class="row mt-1">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="name" class="font-weight-bold">Etat Du Paiement</label>
+                                    <select name="statusPaiement" class="form-control" id="PaieStatusHand">
+                                        <option value="En cours">En cours</option>
+                                        <option value="En attente">En Attente</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" id="raisonId" style="display: none">
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">Raison</label>
+                                        <input type="text" class="form-control" id="" name="raisonEnAttente" value="">
+                                    </div>
+                                    </div>
+                                    <div class="col" id="DateCommissionPensionId" style="display: none">
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">Date Comission Pension</label>
+                                        <input type="date" class="form-control " id="" name="EnAttentedateComissionPension" placeholder="Date Premier Pension ..." value="{{isset($hand) ? $hand->paieinformation->datePremierPension : ''}}">
+                                    </div>
+                                </div>
+                                
+                        </div>
+                    @endif
+                    
                     <hr>
                     <div class="row">
                         <div class="col">

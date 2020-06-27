@@ -69,14 +69,63 @@ function remiHandaler(id){
     form.action = link;
 }
 
-document.getElementById('motifSup').addEventListener('change',()=>{
-    const motifSelect = document.getElementById('motifSup');
-    const motif = motifSelect.options[motifSelect.selectedIndex].value;
+if(document.getElementById('NewSituation') != null){
+    document.getElementById('NewSituation').addEventListener('change',()=>{
+      const situationSelector = document.getElementById('NewSituation');
+      const situation = situationSelector.options[situationSelector.selectedIndex].value;
+      if(situation == 'en cours'){
+        document.getElementById('dateRemi').style['display'] = '';
+        document.getElementById('raisonRemi').style['display'] = '';
+        document.getElementById('RappelTitle').style['display'] = '';
+        document.getElementById('meriteRappel').style['display'] = '';
+        document.getElementById('rappelDates').style['display'] = '';
+        document.getElementById('rappelObs').style['display'] = '';
+        /***************************************************************************************** */
+        document.getElementById('EnAttentedateComissionPension').style['display'] = 'none';
+        document.getElementById('raisonEnAttente').style['display'] = 'none';
+      }else if(situation == 'En attente'){
 
-    if(motif == "AUTRE"){
-      document.getElementById('AutreSuppMotif').style["display"] = "block";
-    }else{
-      document.getElementById('AutreSuppMotif').style["display"] = "none";
-    }
-    
-});
+        document.getElementById('EnAttentedateComissionPension').style['display'] = '';
+        document.getElementById('raisonEnAttente').style['display'] = '';
+
+        /* ***************************************************************************************** */
+        document.getElementById('dateRemi').style['display'] = 'none';
+        document.getElementById('raisonRemi').style['display'] = 'none';
+        document.getElementById('RappelTitle').style['display'] = 'none';
+        document.getElementById('meriteRappel').style['display'] = 'none';
+        document.getElementById('rappelDates').style['display'] = 'none';
+        document.getElementById('rappelObs').style['display'] = 'none';
+
+       
+      }
+    });
+}
+
+if(document.getElementById('motifSup') != null){
+      document.getElementById('motifSup').addEventListener('change',()=>{
+        const motifSelect = document.getElementById('motifSup');
+        const motif = motifSelect.options[motifSelect.selectedIndex].value;
+
+        if(motif == "AUTRE"){
+          document.getElementById('AutreSuppMotif').style["display"] = "block";
+        }else{
+          document.getElementById('AutreSuppMotif').style["display"] = "none";
+        }
+    });
+}
+
+if(document.getElementById('PaieStatusHand') != null){
+    document.getElementById('PaieStatusHand').addEventListener('change',()=>{
+       const statusSelect = document.getElementById('PaieStatusHand');
+        const status = statusSelect.options[statusSelect.selectedIndex].value;
+        if(status == 'En attente'){
+          document.getElementById('raisonId').style['display'] = "";
+          document.getElementById('DateCommissionPensionId').style['display'] = "";
+        }else{
+          document.getElementById('raisonId').style['display'] = "none";
+          document.getElementById('DateCommissionPensionId').style['display'] = "none";
+        
+        }      
+    });
+}
+

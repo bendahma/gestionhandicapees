@@ -138,10 +138,8 @@
           <div id="cd" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
-              <a class="collapse-item" href="">Creer CD Mondatement</a>
-              <a class="collapse-item" href="">Creer CD Benificier</a>
-              <a class="collapse-item" href="">Verifier CD Mondatement</a>
-              <a class="collapse-item" href="">Verifier CD Benificier</a>
+              <a class="collapse-item" href="{{route('cds.index')}}">Creer CD</a>
+              <a class="collapse-item" href="">Verifier CD</a>
             </div>
           </div>
         </li>
@@ -171,10 +169,18 @@
           Statistique
         </div>
         <li class="nav-item">
-          <a class="nav-link collapsed" class=" collapsed" onclick="MonthlyStaticticsHandaler()">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#statistics" aria-expanded="true" aria-controls="statistics">
                 <i class="fas fa-history"></i>
-                <span>Statistique Mensuelle</span>
-          </button>
+                <span>Statistique </span>
+          </a>
+          <div id="statistics" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Rappel</h6>
+              <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
+              <a class="collapse-item" href="">Ajouter Rappel</a>
+              <a class="collapse-item" href="">Traitement du Rappel</a>
+            </div>
+          </div>
 
           
         </li>
@@ -192,6 +198,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Lists</h6>
               <a class="collapse-item" href="{{route('listhands.encours')}}">En-cours</a>
+              <a class="collapse-item" href="{{route('listhands.enattente')}}">En-Attente</a>
               <a class="collapse-item" href="{{route('listhands.suspendu')}}">Suspendu</a>
               <a class="collapse-item" href="{{route('listhands.arrete')}}">Arrete</a>
             </div>
@@ -336,22 +343,31 @@
           <!-- End of Topbar -->
           @if(session()->has('success'))
               <div class="container">
-                  <div class="alert alert-success">
-                      <h6 class="d-flex justify-content-center" style="font-size: 1.3rem;font-weight:700">{{ session()->get('success') }}</h6>
+                  <div class="alert alert-success alert-dismissible fade show">
+                      <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('success') }}</h6>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                   </div>
               </div>
           @endif
           @if(session()->has('warning'))
               <div class="container ">
-                  <div class="alert alert-warning">
-                      <h5 class="d-flex justify-content-center">{{ session()->get('warning') }}</h5>
+                  <div class="alert alert-warning alert-dismissible fade show">
+                      <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('warning') }}</h6>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                   </div>
               </div>
           @endif
           @if(session()->has('error'))
               <div class="container ">
-                  <div class="alert alert-danger">
-                      <h5 class="d-flex justify-content-center">{{ session()->get('error') }}</h5>
+                  <div class="alert alert-danger alert-dismissible fade show">
+                      <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('error') }}</h6>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                   </div>
               </div>
           @endif
@@ -369,7 +385,7 @@
           @yield('history')
           @yield('PaiementHistory')
           @yield('statRenouvellement')
-
+          @yield('CDsection')
         </div>
         <!-- End of Main Content -->
 

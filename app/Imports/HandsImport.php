@@ -72,7 +72,7 @@ class HandsImport implements ToModel
         // --------------------------------------------------------------------------------------------------------
         $status->status = isset($row[11]) ? $row[11] : NULL;
         $status->dateSupprission = isset($row[12]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[12]) : NULL;
-        $status->motif = isset($row[13]) ? $row[13] : NULL;
+        $status->motifAr = isset($row[13]) ? $row[13] : NULL;
         
         $hand->status()->save($status);
         

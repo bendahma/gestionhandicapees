@@ -48,27 +48,42 @@
                           <input type="text" readonly class="form-control" id="" name="" value="{{isset($hand) ? $hand->status->status : ''}}">
                         </div>
                    </div>
-                   <div class="col-lg-4" >
-                    <div class="form-group">
-                        <label for="" class="font-weight-bold" style="text-align: center">Motif</label>
-                        <input type="text" readonly class="form-control text-right" id="" name="" value="{{
-                            isset($hand) ? $hand->status->getMotifAr($hand->status->motifAr) : ''
-                        }}">
-                    </div>
-                </div>
-                  <div class="col">
-                      <div class="form-group">
-                          <label for="" class="font-weight-bold">Date Suppression</label>
-                          <input type="date" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->dateSupprission : '' }}">
-                      </div>
-                  </div>
-               </div>
-               @php 
+                   @if($hand->status->motifAr != NULL)
+                        <div class="col-lg-4" >
+                              <div class="form-group">
+                                  <label for="" class="font-weight-bold" style="text-align: center">Motif</label>
+                                  <input type="text" readonly class="form-control text-right" id="" name="" value="{{
+                                      isset($hand) ? $hand->status->getMotifAr($hand->status->motifAr) : ''
+                                  }}">
+                              </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold">Date Suppression</label>
+                              <input type="date" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->dateSupprission : '' }}">
+                          </div>
+                        </div>
+                      @else
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="" class="font-weight-bold" style="text-align: center">Raison</label>
+                            <input type="text" readonly class="form-control" id="" name="" value="{{
+                                isset($hand) ? $hand->status->raisonEnAttente : ''
+                            }}">
+                        </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold">Date Commission Pension</label>
+                              <input type="date" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->EnAttentedateComissionPension : '' }}">
+                          </div>
+                        </div>
+                    @endif
+                   
                   
-                @endphp
-               <div class="row mt-1" dir="">
-                 
                </div>
+              
+               @if($hand->status->motifAr != NULL)
                <div class="row">
                 <div class="col">
                   <div class="form-group">
@@ -83,7 +98,7 @@
                   </div>
               </div>
               </div>
-              
+              @endif
              </form>
        </div>
    </div>
@@ -106,19 +121,28 @@
                   <div class="col">
                     <div class="form-group">
                         <label for="" class="font-weight-bold">Situation</label>
-                        <select name="status" id="" class="form-control">
-                          <option value="en cours" selected>En cours</option>
+                        <select name="status" class="form-control" id="NewSituation">
+                          <option value="" selected disabled>Choisi ...</option>
+                          <option value="en cours">En cours</option>
+                          <option value="En attente">En attente</option>
+
                         </select>
                     </div>
                   </div>      
-                  <div class="col">
+                  <div class="col" style="display: none" id="dateRemi">
                     <div class="form-group">
-                        <label for="" class="font-weight-bold">Date Remi</label>
+                        <label for="" class="font-weight-bold">Date de Réglement</label>
                        <input type="date" name="dateRemi" id="" class="form-control">
                     </div>
-                  </div>      
+                  </div>   
+                  <div class="col" style="display: none" id="EnAttentedateComissionPension">
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Date Comission Pension</label>
+                       <input type="date" name="EnAttentedateComissionPension" id="" class="form-control">
+                    </div>
+                  </div>     
                 </div> 
-                <div class="row">
+                <div class="row" style="display: none" id="raisonRemi">
                     <div class="col">
                       <div class="form-group">
                         <label for="" class="font-weight-bold">Raison</label>
@@ -126,8 +150,16 @@
                       </div>
                     </div>
                 </div> 
-                <h5 style="color:black;font-weight:700; margin-bottom:1rem;text-decoration:underline">Rappel</h5>
-                <div class="row">
+                <div class="row" style="display: none" id="raisonEnAttente">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="" class="font-weight-bold">Raison En Attente</label>
+                        <input type="text" name="raisonEnAttente" id="" class="form-control">
+                      </div>
+                    </div>
+                </div> 
+                <h5 style="color:black;font-weight:700; margin-bottom:1rem;text-decoration:underline; display:none"  id="RappelTitle">Rappel</h5>
+                <div class="row" style="display: none" id="meriteRappel">
                   <div class="col">
                     <div class="form-group">
                       <label for="" class="font-weight-bold">Rappel</label>
@@ -138,7 +170,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" style="display: none" id="rappelDates">
                   <div class="col">
                     <div class="form-group">
                       <label for="" class="font-weight-bold">Date Debut</label>
@@ -152,7 +184,7 @@
                     </div>
                   </div>
               </div>
-              <div class="row">
+              <div class="row" style="display: none" id="rappelObs">
                 <div class="col">
                   <div class="form-group">
                       <label for="" class="font-weight-bold">Obs</label>
@@ -176,6 +208,5 @@
     </div>
 
 </form>
-  
 
 @endsection

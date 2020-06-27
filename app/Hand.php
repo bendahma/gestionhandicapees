@@ -103,4 +103,10 @@ class Hand extends Model
         })->get();
         return $hands;
     }
+    public function HandEnAttente(){
+        $hands = Hand::onlyTrashed()->whereHas('status',function($s){
+            $s->where('status', 'En attente');
+        })->get();
+        return $hands;
+    }
 }

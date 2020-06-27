@@ -7,7 +7,7 @@ use App\Hand;
 
 class HandPaieStatus extends Model
 {
-    protected $fillable=['status','motif','dateSupprission','justification','declarepar','motifAr'];
+    protected $fillable=['status','dateSupprission','justification','declarepar','motifAr','raisonEnAttente','EnAttentedateComissionPension'];
 
     public function hand()
     {
@@ -16,7 +16,7 @@ class HandPaieStatus extends Model
 
     public function CheckPaieStatusInfoExists($id){
         $status = HandPaieStatus::where('hand_id',$id)->first();
-        if($status->status == NULL || $status->motif == NULL || $status->dateSupprission == NULL || $status->motifAr == NULL ){
+        if($status->status == NULL || $status->dateSupprission == NULL || $status->motifAr == NULL ){
             return false;
         }
         return true;

@@ -37,6 +37,15 @@ class listHandController extends Controller
                 ->with('carts',CartHand::all())
                 ->with('paieinformations',PaieInformation::all());
     }
+    public function enAttente(){
+
+        $handsList = $this->hands->HandEnAttente();
+
+        return view('dashboard')
+                ->with('hands', $handsList)
+                ->with('carts',CartHand::all())
+                ->with('paieinformations',PaieInformation::all());
+    }
 
     public function encours(){
 
