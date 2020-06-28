@@ -1,0 +1,45 @@
+
+*************** Done ****************
+1 Suspension Hand selon bareme du ministere
+
+2 Fiche Statistique Mensuelle
+
+3 Add "En Attente Status in paiement"
+
+4. Ajouter Hand :
+   - Ajouet le status d'hand (Paie , suspendu, en attente ... ect)
+
+5. Budget
+   - Ajouter Les opérations du Budget Supplimentaire
+
+6. Paiement Mensuelle : 
+   - Modifier la processus du paiement pour ajouter les changement du budget Supplimentaire
+
+_______________________________________________________________________
+
+. CD Section
+   - creer les CDs
+   - Verifier les CDs
+
+. Rapple 
+   - Ajouter un rappel
+   - Traitement du rappel
+
+. Liste des Mondaté Filtré : 
+   - Téléchargé les listes des monfatés par plusieurs filtres
+
+. Historique du Paiement
+   - Historique du paiement 
+   - Historique du suspension
+
+. Import :
+   - Change le script du Upload pour prendre en charge tout les fields du base de données et le fichier excel du hand a uploade
+
+. Export : 
+   - Export des fichiers excel qui contient toutes les informations du base de données
+
+. users roles and permissions
+
+. Opetimise l'application to be faster(Cache, Mixite, ... ect)
+
+. Securite the application
