@@ -11,12 +11,12 @@ class PaieSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('paies')->insert([
-        //     'moisPaiement'=>2,
-        //     'anneesPaiement'=>2020,
-        //     'montantPaiement'=>10000000,
-        //     'montantAssurance'=>1000000
-        // ]);
+       /*  DB::table('paies')->insert([
+             'moisPaiement'=>2,
+             'anneesPaiement'=>2020,
+             'montantPaiement'=>10000000,
+             'montantAssurance'=>1000000
+        ]);
         DB::table('paies')->insert([
             'moisPaiement'=>3,
             'anneesPaiement'=>2020,
@@ -28,6 +28,18 @@ class PaieSeeder extends Seeder
             'anneesPaiement'=>2020,
             'montantPaiement'=>10000000,
             'montantAssurance'=>1000000
-        ]);
+        ]);*/
+        /*DB::table('paies')->insert([
+            'moisPaiement'=>5,
+            'anneesPaiement'=>2020,
+            'montantPaiement'=>10000000,
+            'montantAssurance'=>1000000
+        ]);*/
+        /*DB::table('paies')->insert([
+            'moisPaiement'=>7,
+            'anneesPaiement'=>2020,
+            'montantPaiement'=>10000000,
+            'montantAssurance'=>1000000
+        ]);*/
     }
 }
