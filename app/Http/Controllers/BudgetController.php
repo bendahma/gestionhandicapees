@@ -549,18 +549,10 @@ class BudgetController extends Controller
     public function BudgetSupplimenatire(Request $request){
         $budget = Budget::where('annee',$request->budgetSupplimentaireAnnee)->first();
 
-        
         $budget->update([
             'budgetSupplimentaireMondatement'=>$request->budgetSupplimenatireMondatement,
             'budgetSupplimentaireAssurance'=>$request->budgetSupplimentaireAssurance,
         ]);
-        
-        /* 
-            - Function SyncBudget execute when a new Budget Supplimenatire is added
-            - syncBudget Add the new budget supplimentaire to the reste of budget then add the budget supplimentaire to the total
-                of budget supplimentaire in case there was more than juste one and reset the var budget supp to 0
-        */
-        $budget->syncBudget($request->budgetSupplimentaireAnnee);
 
         session()->flash('success','Le budget supplimentaire d\'annee ' . date('Y') . ' a été ajouter avec success');
 

@@ -12,12 +12,8 @@ class Budget extends Model
         'annee',
         'budgetMondatement',
         'budgetAssurance',
-        'resteBudgetMondatement',
-        'resteBudgetAssurance',
         'budgetSupplimentaireMondatement',
         'budgetSupplimentaireAssurance',
-        'totalBudgetSupplimentaireMondatement',
-        'totalBudgetSupplimentaireAssurance',
     ];
 
     public function CreateNewYearBudget($annee){
@@ -57,6 +53,7 @@ class Budget extends Model
             $montantMondatementConsommeActuellement += $p->montantPaiement;
             $montantAssuranceConsommeActuellement += $p->montantAssurance;
         }
+<<<<<<< HEAD
         $budget->update([
             'resteBudgetMondatement' => $budget->budgetMondatement + $budget->totalBudgetSupplimentaireMondatement - $montantMondatementConsomme ,
             'resteBudgetAssurance' => $budget->budgetAssurance - $montantAssuranceConsomme,
@@ -65,26 +62,19 @@ class Budget extends Model
         $NouveauConsommationBudgetMondatement = $budget->budgetMondatement - $montantMondatementConsommeActuellement;
 
         $NouveauConsommationBudgetAssurance = $budget->budgetAssurance - $montantAssuranceConsommeActuellement;
+=======
+        $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsomme;
+        $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) -  $montantAssuranceConsomme;
+        $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsommeActuellement;
+        $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) - $montantAssuranceConsommeActuellement;
+>>>>>>> a34305b4fc13a005f08b05bc4ab7057b60ac0e28
 
         return [
-            'ancienConsommationBudgetPaie' => $budget->resteBudgetMondatement,
-            'ancienConsommationBudgetAssurance'=>$budget->resteBudgetAssurance,
+            'ancienConsommationBudgetPaie' => $AncienConsommationBudgetMondatement,
+            'ancienConsommationBudgetAssurance'=> $AncienConsommationBudgetAssurance,
             'nouveauConsommationBudgetPaie' => $NouveauConsommationBudgetMondatement,
             'nouveauConsommationBudgetAssurance' => $NouveauConsommationBudgetAssurance
         ];
     }
 
-    public function syncBudget($annee){
-        $budget = Budget::where('annee',$annee)->first();
-        $newResteMondatement = $budget->resteBudgetMondatement + $budget->budgetSupplimentaireMondatement;
-        $newResteAssurance = $budget->resteBudgetAssurance + $budget->budgetSupplimentaireAssurance;
-        $budget->update([
-            'resteBudgetMondatement' => $newResteMondatement,
-            'resteBudgetAssurance' => $newResteAssurance ,
-            'totalBudgetSupplimentaireMondatement' => $budget->totalBudgetSupplimentaireMondatement + $budget->budgetSupplimentaireMondatement,
-            'totalBudgetSupplimentaireAssurance' => $budget->totalBudgetSupplimentaireAssurance + $budget->budgetSupplimentaireAssurance,
-            'budgetSupplimentaireMondatement' => 0,
-            'budgetSupplimentaireAssurance' => 0
-        ]);
-    }
 }
