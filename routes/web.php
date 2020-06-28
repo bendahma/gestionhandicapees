@@ -57,6 +57,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/renouvellement', 'RenouvelementDossierController');
     Route::post('/monthlyStatistics', 'StaticticsController@StatistiqueMensuelle');
     Route::get('/cds','CdController@index')->name('cds.index');
+    Route::post('/cds/CdClassique','CdController@CdClassique')->name('cds.CdClassique');
+    Route::post('/cds/CdMondatement','CdController@CdMondatement')->name('cds.CdMondatement');
+
 });
 
 
