@@ -58,7 +58,7 @@ class Budget extends Model
             $montantAssuranceConsommeActuellement += $p->montantAssurance;
         }
         $budget->update([
-            'resteBudgetMondatement' => $budget->budgetMondatement - $montantMondatementConsomme ,
+            'resteBudgetMondatement' => $budget->budgetMondatement + $budget->totalBudgetSupplimentaireMondatement - $montantMondatementConsomme ,
             'resteBudgetAssurance' => $budget->budgetAssurance - $montantAssuranceConsomme,
         ]);
 
