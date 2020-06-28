@@ -19,6 +19,7 @@ class CreatePaieInformationTable extends Migration
             $table->string('RIP')->unique()->nullable();
             $table->date('datePremierPension')->nullable();
             $table->date('dateDecisionPension')->nullable();
+            $table->boolean('Beneficier')->default(0);
             $table->unsignedBigInteger('hand_id');
             $table->timestamps();
             $table->foreign('hand_id')->references('id')->on('hands')->onDelete('cascade');

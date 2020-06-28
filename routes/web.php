@@ -1,13 +1,17 @@
 <?php
 
 use App\Budget;
+use App\PaieInformation;
 
+Route::get('/changeRip', function(){
+    $info = PaieInformation::all();
+    
+    foreach($info as $i){
+        $i->RIP = str_replace('*','',$i->RIP);
+        $i->save();
+    }
 
-Route::get('/checkBudget', function(){
-    $budget = new Budget();
-    $consommationBudget = $budget->BudgetConsomme(date('Y'));
-    dump($consommationBudget['4615']);
-    dump($consommationBudget['3313']);
+    
 });
 
 Auth::routes();
@@ -59,6 +63,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/cds','CdController@index')->name('cds.index');
     Route::post('/cds/CdClassique','CdController@CdClassique')->name('cds.CdClassique');
     Route::post('/cds/CdMondatement','CdController@CdMondatement')->name('cds.CdMondatement');
+    Route::post('/cds/CdBeneficier','CdController@CdBeneficier')->name('cds.CdBeneficier');
 
 });
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hand;
-
+use App\PaieInformation;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\HandsImport;
@@ -39,6 +39,11 @@ class UploadHandInfoController extends Controller
     public function store(Request $request)
     {
         Excel::import(new HandsImport, $request->file('file'));
+        $info = PaieInformation::all();
+        foreach($info as $i){
+            $i->RIP = str_replace('*','',$i->RIP);
+            $i->save();
+        }
         return redirect('/upload');
     }
 

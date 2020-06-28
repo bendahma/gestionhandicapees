@@ -53,21 +53,15 @@ class Budget extends Model
             $montantMondatementConsommeActuellement += $p->montantPaiement;
             $montantAssuranceConsommeActuellement += $p->montantAssurance;
         }
-<<<<<<< HEAD
         $budget->update([
             'resteBudgetMondatement' => $budget->budgetMondatement + $budget->totalBudgetSupplimentaireMondatement - $montantMondatementConsomme ,
             'resteBudgetAssurance' => $budget->budgetAssurance - $montantAssuranceConsomme,
         ]);
 
-        $NouveauConsommationBudgetMondatement = $budget->budgetMondatement - $montantMondatementConsommeActuellement;
-
-        $NouveauConsommationBudgetAssurance = $budget->budgetAssurance - $montantAssuranceConsommeActuellement;
-=======
         $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsomme;
         $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) -  $montantAssuranceConsomme;
         $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsommeActuellement;
         $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) - $montantAssuranceConsommeActuellement;
->>>>>>> a34305b4fc13a005f08b05bc4ab7057b60ac0e28
 
         return [
             'ancienConsommationBudgetPaie' => $AncienConsommationBudgetMondatement,
