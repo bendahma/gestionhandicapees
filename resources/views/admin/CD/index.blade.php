@@ -29,7 +29,15 @@
                             <h6>CD Mondatement</h6>
                         </div>
                         <div class="card-body">
-                            <input type="submit" value="Télécharger CD Mondatement" class="btn btn-success btn-block">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <input type="number" name="NumeroMondate" id="" class="form-control" placeholder="N° Mondate">
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="submit" value="Télécharger CD Mondate" class="btn btn-success btn-block">
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </form>

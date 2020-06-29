@@ -7,7 +7,7 @@ use App\Hand;
 
 class PaieInformation extends Model
 {
-    protected $fillable = ['CCP','RIP','datePremierPension','dateDecisionPension'];
+    protected $fillable = ['CCP','RIP','datePremierPension','dateDecisionPension','Beneficier'];
     
     public function hand(){
 

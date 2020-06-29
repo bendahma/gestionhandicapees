@@ -18,6 +18,7 @@ class CreatePaiesTable extends Migration
             $table->string('moisPaiement');
             $table->string('anneesPaiement');
             $table->bigInteger('montantPaiement');
+            $table->bigInteger('montantAssurance')->nullable();
             $table->unique(['moisPaiement', 'anneesPaiement']);
             $table->timestamps();
         });

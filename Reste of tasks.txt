@@ -17,6 +17,8 @@
 
 _______________________________________________________________________
 
+.name length no more than 26 character - in Create Hand
+
 . CD Section
    - creer les CDs
    - Verifier les CDs
