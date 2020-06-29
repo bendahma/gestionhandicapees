@@ -37,6 +37,7 @@ class listHandController extends Controller
                 ->with('carts',CartHand::all())
                 ->with('paieinformations',PaieInformation::all());
     }
+
     public function enAttente(){
 
         $handsList = $this->hands->HandEnAttente();
@@ -55,5 +56,17 @@ class listHandController extends Controller
                 ->with('hands', $handsList)
                 ->with('carts',CartHand::all())
                 ->with('paieinformations',PaieInformation::all());
+    }
+
+    public function Filtre(){
+        return view('admin.statistics.listFiltre');
+    }
+
+    public function FiltreListeHand(Request $request){
+        dump($request->all());
+        $communes = $request->input('communes');
+        foreach($communes as $commune){
+            dump($commune);
+        }
     }
 }

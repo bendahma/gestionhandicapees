@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/ListHands/Arrete', "listHandController@arrete")->name('listhands.arrete');
     Route::get('/ListHands/EnCours', "listHandController@encours")->name('listhands.encours');
     Route::get('/ListHands/EnAttente', "listHandController@enAttente")->name('listhands.enattente');
+    Route::get('/ListHands/Filtre', "listHandController@Filtre")->name('listhands.filtre');
+    Route::post('/ListHands/FiltreListeHand', "listHandController@FiltreListeHand")->name('listhands.FiltreListeHand');
     Route::resource('/paie' , 'PaieMensuelleController');
     Route::get('/paiement/export' , 'PaieMensuelleController@export')->name('paie.export');
     Route::get('/paiement/Cnas/{papier}' , 'PaieMensuelleController@Cnas')->name('paie.Cnas');

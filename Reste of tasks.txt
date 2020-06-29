@@ -14,13 +14,12 @@
 
 6. Paiement Mensuelle : 
    - Modifier la processus du paiement pour ajouter les changement du budget Supplimentaire
-
+7. Create CDs : Classique - Mondate - Bénéficier
 _______________________________________________________________________
 
 .name length no more than 26 character - in Create Hand
 
 . CD Section
-   - creer les CDs
    - Verifier les CDs
 
 . Rapple 

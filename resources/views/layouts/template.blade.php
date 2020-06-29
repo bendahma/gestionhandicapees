@@ -205,7 +205,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#">
+          <a class="nav-link collapsed" href="{{route('listhands.filtre')}}">
             <i class="fas fa-list-ol"></i>
             <span>Liste Mondaté Filtre</span>
           </a>
@@ -386,6 +386,7 @@
           @yield('PaiementHistory')
           @yield('statRenouvellement')
           @yield('CDsection')
+          @yield('List-Filtre')
         </div>
         <!-- End of Main Content -->
 
