@@ -131,17 +131,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cd" aria-expanded="true" aria-controls="cd">
+          <a class="nav-link collapsed" href="{{route('cds.index')}}">
             <i class="fas fa-compact-disc"></i>
             <span>CD</span>
           </a>
-          <div id="cd" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header"></h6>
-              <a class="collapse-item" href="{{route('cds.index')}}">Creer CD</a>
-              <a class="collapse-item" href="">Verifier CD</a>
-            </div>
-          </div>
         </li>
         
         
