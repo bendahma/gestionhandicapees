@@ -18,30 +18,43 @@
                 <div class="col-lg-12">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h3 text-gray-900 mb-4"> <i class="fas fa-lock"></i> Login</h1>
+                      <h1 class="h3 text-gray-900 mb-5"> <i class="fas fa-lock"></i> Login</h1>
                     </div>
+                    <hr>
+                    <h4 class="text-center mb-3">Veuillez-vous connecter</h4>
                     <form class="user" method="POST" action="{{ route('login') }}" autocomplete="off">
                       @csrf
-                      <div class="form-group">
-                            <input type="email" name="email" class="form-control form-control-user ml-2" autocomplete="off" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <div class="row form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend"> 
+                              <div class="input-group-text" style="background-color: rgb(240, 240, 247); color:black;font-size:1.5rem">
+                                <i class="far fa-user"></i>
+                              </div>
+                            </div> 
+                            <input type="text" name="username" class="form-control" autocomplete="off" placeholder="Nom d'utilisateur...">
                         
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
                         </div>
-                        <div class="form-group">
-                            
-                                <input type="password" name="password" class="form-control form-control-user ml-2" autocomplete="off" id="exampleInputPassword" placeholder="Password">
+                      </div>
+                        <div class="row form-group">
+                          <div class="input-group">
+                            <div class="input-group-prepend"> 
+                              <div class="input-group-text" style="background-color: rgb(240, 240, 247); color:black;font-size:1.5rem">
+                                <i class="fas fa-unlock-alt"></i>
+                              </div>
+                            </div> 
+                                <input type="password" name="password" class="form-control" autocomplete="off" id="exampleInputPassword" placeholder="Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                            
-                        
+                          </div>
                          </div>
                       <hr>
                          <div class="row">
