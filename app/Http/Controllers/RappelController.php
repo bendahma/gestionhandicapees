@@ -18,6 +18,7 @@ use App\Rappel;
 use App\HandSuspentionHistory;
 
 use DateTime;
+use Carbon\Carbon;
 
 class RappelController extends Controller
 {
@@ -26,16 +27,50 @@ class RappelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(){
+        $montantPaieTotal = 0;
+        $montantAssuranceTotal = 0;
+        $nbrRappel = 0;
+        $nbrMoisTotal = 0;
+        $nbrPersonneTotal = 0;
+
+
+        $from = date('01/01/Y');
+        $to = date('12/31/Y');
+
+        $rappels = Rappel::whereBetween('DatePaiementRappel',[new Carbon($from),new Carbon($to)])->where('RappelFait',1)->get();
+
+        // Les Rappel Fait
+        foreach($rappels as $r){
+            $nbrRappel += 1;
+            $montantPaieTotal += $r->montantRappel;
+            $montantAssuranceTotal += $r->montantAssurance;
+            $nbrMoisTotal += $r->nombreMois;
+            $nbrPersonneTotal +=$r->nombrePersonne; 
+        }
+
+        return view('admin.rappel.index')
+                    ->with('nbrRappel',$nbrRappel)
+                    ->with('nbrMois',$nbrMoisTotal)
+                    ->with('nbrPersonne',$nbrPersonneTotal)
+                    ->with('MontantRappel',$montantPaieTotal)
+                    ->with('MontantAssurance',$montantAssuranceTotal);
+    }
+
+    public function listePaiementRappel()
     {        
-        $RappelHands = DB::table('hands')
+        $RappelHandsInstance = DB::table('hands')
                         ->join('paie_information','paie_information.hand_id','hands.id')
                         ->join('hand_rappel','hand_rappel.hand_id','hands.id')
                         ->join('rappels','rappels.id','hand_rappel.rappel_id')
                         ->select('hands.nameFr', 'hands.dob','paie_information.CCP','rappels.dateDebut', 'rappels.dateFin','rappels.nombreMois','rappels.RappelFait','hand_rappel.hand_id','hand_rappel.rappel_id')
                         ->get();
-        return view('admin.rappel.index')
-                ->with('rappels',$RappelHands);
+
+        
+        
+        return view('admin.rappel.list')
+                ->with('rappels',$RappelHandsInstance);
     }
 
     /**
@@ -45,7 +80,11 @@ class RappelController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rappel.create');
+    }
+
+    public function Add(){
+        return view('admin.rappel.add');
     }
 
     /**
@@ -57,6 +96,23 @@ class RappelController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function Saisie(Request $request){
+        $rappel = new Rappel();
+        $rappel->create([
+            'AnneeRappel' => $request->anneeRappel,
+            'DatePaiementRappel' => $request->datePaiementRappel,
+            'DateDebut' => $request->dateDebutRappel,
+            'DateFin' => $request->dateFinRappel,
+            'montantRappel' => $request->montantPaiement,
+            'montantAssurance' => $request->montantAssurance,
+            'nombreMois' => $request->nbrMois,
+            'nombrePersonne' => $request->nbrPersonne,
+            'RappelFait' => 1
+        ]);
+        session()->flash('success','Rappel Added Successfully');
+        return redirect(route('rappel.index'));
     }
 
     /**

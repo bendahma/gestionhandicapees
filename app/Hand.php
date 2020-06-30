@@ -30,8 +30,6 @@ class Hand extends Model
         'nbrenfant','obs'
     ];
 
-   
-
     // Relationships
 
     public function cartehand()

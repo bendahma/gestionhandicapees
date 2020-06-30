@@ -15,12 +15,14 @@ class CreateRappelsTable extends Migration
     {
         Schema::create('rappels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('DateRappel')->nullable();
+            $table->string('AnneeRappel')->nullable();
             $table->date('DatePaiementRappel')->nullable();
             $table->date('DateDebut')->nullable();
             $table->date('DateFin')->nullable();
-            $table->bigInteger('montant')->nullable();
+            $table->bigInteger('montantRappel')->nullable();
+            $table->bigInteger('montantAssurance')->nullable();
             $table->Integer('nombreMois')->nullable();
+            $table->Integer('nombrePersonne')->nullable();
             $table->boolean('RappelFait')->default(false);
             $table->timestamps();
         });
