@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
 use App\HandPaieStatus;
-
+use DB;
 class listHandController extends Controller
 {
     public $hands;
@@ -63,10 +64,31 @@ class listHandController extends Controller
     }
 
     public function FiltreListeHand(Request $request){
-        dump($request->all());
-        $communes = $request->input('communes');
-        foreach($communes as $commune){
-            dump($commune);
+        // Communes
+
+        if($request->communes == NULL || $request->communes[0] == 'allCommune'){
+                $communechoice = false;
+                $communes='';
         }
+
+        $communechoice = true;
+        $communes = collect($request->communes);
+                        
+        
+        // NATURE
+        if($request->natures == NULL || $request->natures[0] == 'allNature'){
+            $naturechoice = false;
+                $nature='';
+        }
+
+        $naturechoice = true;
+        $nature = collect($request->natures);
+        
+        // SEX
+        
+        dump($communechoice);
+        dump($communes);
+        dump($naturechoice);
+        dump($nature);
     }
 }
