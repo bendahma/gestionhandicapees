@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Paie;
+use App\Rappel;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,10 +41,14 @@ class Budget extends Model
         $montantAssuranceConsomme = 0;
         $NouveauConsommationBudgetAssurance = 0;
         $montantAssuranceConsommeActuellement = 0;
-
+        $montantRappelPaie = 0;
+        $montantRappelAssurance = 0;
 
         $paies = Paie::where('anneesPaiement',$annee)->get();
+        $rappel = Rappel::where('AnneeRappel',date('Y'))->where('RappelFait',1)->get();
         $budget = Budget::where('annee',$annee)->first();
+
+        
 
         foreach ($paies as $p) {
             if($p->moisPaiement < date('m')){
@@ -53,15 +58,16 @@ class Budget extends Model
             $montantMondatementConsommeActuellement += $p->montantPaiement;
             $montantAssuranceConsommeActuellement += $p->montantAssurance;
         }
-        $budget->update([
-            'resteBudgetMondatement' => $budget->budgetMondatement + $budget->totalBudgetSupplimentaireMondatement - $montantMondatementConsomme ,
-            'resteBudgetAssurance' => $budget->budgetAssurance - $montantAssuranceConsomme,
-        ]);
+        
+        foreach($rappel as $r){
+            $montantRappelPaie += $r->montantRappel;
+            $montantRappelAssurance += $r->montantAssurance;
+        }
 
-        $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsomme;
-        $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) -  $montantAssuranceConsomme;
-        $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - $montantMondatementConsommeActuellement;
-        $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) - $montantAssuranceConsommeActuellement;
+        $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - ($montantMondatementConsomme + $montantRappelPaie);
+        $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) -  ($montantAssuranceConsomme + $montantRappelAssurance);
+        $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement) - ($montantMondatementConsommeActuellement + $montantRappelPaie);
+        $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance) - ($montantAssuranceConsommeActuellement+$montantRappelAssurance);
 
         return [
             'ancienConsommationBudgetPaie' => $AncienConsommationBudgetMondatement,
