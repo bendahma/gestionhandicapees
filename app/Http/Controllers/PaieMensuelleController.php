@@ -17,15 +17,80 @@ use App\HandPaieStatus;
 use App\Hand_Paie;
 use App\MoisAnnee;
 use App\Budget;
+use Carbon\Carbon;
 
 require_once('ChiffresEnLettres.php');
 
 class PaieMensuelleController extends Controller
 {
 
+    public function index(){
+        $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();
 
-    public function index() {
-        // Getting the lists of hands - En cours : Suspendu : Arrete
+        $hands = Hand::whereHas('status',function($s){
+                    $s->where('status', 'en cours');
+                })->get();
+                
+        $countHand = $hands->count();
+        
+
+        return view('admin.paie.index')
+                        ->with('CurrentPaie',$paieExist)
+                        ->with('count',$countHand);
+    }
+
+    // public function index() {
+    //     // Getting the lists of hands - En cours : Suspendu : Arrete
+    //     $hands = Hand::whereHas('status',function($s){
+    //         $s->where('status', 'en cours');
+    //     })->get();
+
+    //     $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
+    //         $s->where('status', 'suspendu');
+    //     })->get();
+
+    //     $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
+    //         $s->where('status', 'Arrete');
+    //     })->get();
+
+    //     // Calculating
+    //     $countHand = $hands->count();
+    //     $montantPaie = $countHand * config('paie.MontantPaie');
+    //     $montantAssurance = $countHand * config('paie.MontantAssurance');
+    //     $budgetI = new Budget();
+    //     $budget = $budgetI->CreateNewYearBudget(date('Y'));
+    //     $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();
+        
+        
+    //     if(!$paieExist){
+    //         //Create Paiement 
+    //         $currentPaie = Paie::create([
+    //             'moisPaiement'=>date('m'),
+    //             'anneesPaiement'=>date('Y'),
+    //             'montantPaiement'=>$montantPaie,
+    //             'montantAssurance'=>$montantAssurance
+    //         ]);
+            
+    //     }
+
+    //     if($paieExist){
+    //         $paieExist->hands()->detach($handsSuspendu);
+    //         $paieExist->hands()->detach($handsArrete);
+    //         if (!$paieExist->hands->contains($paieExist->id)) {
+    //             $paieExist->hands()->attach($hands);
+    //         }
+    //     }
+        
+        
+    //     return view('admin.paie.resume')
+    //                 ->with('CurrentPaie',$paieExist)
+    //                 ->with('count',$countHand);
+        
+    // }
+
+
+    public function MakePaie(Request $request){
+        
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
         })->get();
@@ -39,10 +104,10 @@ class PaieMensuelleController extends Controller
         })->get();
 
         // Calculating
+        $budgetI = new Budget();
         $countHand = $hands->count();
         $montantPaie = $countHand * config('paie.MontantPaie');
         $montantAssurance = $countHand * config('paie.MontantAssurance');
-        $budgetI = new Budget();
         $budget = $budgetI->CreateNewYearBudget(date('Y'));
         $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();
         
@@ -64,13 +129,15 @@ class PaieMensuelleController extends Controller
             if (!$paieExist->hands->contains($paieExist->id)) {
                 $paieExist->hands()->attach($hands);
             }
-        }
-        
-        
-        return view('admin.paie.resume')
-                    ->with('CurrentPaie',$paieExist)
-                    ->with('count',$countHand);
-        
+
+        } 
+
+        session()->flash('success','Paiement du mois ' . date('M/Y') . ' à été creer avec success.' );
+       
+        return redirect()->back();
+    }
+    public function DownloadPaieDocuments(){
+
     }
 
     public function export() {
