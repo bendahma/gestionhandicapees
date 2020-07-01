@@ -15,6 +15,11 @@
 6. Paiement Mensuelle : 
    - Modifier la processus du paiement pour ajouter les changement du budget Supplimentaire
 7. Create CDs : Classique - Mondate - Bénéficier
+
+8. Rappel
+   - Saisie rappel 
+   - Liste des rappels
+9 Added rappel consumption to budget consumption
 _______________________________________________________________________
 
 .name length no more than 26 character - in Create Hand
@@ -23,7 +28,6 @@ _______________________________________________________________________
    - Verifier les CDs
 
 . Rapple 
-   - Ajouter un rappel
    - Traitement du rappel
 
 . Liste des Mondaté Filtré : 
