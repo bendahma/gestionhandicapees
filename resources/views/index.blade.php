@@ -19,13 +19,26 @@
       }
     </style>
   </head>
-  <body style="background: rgb(123, 22, 255);">
+  <body style="background: rgb(217, 213, 223);">
     <div class="container-fluid mt-3">
-      <div class="row justify-content-center text-center" style="color:white;">
-          <h2 class="col-lg-12" style="font-weight: 900">الـجـمهـوريـة الـجـزائـريـة الـدمـقـراطـيـة الـشـعـبـيـة</h3>
-          <h3 class="col-lg-12" style="font-weight: 900">وزارة الـتـضـامـن الـوطـنـي و الأسـرة و قـضـايـا الـمـرأة</h4>
-          <h4 class="col-lg-12" style="font-weight: 900">مديرية النشاط الإجتماعي و التضامن لولاية عين تموشنت</h5>
+      <div class="d-flex justify-content-between">
+        <div class="" style="color:rgb(0, 0, 0);">
+          <h2 class=" h5" style="font-weight:700">République Algérienne Démocratique et Populaire</h3>
+          <h3 class=" h6" style="font-weight:700">Ministère de la Solidarité Nationale, de la Famille <br />et de la Condition de la Femme</h4>
+          <h4 class=" h5" style="font-weight:700">Wilaya Ain Temouchent</h5>
+          <h4 class=" h5" style="font-weight:700">Direction D'Action Sociale Et Solidarite</h5>
       </div>
+      <div class="">
+        <img src="{{asset('img/logo.png')}}" alt="" height="150px">
+      </div>
+      <div class="text-right" style="color:rgb(0, 0, 0);">
+        <h2 class="h5" style="font-weight:700">الـجــمــهــوريــة الـجــزائـريــة الـدمـقـراطــيــة الـشـعــبـيـة</h3>
+        <h3 class="h5" style="font-weight:700">وزارة الـتـضـامـن الـوطـنـي و الأسـرة و قـضـايـا الـمـرأة</h4>
+        <h3 class="h5" style="font-weight:700">ولايـــة عــيــن تــمــوشــنــت</h4>
+        <h4 class="h5" style="font-weight:700">مديرية النشاط الإجتماعي و التضامن</h5>
+    </div>
+      </div>
+      
       <div class="row justify-content-center mt-3">
          <div class="col-xl-3 col-lg-6 col-md-6">
            <a href="{{route('login')}}" class="mt-3 justify-content-center">
