@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/paie/repartition' , 'PaieMensuelleController@Repartition')->name('paie.repartition');
     Route::get('/paie/engagement/{papier}' , 'PaieMensuelleController@Engagement')->name('paie.engagement');
     Route::get('/paie/mondate/{papier}' , 'PaieMensuelleController@Mondate')->name('paie.mondate');
-    Route::resource('/paie' , 'PaieMensuelleController');
+    Route::get('/paie' , 'PaieMensuelleController@index')->name('paie.index');
 
     Route::patch('/budget/updateBudgetSupplimentaire', 'BudgetController@BudgetSupplimenatire')->name('budget.updateBudgetSupplimentaire');
     Route::get('/budget/DownloadBudgetConsomptionPaie' , 'BudgetController@DownloadBudgetConsomptionPaie')->name('budget.DownloadBudgetConsomptionPaie'); 
