@@ -125,10 +125,18 @@
         </div>
         <!-- Paiement Mensuelle -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('paie.index')}}" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#paieMensuelle" aria-expanded="true" aria-controls="paieMensuelle">
             <i class="fas fa-money-check-alt"></i>
             <span>Paie Mensuelle</span>
           </a>
+          <div id="paieMensuelle"  class="collapse" aria-labelledby="headingTwo" data-parent="#paieMensuelle" >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Paie Mensuelle</h6>
+              <a class="collapse-item" href="{{route('paie.index')}}">Résume</a>
+              <a class="collapse-item" href="">Traitement</a>
+              <a class="collapse-item" href="">Télécharger Document</a>
+            </div>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('cds.index')}}">
