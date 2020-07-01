@@ -89,7 +89,7 @@ class PaieMensuelleController extends Controller
     // }
 
 
-    public function MakePaie(Request $request){
+    public function MakePaie(){
         
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
@@ -120,24 +120,41 @@ class PaieMensuelleController extends Controller
                 'montantPaiement'=>$montantPaie,
                 'montantAssurance'=>$montantAssurance
             ]);
-            
-        }
+            session()->flash('success','Paiement du mois ' . date('M/Y') . ' à été creer avec success.' );
 
-        if($paieExist){
+        }
+        else {
+            $hands = Hand::whereHas('status',function($s){
+                $s->where('status', 'en cours');
+            })->get();
+    
+            $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
+                $s->where('status', 'suspendu');
+            })->get();
+    
+            $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
+                $s->where('status', 'Arrete');
+            })->get();
+
             $paieExist->hands()->detach($handsSuspendu);
             $paieExist->hands()->detach($handsArrete);
             if (!$paieExist->hands->contains($paieExist->id)) {
                 $paieExist->hands()->attach($hands);
             }
 
-        } 
+            $paieExist->update([
+                'montantPaiement'=> $hands->count() * config('paie.MontantPaie'),
+                'montantAssurance'=> $hands->count() * config('paie.MontantAssurance')
+            ]);
+            session()->flash('success','Paiement du mois ' . date('M Y') . ' à été mis à jours avec success.' );
+        }
 
-        session()->flash('success','Paiement du mois ' . date('M/Y') . ' à été creer avec success.' );
        
         return redirect()->back();
     }
-    public function DownloadPaieDocuments(){
 
+    public function DocumentsPaie(){
+        return view('admin.paie.documents');
     }
 
     public function export() {

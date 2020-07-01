@@ -20,6 +20,8 @@
    - Saisie rappel 
    - Liste des rappels
 9 Added rappel consumption to budget consumption
+
+10. redesign paiement process
 _______________________________________________________________________
 
 .name length no more than 26 character - in Create Hand

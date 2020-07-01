@@ -5,18 +5,19 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-// use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 
 use App\Hand;
 use App\PaieInformation;
 Use \Maatwebsite\Excel\Sheet;
-
+use App\MoisAnnee;
 use DB;
 
-class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvents
+class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvents,ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -32,23 +33,24 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
     }
 
     public function map($hand): array
-    {
-        
+    {        
         return [
-            '1',
+            '',
             $hand->commune,
             $hand->nameFr,
             $hand->sex,
             $hand->dob,
-            '10 000.00',
+            '10000',
             '1',
-            '10 000.00',
+            '10000',
             $hand->paieinformation->CCP,
         ];
     }
 
     public function headings(): array
     {
+        $mois = MoisAnnee::where('id',intval(date('m')))->first();
+
         return [
             ['REPUBLIQUE  ALGERIENNE  DEMOCRATIQUE  ET  POPULAIRE'],
             ['WILAYA  D\'AIN  TEMOUCHENT'],
@@ -56,7 +58,7 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
             [' LISTE DE VIREMENT DE L\'ALLOCATION DES HANDICAPES A 100%'],
             ['( CHAPITRE  46 - 15  BUDGET  DE  L\'ETAT )'],
             [' WILAYA:  AIN TEMOUCHENT'],
-            ['MOIS : MARS 2020'],
+            ['MOIS : ' . $mois->moisFr . ' ' .date('Y') .' '],
             ['N° ORD',
             'COMMUNE',
             'NOM & PRENOM',
@@ -97,9 +99,9 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
                 
                 $styleArray = [
                     'borders' => [
-                        'outline' => [
+                        'allBorders' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                            'color' => ['argb' => 'FFFF0000'],
+                            'color' => ['argb' => '00000000'],
                         ]
                     ],
                     
@@ -108,9 +110,15 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
                 $event->sheet->getDelegate()->getStyle('A1:A7')->applyFromArray($headerArray);
                 $event->sheet->getDelegate()->getStyle('A1:A1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP);
                 $event->sheet->getDelegate()->getStyle('A8:I507')->applyFromArray($styleArray);
+                $sommeRange = $event->sheet->getHighestRow()+1;
+                $lettreRange = $sommeRange + 2;
+                $directeurRange = $lettreRange + 2;
+                $event->sheet->setCellValue('H'. $sommeRange, '=SUM(H9:H'.$event->sheet->getHighestRow().')');
+                $event->sheet->setCellValue('A'. $lettreRange, 'ARRETE LE PRESENT ETAT A LA SOMME DE :');
+                $event->sheet->setCellValue('H'. $directeurRange , 'LE DIRECTEUR');
+                
 
-                
-                
+
             }
             
         ];

@@ -12,37 +12,37 @@ class PaieSeeder extends Seeder
     public function run()
     {
          DB::table('paies')->insert([
-             'moisPaiement'=>1,
+             'moisPaiement'=>'01',
              'anneesPaiement'=>2020,
              'montantPaiement'=>43200000,
              'montantAssurance'=>3888000
         ]);
         DB::table('paies')->insert([
-            'moisPaiement'=>2,
+            'moisPaiement'=>'02',
             'anneesPaiement'=>2020,
             'montantPaiement'=>43190000,
             'montantAssurance'=>3887100
         ]);
         DB::table('paies')->insert([
-            'moisPaiement'=>3,
+            'moisPaiement'=>'03',
             'anneesPaiement'=>2020,
             'montantPaiement'=>43190000,
             'montantAssurance'=>3887100
         ]);
         DB::table('paies')->insert([
-            'moisPaiement'=>4,
+            'moisPaiement'=>'04',
             'anneesPaiement'=>2020,
             'montantPaiement'=>43190000,
             'montantAssurance'=>3887100
         ]);
         DB::table('paies')->insert([
-            'moisPaiement'=>5,
+            'moisPaiement'=>'05',
             'anneesPaiement'=>2020,
             'montantPaiement'=>41920000,
             'montantAssurance'=>3772800
         ]);
         DB::table('paies')->insert([
-            'moisPaiement'=>6,
+            'moisPaiement'=>'06',
             'anneesPaiement'=>2020,
             'montantPaiement'=>41660000,
             'montantAssurance'=>3749400

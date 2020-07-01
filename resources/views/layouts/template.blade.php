@@ -133,8 +133,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Paie Mensuelle</h6>
               <a class="collapse-item" href="{{route('paie.index')}}">Résume</a>
-              <a class="collapse-item" href="">Traitement</a>
-              <a class="collapse-item" href="">Télécharger Document</a>
+              <a class="collapse-item" onclick="return confirm('Are you sur you want to Do or Re-do the paiement ? Re-doing the paiement will change the intial paiement information . Click OK to continue ')" href="{{route('paie.traitement')}}">Traitement</a>
+              <a class="collapse-item" href="{{route('paie.documents')}}">Télécharger Document</a>
             </div>
           </div>
         </li>
@@ -354,6 +354,16 @@
                   </div>
               </div>
           @endif
+          @if(session()->has('update'))
+          <div class="container">
+              <div class="alert alert-info alert-dismissible fade show">
+                  <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('update') }}</h6>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+          @endif
           @if(session()->has('warning'))
               <div class="container ">
                   <div class="alert alert-warning alert-dismissible fade show">
@@ -380,6 +390,7 @@
           @yield('addOrEditHand')
           @yield('showSuspenduInfo')
           @yield('PaieResume')
+          @yield('DocumentsPaie')
           @yield('addBudget')
           @yield('RappelResume')
           @yield('list_rappels')
