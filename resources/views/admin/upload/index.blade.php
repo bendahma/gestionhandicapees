@@ -11,10 +11,10 @@
                     @csrf
                     <input type="file" name="file" id="file" class="form-control">
                     <div class="row mt-3">
-                        <div class="col">
+                        <div class="col-lg-2">
                             <input type="submit" value="Upload file" class="btn btn-success btn-block">
                         </div>
-                        <div class="col">
+                        <div class="col-lg-2">
                             <input type="reset" value="Clean" class="btn btn-danger btn-block">
                         </div>
                     </div>
