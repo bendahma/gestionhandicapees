@@ -29,7 +29,7 @@
           <h4 class=" h5" style="font-weight:700">Direction D'Action Sociale Et Solidarite</h5>
       </div>
       <div class="">
-        <img src="{{asset('img/logo.png')}}" alt="" height="150px">
+        <img src="{{asset('img/logo.png')}}" alt="" height="100px">
       </div>
       <div class="text-right" style="color:rgb(0, 0, 0);">
         <h2 class="h5" style="font-weight:700">الـجــمــهــوريــة الـجــزائـريــة الـدمـقـراطــيــة الـشـعــبـيـة</h3>
