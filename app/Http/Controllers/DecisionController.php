@@ -113,7 +113,7 @@ class DecisionController extends Controller
             $template->setValue('addressAr',$hand->addressAr);
             $template->setValue('communeAr',$hand->communeAr);
             $template->setValue('dateSusp',$hand->status->dateSupprission);
-            $template->setValue('motifSusp',$hand->status->motifAr);
+            $template->setValue('motifSusp',$hand->status->getMotifAr($hand->status->motifAr));
             $output = "Décision Suspension " . $hand->nameFr .".docx";
         }
         else if($papier == 'arrete'){
@@ -129,7 +129,7 @@ class DecisionController extends Controller
             $template->setValue('dob',$hand->dob);
             $template->setValue('communeNaisAR',$hand->lieuxNaissanceAr);
             $template->setValue('dateSusp',$hand->status->dateSupprission);
-            $template->setValue('motif',$hand->status->motifAr);
+            $template->setValue('motif',$hand->status->getMotifAr($hand->status->motifAr));
             $output = "Décision Arrete " . $hand->nameFr .".docx";
 
         }

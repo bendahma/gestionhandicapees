@@ -108,6 +108,13 @@
                           <div class="form-group" >
                             <label for="" class="font-weight-bold text-center " >سبب التوقيف</label>
                             <select name="motifAr" class="form-control" dir="rtl" id="motifSup">
+                                <option value="" selected>إختر سبب الحذف</option>
+                                <option value="DOSSIER ANNUEL">عدم تحديد الملف السنوي</option>
+                                <option value="CNAS ACTIVE">الإنتساب للضمان الإجتماعي للأجراء</option>
+                                <option value="CASNOS ACTIVE">الإنتساب للضمان الإجتماعي لغير الأجراء</option>
+                                <option value="EMPLOI DU JEUNE">الإستفادة من عقود الإدماج المهني</option>
+                                <option value="DAIS">الإستفادة من برنامج الإدماج الإجتماعي (DAIS)</option>
+                                <option value="AFS"> الإستفادة من المنحة الجزافية للتضامن (AFS)</option>
                                 <option value="DCD">وفاة</option>
                                 <option value="ReversionCNR">مستفد من معاش التقاعد المنقول بالداخل و الخارج</option>
                                 <option value="MOUDJAHIDINE">مستفيد من معاش التقاعد المنقول للمجاهدين</option>
@@ -120,7 +127,7 @@
                                 <option value="TourismeAg">مستفيد من برامج الدعم في قطاع السياحة و الفلاحة</option>
                                 <option value="DESISTEMENT">تنازل</option>
                                 <option value="CHANGEMENT_WILAYA">تغيير الإقامة لولاية أخرى</option>
-                                <option value="AUTRE" >أسباب أخرى</option>
+                                <option value="AUTRE" >أسباب أخرى</option>                                
                             </select>
                           </div>
                         </div>

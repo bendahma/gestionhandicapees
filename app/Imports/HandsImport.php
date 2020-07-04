@@ -8,6 +8,7 @@ use App\PaieInformation;
 use App\CarteNational;
 use App\SecuriteSociale;
 use App\HandPaieStatus;
+use App\HandSuspentionHistory;
 
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -30,7 +31,8 @@ class HandsImport implements ToModel
         $national = new CarteNational();
         $securiteSociale = new SecuriteSociale();
         $status = new HandPaieStatus();
-        
+        $historySuspension = new HandSuspentionHistory();
+
         if(!isset($row[0]) && !isset($row[1]) && !isset($row[2]) && !isset($row[3]) && !isset($row[4]) && !isset($row[5]) ){
             return NULL;
         }
@@ -65,17 +67,23 @@ class HandsImport implements ToModel
         $hand->cartenational()->save($national);
         
         // -------------------------------------------------------------------------------------------------------
-        // securite sociale information 
+        // UPLOAD SOCIALE SECURITE 
         $securiteSociale->NSS = isset($row[9]) ? $row[9] : NULL;
         $hand->securitesociale()->save($securiteSociale);
 
-        // --------------------------------------------------------------------------------------------------------
+        // UPLOAD HAND CURRENT SITUATION --------------------------------------------------------------------------------------------------------
         $status->status = isset($row[11]) ? $row[11] : NULL;
         $status->dateSupprission = isset($row[12]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[12]) : NULL;
         $status->motifAr = isset($row[13]) ? $row[13] : NULL;
-        
         $hand->status()->save($status);
-        
+
+        // UPLOAD HAND HISTORU SUSPENSION --------------------------------------------------------------------------------------------------------
+        if(isset($row[11]) && $row[11] != 'en cours'){
+            $historySuspension->status = isset($row[11]) ? $row[11] : NULL;
+            $historySuspension->dateSupprission = isset($row[12]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[12]) : NULL;
+            $historySuspension->motif = isset($row[13]) ? $row[13] : NULL;
+            $hand->handSuspentionHistories()->save($historySuspension);
+        }
         return $hand; 
     }
 }

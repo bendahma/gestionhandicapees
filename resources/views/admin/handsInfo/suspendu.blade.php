@@ -9,9 +9,19 @@
        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i>  --}}
          {{-- Fiche Handicapées</a> --}}
          <div>
-          <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'suspension'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision du suspension </a> 
-          <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="remiHandaler({{$hand->id}})"> <span><i class="far fa-check-circle"></i></span> Régle la situation </button>
-         </div>
+          @if($hand->status->status == 'En cours')
+              <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="{{route('decision.telecharger', [$hand->id,'reglement'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du Réglement </a> 
+          @endif
+          @if($hand->status->status == 'Suspendu')
+              <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'suspension'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du suspension </a> 
+          @endif
+          @if($hand->status->status == 'Arrete')
+              <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'arrete'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision d'Arrete </a> 
+          @endif
+          @if($hand->status->status != 'En cours')
+                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="remiHandaler({{$hand->id}})"> <span><i class="far fa-check-circle"></i></span> Régle la situation </button>
+          @endif
+        </div>
          
    </div>
 
@@ -99,6 +109,13 @@
               </div>
               </div>
               @endif
+              <div class="row">
+                <div class="col">
+                  <label for="" class="font-weight-bold">Observation</label>
+                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->motifAr}}
+                  </textarea>
+                </div>
+              </div>
              </form>
        </div>
    </div>

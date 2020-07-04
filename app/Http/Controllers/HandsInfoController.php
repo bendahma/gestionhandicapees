@@ -292,6 +292,6 @@ class HandsInfoController extends Controller
             session()->flash('warning', 'La situation du ' . $hand->nameFr . ' à été mette en Attente. ');
         }
         
-        return redirect(route('dashboard'));
+        return redirect()->back();
     }
 }

@@ -52,6 +52,23 @@ class HandPaieStatus extends Model
                 return "تغيير الإقامة لولاية أخرى";   
               case "AUTRE":
                 return "أسباب أخرى";   
+              case "DOSSIER ANNUEL":
+                return "عدم تجديد الملف السنوي";
+              case "CNAS ACTIVE":
+                return "الإنتساب للضمان الإجتماعي للأجراء";
+              case "CASNOS ACTIVE":
+                return "الإنتساب للضمان الإجتماعي لغير الأجراء";
+              case "EMPLOI DU JEUNE":
+                return "الإستفادة من عقود الإدماج المهني";
+              case "DAIS":
+                return " (DAIS)الإستفادة من برنامج الإدماج الإجتماعي";
+              case "AFS":
+                return "الإستفادة من المنحة الجزافية للتضامن";
+              case "":
+                return "";
+              case "":
+                return "";
+              
               default :
                 return "";
         }
