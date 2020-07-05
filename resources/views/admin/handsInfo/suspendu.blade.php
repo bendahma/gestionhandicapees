@@ -47,7 +47,7 @@
                    <div class="col">
                      <div class="form-group">
                          <label for="" class="font-weight-bold">Commune</label>
-                         <input type="text" readonly class="form-control" id="" name=""value="{{ isset($hand) ? $hand->commune : '' }}">
+                         <input type="text" readonly class="form-control" id="" name=""value="{{ isset($hand) ? $commune->nomCommuneFr : '' }}">
                      </div>
                  </div>
                </div>

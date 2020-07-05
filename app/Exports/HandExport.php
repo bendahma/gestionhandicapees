@@ -8,35 +8,44 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+
+Use \Maatwebsite\Excel\Sheet;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 
 use App\Hand;
 use App\PaieInformation;
-Use \Maatwebsite\Excel\Sheet;
+use App\Commune;
+use App\Paie;
 use App\MoisAnnee;
+
 use DB;
 
-class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvents,ShouldAutoSize
+class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvents,ShouldAutoSize,WithColumnFormatting
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+
     public function collection()
     {
         
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
-        })->get();
-
+        })->orderBy('commune_id', 'asc')->get();
         return $hands;
     }
 
     public function map($hand): array
-    {        
+    {   
+        $commune = Commune::where('codeCommune',$hand->commune_id)->first();     
+
         return [
             '',
-            $hand->commune,
+            $commune->nomCommuneFr,
             $hand->nameFr,
             $hand->sex,
             $hand->dob,
@@ -44,6 +53,14 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
             '1',
             '10000',
             $hand->paieinformation->CCP,
+        ];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            'F' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
+            'H' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
         ];
     }
 
@@ -74,7 +91,7 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
     public function registerEvents(): array
     {
 
-        return [
+       return [
             AfterSheet::class    => function(AfterSheet $event) {
                 $cellRange1 = 'A1:A1';
                 $cellRange2 = 'A1:A1';
@@ -114,10 +131,9 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
                 $lettreRange = $sommeRange + 2;
                 $directeurRange = $lettreRange + 2;
                 $event->sheet->setCellValue('H'. $sommeRange, '=SUM(H9:H'.$event->sheet->getHighestRow().')');
-                $event->sheet->setCellValue('A'. $lettreRange, 'ARRETE LE PRESENT ETAT A LA SOMME DE :');
+                $event->sheet->setCellValue('A'. $lettreRange, 'ARRETE LE PRESENT ETAT A LA SOMME DE :  Dinars ');
                 $event->sheet->setCellValue('H'. $directeurRange , 'LE DIRECTEUR');
-                
-
+            
 
             }
             

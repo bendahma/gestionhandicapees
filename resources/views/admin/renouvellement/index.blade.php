@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTableRe" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>Nom & Prenom</th>
@@ -34,7 +34,7 @@
             @foreach ($hands as $hand)
               <tr>
                 <td>{{$hand->nameFr}}</td>
-                <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
+                <td > <span style="max-width: 100px">{{date('d/m/Y', strtotime($hand->dob))}}</span></td>
                 <td>{{$hand->paieinformation->CCP}}</td>
                 <td>
                   <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}">
@@ -46,7 +46,7 @@
                     @csrf
                     @method('PATCH')
                     <td>
-                      <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}">
+                      <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}" >
                     </td>
                     <td>
                       <input type="submit" class="btn btn-success btn-block " value="Confirmé"> 

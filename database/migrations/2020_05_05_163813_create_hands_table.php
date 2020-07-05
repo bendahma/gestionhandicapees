@@ -25,8 +25,7 @@ class CreateHandsTable extends Migration
             $table->string('lieuxNaissanceAr')->nullable();
             $table->text('address')->nullable();
             $table->text('addressAr')->nullable();
-            $table->text('commune')->nullable();
-            $table->text('communeAr')->nullable();
+            $table->integer('commune_id')->nullable();
             $table->string('prenomPereFr')->nullable();
             $table->string('nomMereFr')->nullable();
             $table->string('prenomMereFr')->nullable();

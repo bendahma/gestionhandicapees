@@ -244,9 +244,9 @@
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="AIN KIHEL" id="AIN KIHEL" name="communes[]">
-                                    <label class="form-check-label" for="AIN KIHEL">
-                                        AIN KIHEL
+                                    <input type="checkbox" class="form-check-input"  value="AIN KIHAL" id="AIN KIHAL" name="communes[]">
+                                    <label class="form-check-label" for="AIN KIHAL">
+                                        AIN KIHAL
                                     </label>
                                   </div>
                             </div>

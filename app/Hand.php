@@ -15,6 +15,7 @@ use App\SecuriteSociale;
 use App\Rappel;
 use App\HandSuspentionHistory;
 use App\RenouvellementDossier;
+use App\Commune;
 
 class Hand extends Model
 {
@@ -24,7 +25,7 @@ class Hand extends Model
         'numeroactenaissance', 'nameFr', 'nomAr',
         'prenomAr','sex','dob',
         'lieuxNaissanceFr','lieuxNaissanceAr',
-        'address','addressAr','commune','communeAr','prenomMereFr','prenomPereAr',
+        'address','addressAr','commune_id','prenomMereFr','prenomPereAr',
         'prenomPereFr','nomMereFr',
         'nomMereAr','prenomMereAr','situationFamilialeFr','situationFamilialeAr',
         'nbrenfant','obs'
@@ -71,9 +72,13 @@ class Hand extends Model
         return $this->hasOne(RenouvellementDossier::class);
     }
 
+    public function commune(){
+        return $this->hasOne(Commune::class);
+    }
+
     public function CheckBasicInfoExsists(Hand $hand){
         if($hand->numeroactenaissance == NULL &&  $hand->nomAr == NULL &&  $hand->prenomAr == NULL && $hand->lieuxNaissanceAr == NULL &&  
-            $hand->addressAr == NULL &&  $hand->communeAr == NULL &&  $hand->prenomPereFr == NULL &&  $hand->nomMereFr == NULL 
+            $hand->addressAr == NULL &&  $hand->prenomPereFr == NULL &&  $hand->nomMereFr == NULL 
             &&  $hand->prenomMereFr == NULL &&  $hand->prenomPereAr == NULL &&  $hand->nomMereAr == NULL &&  $hand->prenomMereAr == NULL && 
              $hand->situationFamilialeFr == NULL &&  $hand->situationFamilialeAr == NULL  &&  $hand->nbrenfant == NULL){
                 return false;

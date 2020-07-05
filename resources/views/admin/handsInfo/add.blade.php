@@ -123,22 +123,20 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Commune *</label>
-                                <input type="text" class="form-control" required name="commune" id="" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->commune : '' }}">
+                                <select name="commune" id="" class="form-control">
+                                    <option value="" selected disabled>Choisi une Commune</option>
+                                    @foreach ($communes as $commune)
+                                        <option value="{{$commune->codeCommune}}" {{ isset($hand) && $hand->commune_id == $commune->codeCommune ? 'selected' : '' }}>{{$commune->nomCommuneFr}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="col-4 text-right">
+                        <div class="col-5 text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold text-right">العنوان بالعربية *</label>
                                 <input type="text" class="form-control text-right"  required name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
                             </div>
                         </div>          
-                        <div class="col text-right">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold text-right">البلدية *</label>
-                                <input type="text" class="form-control text-right" required name="communeAr" id="" placeholder="البلدية" value="{{ isset($hand) ? $hand->communeAr : '' }}">
-                            </div>
-                        </div>
-                        
                     </div>                 
                     <div class="row mt-1">
                         <div class="col ">

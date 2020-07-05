@@ -150,7 +150,7 @@ class PaieMensuelleController extends Controller
         }
 
        
-        return redirect()->back();
+        return view('admin.paie.documents');
     }
 
     public function DocumentsPaie(){
@@ -186,7 +186,7 @@ class PaieMensuelleController extends Controller
         $moisN = date('m');
         $mois = MoisAnnee::find($moisN);
         $nbrHandCount = $nbrHand->count();
-        $VSAC = $nbrHandCount * 20000;
+        $VSAC = $nbrHandCount * 18000;
         $MSAC = ($VSAC * 5)/100;
         $ChiffreEnLettre = new ChiffreEnLettres();
         $ChiffreEnLettreOutput= $ChiffreEnLettre->Conversion($MSAC);
@@ -519,15 +519,10 @@ class PaieMensuelleController extends Controller
         $ChiffreEnLettreCnas = new ChiffreEnLettres();
         $ChiffreEnLettreCnasFr = $ChiffreEnLettreCnas->Conversion($paie->montantAssurance);
 
-        
-
-
         $template->setValue('annee', date('Y'));
         $template->setValue('mois', strtoupper($moisAr));
-        //46-15
         $template->setValue('montantP', number_format($paie->montantPaiement,2,',',' '));
         $template->setValue('ChiffreEnLettreFr', strtoupper($ChiffreEnLettrePaieFr));
-        //33-13
         $template->setValue('montantCnas', number_format($paie->montantAssurance,2,',',' '));
         $template->setValue('ChiffreEnLettreCnasFr', strtoupper($ChiffreEnLettreCnasFr));
         ob_end_clean();

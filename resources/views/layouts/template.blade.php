@@ -158,7 +158,7 @@
           <div id="RappelMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Rappel</h6>
-              <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a>
+              {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
               <a class="collapse-item" href="{{route('rappel.list')}}">Listes Des Rappels</a>
               <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
               <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>

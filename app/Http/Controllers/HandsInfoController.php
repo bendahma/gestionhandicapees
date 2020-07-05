@@ -12,6 +12,7 @@ use App\SecuriteSociale;
 use App\HandPaieStatus;
 use App\Rappel;
 use App\HandSuspentionHistory;
+use App\Commune;
 use DateTime;
 
 class HandsInfoController extends Controller
@@ -28,7 +29,7 @@ class HandsInfoController extends Controller
 
     public function create()
     {
-        return view('admin.handsInfo.add');
+        return view('admin.handsInfo.add')->with('communes',Commune::all());
     }
 
     public function store(Request $request)
@@ -111,7 +112,8 @@ class HandsInfoController extends Controller
                 ->with("hand",$hand)
                 ->with('carts',CartHand::all())
                 ->with('cartNational',CarteNational::all())
-                ->with('paieinformations',PaieInformation::all());
+                ->with('paieinformations',PaieInformation::all())
+                ->with('communes',Commune::all());
     }
 
     public function edit($id)
@@ -122,7 +124,9 @@ class HandsInfoController extends Controller
                 ->with("hand",$hand)
                 ->with('carts',CartHand::all())
                 ->with('cartNational',CarteNational::all())
-                ->with('paieinformations',PaieInformation::all());
+                ->with('paieinformations',PaieInformation::all())
+                ->with('communes',Commune::all());
+
     }
 
     public function update(Request $request, $id)
@@ -216,7 +220,7 @@ class HandsInfoController extends Controller
         // Soft Delete Hand
         $hand->delete();
 
-        session()->flash('success', "L'handicapée à été supprime avec success");
+        session()->flash('danger', "L'handicapée à été supprime avec success");
 
         return redirect(route('dashboard'));
 
@@ -267,9 +271,8 @@ class HandsInfoController extends Controller
                 // add rappel to database
                 $rappel->DateDebut= $dateDebut;
                 $rappel->DateFin= $dateFin;
-                $rappel->montant= 0;
                 $rappel->nombreMois= $nbrMois;
-                $rappel->montant = $montant;
+                $rappel->montantRappel = $montant;
                 $rappel->save();
                 $hand->rappels()->attach($rappel);
             }

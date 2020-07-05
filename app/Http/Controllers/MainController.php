@@ -9,7 +9,7 @@ use App\CartHand;
 use App\PaieInformation;
 use App\HandPaieStatus;
 use App\MoisAnnee;
-
+use App\Commune;
 class MainController extends Controller
 {
     /**
@@ -106,8 +106,10 @@ class MainController extends Controller
 
     public function suspendu($id){
         $hand = Hand::withTrashed()->where('id',$id)->first();
+        $commune = Commune::where('codeCommune',$hand->commune_id)->first();
         return view('admin.handsInfo.suspendu')
                 ->with("hand",$hand)
+                ->with("commune",$commune)
                 ->with("status",HandPaieStatus::all());
 
     }

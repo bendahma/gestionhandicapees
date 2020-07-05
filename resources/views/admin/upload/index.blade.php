@@ -9,7 +9,7 @@
             <div class="card-body">
                 <form action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="file" id="file" class="form-control">
+                    <input type="file" name="file" id="file" class="form-control" required>
                     <div class="row mt-3">
                         <div class="col-lg-2">
                             <input type="submit" value="Upload file" class="btn btn-success btn-block">
