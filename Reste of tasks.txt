@@ -22,6 +22,8 @@
 9 Added rappel consumption to budget consumption
 
 10. redesign paiement process
+
+11. Added Commune Model and controller and change how commune hands relationship
 _______________________________________________________________________
 
 .name length no more than 26 character - in Create Hand

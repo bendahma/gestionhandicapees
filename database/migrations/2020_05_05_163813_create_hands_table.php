@@ -25,7 +25,7 @@ class CreateHandsTable extends Migration
             $table->string('lieuxNaissanceAr')->nullable();
             $table->text('address')->nullable();
             $table->text('addressAr')->nullable();
-            $table->integer('commune_id')->nullable();
+            $table->unsignedBigInteger('commune_id')->nullable();
             $table->string('prenomPereFr')->nullable();
             $table->string('nomMereFr')->nullable();
             $table->string('prenomMereFr')->nullable();
@@ -38,6 +38,8 @@ class CreateHandsTable extends Migration
             $table->text('obs')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('commune_id')->references('id')->on('communes')->onDelete('cascade');
+            
         });
     }
 
