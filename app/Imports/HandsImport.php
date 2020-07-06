@@ -39,7 +39,7 @@ class HandsImport implements ToModel
             return NULL;
         }
         
-        
+        $hand->codeCommune =  isset($row[0]) ? $row[0] : NULL;
         $hand->nameFr = isset($row[1]) ? $row[1] : NULL;
         $hand->sex =  isset($row[2]) ? $row[2] : NULL;
         $hand->dob =  isset($row[3]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3]) : NULL;
@@ -49,8 +49,6 @@ class HandsImport implements ToModel
         $hand->save();
         
 
-        $commune =  isset($row[0]) ? Commune::where('codeCommune',$row[0])->first() : NULL;
-        $hand->commune()->save($commune);
 
         // ----------------------------------------------------------------------------------------------------
         // SUSPENSION HISTORY

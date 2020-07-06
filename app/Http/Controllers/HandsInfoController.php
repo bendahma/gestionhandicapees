@@ -106,14 +106,14 @@ class HandsInfoController extends Controller
 
     public function show($id)
     {
-        $hand = Hand::withTrashed()->where('id',$id)->first();
-
+        $hand = Hand::withTrashed()->where('id',$id)->first();  
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         return view('admin.handsInfo.show')
                 ->with("hand",$hand)
                 ->with('carts',CartHand::all())
                 ->with('cartNational',CarteNational::all())
                 ->with('paieinformations',PaieInformation::all())
-                ->with('communes',Commune::all());
+                ->with('commune',$commune);
     }
 
     public function edit($id)
@@ -151,7 +151,7 @@ class HandsInfoController extends Controller
             'lieuxNaissanceAr' => $request->lieuxNaissanceAr,
             'address' => $request->address,
             'addressAr' => $request->addressAr,
-            'commune' => $request->commune,
+            'codeCommune' => $request->commune,
             'communeAr' => $request->communeAr,
             'prenomPereFr' => $request->prenomPereFr,
             'nomMereFr' => $request->nomMereFr,

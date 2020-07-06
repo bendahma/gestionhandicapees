@@ -126,7 +126,7 @@
                                 <select name="commune" id="" class="form-control">
                                     <option value="" selected disabled>Choisi une Commune</option>
                                     @foreach ($communes as $commune)
-                                        <option value="{{$commune->codeCommune}}" {{ isset($hand) && $hand->commune_id == $commune->codeCommune ? 'selected' : '' }}>{{$commune->nomCommuneFr}}</option>
+                                        <option value="{{$commune->codeCommune}}" {{ isset($hand) && $hand->codeCommune  == $commune->codeCommune ? 'selected' : '' }}>{{$commune->nomCommuneFr}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -120,7 +120,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Commune</label>
-                                <input type="text" readonly class="form-control" name="commune" id="" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->commune : '' }}">
+                                <input type="text" readonly class="form-control" name="commune" id="" placeholder="Date de naissance ..." value="{{ isset($hand) ? $commune->nomCommuneFr : '' }}">
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold text-right">البلدية</label>
+                                <input type="text" readonly class="form-control text-right" name="communeAr" id="" placeholder="البلدية" value="{{ isset($hand) ? $commune->nomCommuneAr : '' }}">
                             </div>
                         </div>
                         <div class="col-4 text-right">
@@ -129,12 +135,7 @@
                                 <input type="text" readonly class="form-control text-right" name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
                             </div>
                         </div>          
-                        <div class="col text-right">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold text-right">البلدية</label>
-                                <input type="text" readonly class="form-control text-right" name="communeAr" id="" placeholder="البلدية" value="{{ isset($hand) ? $hand->communeAr : '' }}">
-                            </div>
-                        </div>
+                     
                         
                     </div>                 
                     <div class="row mt-1">
