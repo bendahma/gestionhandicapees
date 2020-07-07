@@ -35,13 +35,13 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
         
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
-        })->orderBy('commune_id', 'asc')->get();
+        })->orderBy('codeCommune', 'asc')->get();
         return $hands;
     }
 
     public function map($hand): array
     {   
-        $commune = Commune::where('codeCommune',$hand->commune_id)->first();     
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();     
 
         return [
             '',

@@ -53,6 +53,9 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/budget/updateBudgetSupplimentaire', 'BudgetController@BudgetSupplimenatire')->name('budget.updateBudgetSupplimentaire');
     Route::get('/budget/DownloadBudgetConsomptionPaie' , 'BudgetController@DownloadBudgetConsomptionPaie')->name('budget.DownloadBudgetConsomptionPaie'); 
     Route::get('/budget/DownloadBudgetConsomptionCnas' , 'BudgetController@DownloadBudgetConsomptionCnas')->name('budget.DownloadBudgetConsomptionCnas'); 
+    Route::get('/budget/Desengagement' , 'BudgetController@getDesengagemengt')->name('budget.getDesengagemengt'); 
+    Route::patch('/budget/DesengagementBudget' , 'BudgetController@DesengagementBudget')->name('budget.DesengagementBudget'); 
+    
     Route::resource('/budget' , 'BudgetController');
 
     Route::get('/rappel/export' , 'RappelController@export')->name('rappel.export');

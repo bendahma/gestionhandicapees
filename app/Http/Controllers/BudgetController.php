@@ -558,4 +558,21 @@ class BudgetController extends Controller
 
         return redirect(route('dashboard'));
     }
+
+
+    public function getDesengagemengt(){
+        return view('admin.budget.desengagement');
+    }
+
+    public function DesengagementBudget(Request $request){
+        $budget = Budget::where('annee',$request->annee)->first();
+        $montantPaie = $budget->desengagementMondatement + $request->desengagementMondatement;
+        $montantAssurance = $budget->desengagementMondatement + $request->desengagementAssurance;
+        $budget->update([
+            'desengagementMondatement' => $montantPaie,
+            'desengagementAssurance' =>$montantAssurance
+        ]);
+        session()->flash('success','Desengagement à été ajouter avec success');
+        return redirect(route('dashboard'));
+    }
 }
