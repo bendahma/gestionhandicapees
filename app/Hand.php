@@ -25,7 +25,7 @@ class Hand extends Model
         'numeroactenaissance', 'nameFr', 'nomAr',
         'prenomAr','sex','dob',
         'lieuxNaissanceFr','lieuxNaissanceAr',
-        'address','addressAr','commune_id','prenomMereFr','prenomPereAr',
+        'address','addressAr','codeCommune','prenomMereFr','prenomPereAr',
         'prenomPereFr','nomMereFr',
         'nomMereAr','prenomMereAr','situationFamilialeFr','situationFamilialeAr',
         'nbrenfant','obs'

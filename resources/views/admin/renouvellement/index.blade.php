@@ -54,8 +54,7 @@
                 </form>
                 @else
                 <td> {{$hand->renouvellementdossier->DateRenouvellement}} </td>
-                <td style="font-weight: 600">Dossier Annuel Déjà Renouvelle</td>
-
+                <td style="font-weight: 600">Dossier Annuel Renouvelle</td>
                @endif
               </tr>
             @endforeach

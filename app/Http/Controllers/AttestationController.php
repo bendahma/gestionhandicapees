@@ -10,6 +10,7 @@ use App\PaieInformation;
 use App\CarteNational;
 use App\SecuriteSociale;
 use App\HandPaieStatus;
+use App\Commune;
 
 use Auth;
 
@@ -52,6 +53,9 @@ class AttestationController extends Controller
             return redirect(route('hands.edit', $hand));
         }
 
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
+
+
         if($papier == 'paiement') {
             $status = $hand->status->status;
 
@@ -68,12 +72,12 @@ class AttestationController extends Controller
             $template->setValue('dob',$hand->dob);
             $template->setValue('communeNaissanceAr',$hand->lieuxNaissanceAr);
             $template->setValue('adresseAr',$hand->addressAr);
-            $template->setValue('commueAr',$hand->communeAr);
+            $template->setValue('commueAr',$commune->nomCommuneAr);
             $template->setValue('NCarteNational',$hand->cartenational->NumeroNational);
             $template->setValue('dateCartNation',$hand->cartenational->dateCarteIdentite);
             $template->setValue('comCartNat',$hand->cartenational->communeCarteNationalAr);
             $template->setValue('natureAr',$hand->cartehand->natureHandAr);
-            $template->setValue('usernameAr',Auth::user()->name);
+            $template->setValue('usernameAr',Auth::user()->nameAr);
             $output = "Attestation Paiement " . $hand->nameFr .".docx";
         }else if($papier == 'desistement'){
             $status = $hand->status->status;
@@ -96,7 +100,7 @@ class AttestationController extends Controller
             $template->setValue('dob',$hand->dob);
             $template->setValue('communeNaissAr',$hand->lieuxNaissanceAr);
             $template->setValue('addressAr',$hand->addressAr);
-            $template->setValue('communeAr',$hand->communeAr);
+            $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('dateDessis',$hand->status->dateSupprission);
             $template->setValue('motifDessi',$hand->status->motifAr);
             $template->setValue('usernameAr',Auth::user()->name);

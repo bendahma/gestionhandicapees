@@ -3,18 +3,7 @@
 use App\Budget;
 use App\PaieInformation;
 
-Route::get('/changeRip', function(){
-    $info = PaieInformation::all();
-    
-    foreach($info as $i){
-        $i->RIP = str_replace('*','',$i->RIP);
-        $i->save();
-    }
-
-    
-});
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', "MainController@index")->name('index');

@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'Bendahma',
             'email' => 'bendahma@contact.com',
             'password' => Hash::make('aaaaaaaa'),
+            'nameAr' => 'قدور بن دهمة محمد الأمين'
         ]);
     }
 }

@@ -44,6 +44,9 @@ class UploadHandInfoController extends Controller
             $i->RIP = str_replace('*','',$i->RIP);
             $i->save();
         }
+
+        session()->flash('success','Données import avec success');
+        
         return redirect('/upload');
     }
 
