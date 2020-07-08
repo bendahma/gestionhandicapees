@@ -242,6 +242,7 @@
               <h6 class="collapse-header">Les operations du budget</h6>
               <a class="collapse-item" href="{{route('budget.index')}}">Résume du Budget</a>
               <a class="collapse-item" href="{{route('budget.create')}}">Ajouter Budget</a>
+              <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}">Desengagement</a>
             </div>
           </div>
         </li>
@@ -401,6 +402,7 @@
           @yield('statRenouvellement')
           @yield('CDsection')
           @yield('List-Filtre')
+          @yield('addDesengagement')
         </div>
         <!-- End of Main Content -->
 
