@@ -119,7 +119,6 @@ class HandsInfoController extends Controller
     public function edit($id)
     {
         $hand = Hand::withTrashed()->where('id',$id)->first();
-
         return view('admin.handsInfo.add')
                 ->with("hand",$hand)
                 ->with('carts',CartHand::all())

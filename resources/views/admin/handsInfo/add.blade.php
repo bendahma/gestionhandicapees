@@ -21,31 +21,31 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="name" class="font-weight-bold">Nom & Prenom *</label>
-                                <input type="text" class="form-control" required id="name" name="nameFr" placeholder="Nom & Prenom ..." value="{{isset($hand) ? $hand->nameFr : ''}}">
+                                <input type="text" class="form-control" id="name" name="nameFr" placeholder="Nom & Prenom ..." value="{{isset($hand) ? $hand->nameFr : ''}}">
                               </div>
                          </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Date de Naissance *</label>
-                                <input type="date" class="form-control" id="" required name="dob" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->dob : '' }}">
+                                <input type="date" class="form-control" id="" name="dob" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->dob : '' }}">
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="lieuxNaiss" class="font-weight-bold">Lieu de Naissance *</label>
-                                <input type="text" class="form-control " required id="lieuxNaiss" name="lieuxNaissanceFr" placeholder="Lieu de naissance ..."  value="{{ isset($hand) ? $hand->lieuxNaissanceFr : '' }}">
+                                <input type="text" class="form-control " id="lieuxNaiss" name="lieuxNaissanceFr" placeholder="Lieu de naissance ..."  value="{{ isset($hand) ? $hand->lieuxNaissanceFr : '' }}">
                             </div>
                         </div>
                         <div class="col text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold text-right">الإسم *</label>
-                                <input type="text" class="form-control text-right" required name="prenomAr" id="" placeholder="الإسم" value="{{ isset($hand) ? $hand->prenomAr : '' }}">
+                                <input type="text" class="form-control text-right" name="prenomAr" id="" placeholder="الإسم" value="{{ isset($hand) ? $hand->prenomAr : '' }}">
                             </div>
                         </div>
                         <div class="col text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold text-right">اللقب *</label>
-                                <input type="text" class="form-control text-right"  required id="" name="nomAr" placeholder="اللقب" value="{{ isset($hand) ? $hand->nomAr : '' }}">
+                                <input type="text" class="form-control text-right"  id="" name="nomAr" placeholder="اللقب" value="{{ isset($hand) ? $hand->nomAr : '' }}">
                             </div>
                         </div>          
                     </div>
@@ -53,26 +53,26 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">N° Acte Naissance *</label>
-                                <input type="text" class="form-control" required name="numeroactenaissance" id="" placeholder="N° Acte Naissance ..." value="{{isset($hand) ? $hand->numeroactenaissance : ''}}">
+                                <input type="text" class="form-control" name="numeroactenaissance" id="" placeholder="N° Acte Naissance ..." value="{{isset($hand) ? $hand->numeroactenaissance : ''}}">
                               </div>
                          </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Prenom pere *</label>
-                                <input type="text" class="form-control" required name="prenomPereFr" id="" placeholder="Prenom pere ..." value="{{isset($hand) ? $hand->prenomPereFr : ''}}">
+                                <input type="text" class="form-control" name="prenomPereFr" id="" placeholder="Prenom pere ..." value="{{isset($hand) ? $hand->prenomPereFr : ''}}">
                               </div>
                          </div>
                         
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">Nom mere *</label>
-                                <input type="text" class="form-control " required name="nomMereFr" id="" placeholder="Nom mere .." value="{{isset($hand) ? $hand->nomMereFr : ''}}">
+                                <input type="text" class="form-control " name="nomMereFr" id="" placeholder="Nom mere .." value="{{isset($hand) ? $hand->nomMereFr : ''}}">
                             </div>
                         </div>          
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">Prenom Mere *</label>
-                                <input type="text" class="form-control" required name="prenomMereFr" id="" placeholder="Prenom Mere" value="{{isset($hand) ? $hand->prenomMereFr : ''}}">
+                                <input type="text" class="form-control" name="prenomMereFr" id="" placeholder="Prenom Mere" value="{{isset($hand) ? $hand->prenomMereFr : ''}}">
                             </div>
                         </div>
                         
@@ -80,7 +80,7 @@
                     <div class="row text-right mt-1">
                         <div class="col-lg-2 text-left">
                             <label for="" class="font-weight-bold">Sex *</label>
-                            <select name="sex" id="" class="form-control" required>
+                            <select name="sex" id="" class="form-control">
                                 <option value="Homme" {{(isset($hand) && $hand->sex == 'Homme') ? 'selected' : ''}}>Homme</option>
                                 <option value="Femme" {{(isset($hand) && $hand->sex == 'Femme') ? 'selected' : ''}}>Femme</option>
                             </select>
@@ -89,26 +89,26 @@
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">مكان الميلاد *</label>
-                                <input type="text" class="form-control text-right" required name="lieuxNaissanceAr" id="" placeholder="مكان الميلاد ..." value="{{isset($hand) ? $hand->lieuxNaissanceAr : ''}}">
+                                <input type="text" class="form-control text-right" name="lieuxNaissanceAr" id="" placeholder="مكان الميلاد ..." value="{{isset($hand) ? $hand->lieuxNaissanceAr : ''}}">
                               </div>
                          </div>
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">إسم الإب *</label>
-                                <input type="text" class="form-control text-right" required name="prenomPereAr" id="" placeholder="إسم الإب ..." value="{{isset($hand) ? $hand->prenomPereAr : ''}}">
+                                <input type="text" class="form-control text-right" name="prenomPereAr" id="" placeholder="إسم الإب ..." value="{{isset($hand) ? $hand->prenomPereAr : ''}}">
                               </div>
                          </div>
                         
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">لقب الأم *</label>
-                                <input type="text" class="form-control text-right" required name="nomMereAr" id="" placeholder="لقب الأم .." value="{{ isset($hand) ? $hand->nomMereAr : '' }}">
+                                <input type="text" class="form-control text-right" name="nomMereAr" id="" placeholder="لقب الأم .." value="{{ isset($hand) ? $hand->nomMereAr : '' }}">
                             </div>
                         </div>          
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">إسم الأم *</label>
-                                <input type="text" class="form-control text-right" required name="prenomMereAr" id="" placeholder="إسم الأم ..." value="{{ isset($hand) ? $hand->prenomMereAr : '' }}">
+                                <input type="text" class="form-control text-right" name="prenomMereAr" id="" placeholder="إسم الأم ..." value="{{ isset($hand) ? $hand->prenomMereAr : '' }}">
                             </div>
                         </div>
                         
@@ -117,7 +117,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">َAdresse *</label>
-                                <input type="text" class="form-control" required name="address" id="" placeholder="Adresse ..." value="{{isset($hand) ? $hand->address : ''}}">
+                                <input type="text" class="form-control" name="address" id="" placeholder="Adresse ..." value="{{isset($hand) ? $hand->address : ''}}">
                               </div>
                          </div>
                         <div class="col">
@@ -134,7 +134,7 @@
                         <div class="col-5 text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold text-right">العنوان بالعربية *</label>
-                                <input type="text" class="form-control text-right"  required name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
+                                <input type="text" class="form-control text-right"  name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
                             </div>
                         </div>          
                     </div>                 
@@ -155,13 +155,13 @@
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">Nombre d'enfant *</label>
-                            <input type="number" class="form-control" required name="nbrenfant" id="" placeholder="Nombre d'enfant .." value="{{ isset($hand) ? $hand->nbrenfant : ''}}">
+                            <input type="number" class="form-control" name="nbrenfant" id="" placeholder="Nombre d'enfant .." value="{{ isset($hand) ? $hand->nbrenfant : ''}}">
                             </div>
                         </div>          
                         <div class="col text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">الوضعية العائلية *</label>
-                                <input type="text" class="form-control text-right" required name="situationFamilialeAr" id="" placeholder="الوضعية العائلية ..." value="{{ isset($hand) ? $hand->situationFamilialeAr : ''}}">
+                                <input type="text" class="form-control text-right" name="situationFamilialeAr" id="" placeholder="الوضعية العائلية ..." value="{{ isset($hand) ? $hand->situationFamilialeAr : ''}}">
                             </div>
                         </div>
                         
@@ -304,7 +304,6 @@
                                 
                         </div>
                     @endif
-                    
                     <hr>
                     <div class="row">
                         <div class="col">

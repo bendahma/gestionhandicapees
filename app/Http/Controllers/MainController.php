@@ -106,7 +106,7 @@ class MainController extends Controller
 
     public function suspendu($id){
         $hand = Hand::withTrashed()->where('id',$id)->first();
-        $commune = Commune::where('codeCommune',$hand->commune_id)->first();
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         return view('admin.handsInfo.suspendu')
                 ->with("hand",$hand)
                 ->with("commune",$commune)
