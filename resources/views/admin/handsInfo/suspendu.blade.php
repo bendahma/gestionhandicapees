@@ -28,7 +28,6 @@
    <div class="card shadow">
        <div class="card-body">
            <form>
-               
                <h4 class="text-danger font-weight-bold">Etat d'handicapée</h3>
                <hr>
                <div class="row mt-1">
@@ -205,7 +204,7 @@
                 <div class="col">
                   <div class="form-group">
                       <label for="" class="font-weight-bold">Obs</label>
-                      <textarea name="obsRappel" id="" cols="5" rows="3" class="form-control"></textarea>
+                      <textarea name="rappelObs" id="" cols="5" rows="3" class="form-control"></textarea>
                   </div>
                 </div>
               </div>

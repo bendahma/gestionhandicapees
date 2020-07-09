@@ -173,31 +173,31 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="name" class="font-weight-bold">N° carte *</label>
-                                <input type="number" class="form-control" id="" required name="numeroCart" placeholder="N° carte handicapée ..." value="{{isset($hand) ? $hand->cartehand->numeroCart : ''}}">
+                                <input type="number" class="form-control" id=""  name="numeroCart" placeholder="N° carte handicapée ..." value="{{isset($hand) ? $hand->cartehand->numeroCart : ''}}">
                               </div>
                          </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Nature d'handicapé *</label>
-                                <input type="text" class="form-control" id="" required name="natureHandFr" placeholder="Nature handicapée ..." value="{{isset($hand) ? $hand->cartehand->natureHandFr : ''}}">
+                                <input type="text" class="form-control" id=""  name="natureHandFr" placeholder="Nature handicapée ..." value="{{isset($hand) ? $hand->cartehand->natureHandFr : ''}}">
                             </div>
                         </div>
                         <div class="col-lg-3 text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">طبيعة الإعاقة * </label>
-                                <input type="text" class="form-control text-right" required id="" name="natureHandAr" placeholder="طبيعة الإعاقة ..." value="{{isset($hand) ? $hand->cartehand->natureHandAr : ''}}">
+                                <input type="text" class="form-control text-right"  id="" name="natureHandAr" placeholder="طبيعة الإعاقة ..." value="{{isset($hand) ? $hand->cartehand->natureHandAr : ''}}">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="lieuxNaiss" class="font-weight-bold">Date Du Commission * </label>
-                                <input type="date" class="form-control " id="lieuxNaiss" required name="dateCarte" placeholder="Date du commission ..." value="{{isset($hand) ? $hand->cartehand->dateCarte : ''}}">
+                                <input type="date" class="form-control " id="lieuxNaiss"  name="dateCarte" placeholder="Date du commission ..." value="{{isset($hand) ? $hand->cartehand->dateCarte : ''}}">
                             </div>
                         </div>
                         <div class="col-lg-1 ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">% *</label>
-                                <input type="number" class="form-control" name="pourcentage" id="" required placeholder="%" value="{{isset($hand) ? $hand->cartehand->pourcentage : ''}}">
+                                <input type="number" class="form-control" name="pourcentage" id=""  placeholder="%" value="{{isset($hand) ? $hand->cartehand->pourcentage : ''}}">
                             </div>
                         </div>   
                     </div>
@@ -208,25 +208,25 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">N° carte identité * </label>
-                                <input type="number" class="form-control" id="" required name="NumeroNational" placeholder="N° carte Identité ..." value="{{isset($hand) ? $hand->cartenational->NumeroNational: ''}}">
+                                <input type="number" class="form-control" id=""  name="NumeroNational" placeholder="N° carte Identité ..." value="{{isset($hand) ? $hand->cartenational->NumeroNational: ''}}">
                               </div>
                          </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Date Carte Identite * </label>
-                                <input type="date" class="form-control" id="" required name="dateCarteIdentite" value="{{isset($hand) ? $hand->cartenational->dateCarteIdentite : ''}}">
+                                <input type="date" class="form-control" id=""  name="dateCarteIdentite" value="{{isset($hand) ? $hand->cartenational->dateCarteIdentite : ''}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Commune Carte Identite * </label>
-                                <input type="text" class="form-control " id="" required name="communeCarteNationalFr" placeholder="Commune carte identité ..." value="{{isset($hand) ? $hand->cartenational->communeCarteNationalFr : ''}}">
+                                <input type="text" class="form-control " id=""  name="communeCarteNationalFr" placeholder="Commune carte identité ..." value="{{isset($hand) ? $hand->cartenational->communeCarteNationalFr : ''}}">
                             </div>
                         </div>
                         <div class="col text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">بلدية إصدار بطاقة * </label>
-                                <input type="text" class="form-control text-right" required id="" name="communeCarteNationalAr" placeholder="بلدية إصدار بطاقة " value="{{isset($hand) ? $hand->cartenational->communeCarteNationalAr: ''}}">
+                                <input type="text" class="form-control text-right"  id="" name="communeCarteNationalAr" placeholder="بلدية إصدار بطاقة " value="{{isset($hand) ? $hand->cartenational->communeCarteNationalAr: ''}}">
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">N° Securite sociale *</label>
-                                    <input type="number" class="form-control" required id="" name="NSS" placeholder="N° Securite Sociale ..." value="{{isset($hand) ? $hand->securitesociale->NSS : ''}}">
+                                    <input type="number" class="form-control"  id="" name="NSS" placeholder="N° Securite Sociale ..." value="{{isset($hand) ? $hand->securitesociale->NSS : ''}}">
                                   </div>
                              </div>
                             <div class="col">
@@ -254,13 +254,13 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">CCP *</label>
-                                <input type="text" class="form-control" required id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
+                                <input type="text" class="form-control"  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
                               </div>
                          </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">RIP *</label>
-                                <input type="text" class="form-control" required id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
+                                <input type="text" class="form-control"  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
                             </div>
                         </div>
                         <div class="col">

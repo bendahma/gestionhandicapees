@@ -110,7 +110,7 @@ class HandsImport implements ToModel
         $renouvellement->DateRenouvellement = NULL;
         $renouvellement->AnneeRenouvelement = isset($row[15]) ? '2020' : NULL;
         $hand->renouvellementdossier()->save($renouvellement);
-                
+        
         return $hand; 
     }
 }

@@ -193,7 +193,7 @@ class HandsInfoController extends Controller
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
 
-        return redirect('dashboard');
+        return redirect(route('hand.suspendu',$hand->id));
     }
 
     public function destroy(Hand $hand,Request $request)
@@ -221,17 +221,27 @@ class HandsInfoController extends Controller
 
         session()->flash('danger', "L'handicapée à été supprime avec success");
 
-        return redirect(route('dashboard'));
+        return redirect(route('hand.suspendu',$hand->id));
 
     }
 
     public function restore($id,Request $request){
         $hand = Hand::withTrashed()->where('id',$id)->first();
         $rappel = new Rappel();
-        $status = HandPaieStatus::where('hand_id',$hand->id);
+        $status = HandPaieStatus::where('hand_id',$id)->first();
         $hand->restore(); 
 
+        $history = HandSuspentionHistory::where('hand_id',$hand->id)->latest('id')->first();
         
+        if($history == NULL){
+            $hist = new HandSuspentionHistory();
+            $hist->create([
+                'status' => $status->status,
+                'dateSupprission' =>$status->dateSupprission,
+                'motif' => $status->motifAr,
+                'hand_id'=>$id
+            ]);
+        }
         
 
         if($request->status == "en cours"){
@@ -272,6 +282,7 @@ class HandsInfoController extends Controller
                 $rappel->DateFin= $dateFin;
                 $rappel->nombreMois= $nbrMois;
                 $rappel->montantRappel = $montant;
+                $rappel->Rapple_Obs = $request->rappelObs;
                 $rappel->save();
                 $hand->rappels()->attach($rappel);
             }

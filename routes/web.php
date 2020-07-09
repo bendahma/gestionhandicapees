@@ -1,11 +1,7 @@
 <?php
 
-use App\Budget;
-use App\PaieInformation;
-
 Auth::routes(['register' => false]);
 
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', "MainController@index")->name('index');
 
 Route::middleware(['auth'])->group(function(){

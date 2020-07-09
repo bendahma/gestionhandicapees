@@ -85,6 +85,13 @@ class Hand extends Model
             }
         return true;
     }
+
+    public function CheckBasicInfoExsistsForDecision(Hand $hand){
+        if($hand->nomAr == NULL &&  $hand->prenomAr == NULL && $hand->lieuxNaissanceAr == NULL && $hand->addressAr == NULL ){
+                return false;
+        }
+        return true;
+    }
  
     public function HandMondate(){
         $hands = Hand::whereHas('status',function($s){

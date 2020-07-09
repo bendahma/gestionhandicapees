@@ -10,7 +10,7 @@ use App\CarteNational;
 use App\SecuriteSociale;
 use App\HandPaieStatus;
 use App\HandSuspentionHistory;
-
+use App\Commune;
 class DecisionController extends Controller
 {
 
@@ -49,14 +49,15 @@ class DecisionController extends Controller
         $hand = Hand::withTrashed()->where('id',$id)->first();
         $status = new HandPaieStatus();
         $card = new CartHand();
-        $handInfo = $hand->CheckBasicInfoExsists($hand);
+        $handInfo = $hand->CheckBasicInfoExsistsForDecision($hand);
         $PaieStatus = $status->CheckPaieStatusInfoExists($hand->id);
-        $cardInfoExists =  $card->CheckCardInfoExists($hand->id);
 
-        if(!$handInfo || !$cardInfoExists){
+        if(!$handInfo){
             session()->flash('error','Erreur, il faut remplir les informations du handicapée avant Télécharger la décision');
             return redirect(route('hands.edit', $hand));
         }
+
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
 
         if($papier == 'paiement'){
             $status = $hand->status->status;
@@ -70,7 +71,7 @@ class DecisionController extends Controller
             $template->setValue('dob',$hand->dob);
             $template->setValue('communeNaiAr',$hand->lieuxNaissanceAr);
             $template->setValue('addressAr',$hand->addressAr);
-            $template->setValue('communeAr',$hand->communeAr);
+            $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('natureAr',$hand->cartehand->natureHandAr);
             $template->setValue('dateDecision',$hand->paieinformation->datePremierPension);
 
@@ -92,7 +93,7 @@ class DecisionController extends Controller
             $template->setValue('prenomAr',$hand->prenomAr);
             $template->setValue('dob',$hand->dob);
             $template->setValue('addressAr',$hand->addressAr);
-            $template->setValue('communeAr',$hand->communeAr);
+            $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('dateSupp',$history->dateSupprission);
             $template->setValue('dateRemi',$history->dateRemi);
             
@@ -111,7 +112,7 @@ class DecisionController extends Controller
             $template->setValue('prenomAr',$hand->prenomAr);
             $template->setValue('dob',$hand->dob);
             $template->setValue('addressAr',$hand->addressAr);
-            $template->setValue('communeAr',$hand->communeAr);
+            $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('dateSusp',$hand->status->dateSupprission);
             $template->setValue('motifSusp',$hand->status->getMotifAr($hand->status->motifAr));
             $output = "Décision Suspension " . $hand->nameFr .".docx";
