@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use App\Exports\HandsPaiementExport;
+use App\Exports\HandsPaiSuspenduExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
@@ -90,5 +92,14 @@ class listHandController extends Controller
         dump($communes);
         dump($naturechoice);
         dump($nature);
+    }
+
+    public function exportHandsMondate() 
+    {
+        return Excel::download(new HandsPaiementExport, 'HandsMondate.xlsx');
+    }
+
+    public function exportHandsSuspendu(){
+        return Excel::download(new HandsPaiSuspenduExport, 'HandsSuspendu.xlsx');
     }
 }

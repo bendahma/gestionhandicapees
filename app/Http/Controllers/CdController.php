@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Paie;
 use App\Hand;
+use App\Commune;
 use DB;
 use Response;
 class CdController extends Controller
@@ -287,7 +288,7 @@ class CdController extends Controller
                         ->join('hand_paie','hand_paie.hand_id','hands.id')
                         ->join('paies','paies.id','hand_paie.paie_id')
                         ->join('securite_sociales','securite_sociales.hand_id','hands.id')
-                        ->select('hands.nameFr','hands.address','hands.commune','paie_information.RIP','securite_sociales.NSS','paie_information.Beneficier')
+                        ->select('hands.nameFr','hands.address','hands.codeCommune','paie_information.RIP','securite_sociales.NSS','paie_information.Beneficier')
                         ->where('paies.moisPaiement','=',$request->moisPaiement)
                         ->where('paies.anneesPaiement','=',$request->anneePaiement)
                         ->where('paie_information.Beneficier','=',0)
@@ -297,10 +298,11 @@ class CdController extends Controller
 
         $content =  '137246'.'|'.$countBenef;
         foreach($hands as $hand){
+            $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
             $name = $hand->nameFr;
             $rip = $hand->RIP;
             $nss = $hand->NSS;
-            $address = $hand->address . ' ' .$hand->commune;
+            $address = $hand->address . ' ' .$commune->nomCommuneFr;
             $content .= "\r\n";
             $content .= $rip.'|'.$nss.'|'.$name.'|'.$address;
             

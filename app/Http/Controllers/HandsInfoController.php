@@ -130,8 +130,6 @@ class HandsInfoController extends Controller
 
     public function update(Request $request, $id)
     {
-        //dd($hand);
-        //dd($request->all());
         $hand = Hand::withTrashed()->where('id',$id)->first();
 
         $cartHand = CartHand::where('hand_id', $hand->id)->first();

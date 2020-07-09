@@ -137,6 +137,6 @@ class DecisionController extends Controller
         ob_end_clean();
         ob_start();
         $template->saveAs(storage_path($output));
-        return response()->download(storage_path($output));
+        return response()->download(storage_path($output))->deleteFileAfterSend(true);
     }
 }

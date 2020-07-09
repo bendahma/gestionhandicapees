@@ -59,6 +59,8 @@ class StaticticsController extends Controller
         $output = "Statistique.docx";
         $template->setValue('montant', number_format($montant,2,"."," "));
         $template->setValue('dateMondate', $request->dateMondate);
+        $template->setValue('dateJourne', $request->dateJourneTresor);
+        $template->setValue('dateVirement', $request->dateVirement);
         $template->setValue('nbrHand', $nbrHand);
         $template->setValue('moisAr', $moisAr);
         $template->setValue('annee', date('Y'));

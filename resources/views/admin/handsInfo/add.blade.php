@@ -21,13 +21,13 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="name" class="font-weight-bold">Nom & Prenom *</label>
-                                <input type="text" class="form-control" id="name" name="nameFr" placeholder="Nom & Prenom ..." value="{{isset($hand) ? $hand->nameFr : ''}}">
+                                <input type="text" class="form-control" required id="name" name="nameFr" placeholder="Nom & Prenom ..." value="{{isset($hand) ? $hand->nameFr : ''}}">
                               </div>
                          </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Date de Naissance *</label>
-                                <input type="date" class="form-control" id="" name="dob" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->dob : '' }}">
+                                <input type="date" class="form-control" required id="" name="dob" placeholder="Date de naissance ..." value="{{ isset($hand) ? $hand->dob : '' }}">
                             </div>
                         </div>
                         <div class="col-sm">
@@ -36,26 +36,24 @@
                                 <input type="text" class="form-control " id="lieuxNaiss" name="lieuxNaissanceFr" placeholder="Lieu de naissance ..."  value="{{ isset($hand) ? $hand->lieuxNaissanceFr : '' }}">
                             </div>
                         </div>
-                        <div class="col text-right">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold text-right">الإسم *</label>
-                                <input type="text" class="form-control text-right" name="prenomAr" id="" placeholder="الإسم" value="{{ isset($hand) ? $hand->prenomAr : '' }}">
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold text-right">اللقب *</label>
-                                <input type="text" class="form-control text-right"  id="" name="nomAr" placeholder="اللقب" value="{{ isset($hand) ? $hand->nomAr : '' }}">
-                            </div>
-                        </div>          
-                    </div>
-                    <div class="row mt-1">
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">N° Acte Naissance *</label>
                                 <input type="text" class="form-control" name="numeroactenaissance" id="" placeholder="N° Acte Naissance ..." value="{{isset($hand) ? $hand->numeroactenaissance : ''}}">
                               </div>
                          </div>
+                       
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col text-left">
+                            <label for="" class="font-weight-bold">Sex *</label>
+                            <select name="sex" id="" class="form-control">
+                                <option value="Homme" {{(isset($hand) && $hand->sex == 'H') ? 'selected' : ''}}>Homme</option>
+                                <option value="Femme" {{(isset($hand) && $hand->sex == 'F') ? 'selected' : ''}}>Femme</option>
+                            </select>
+
+                        </div>
+                              
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Prenom pere *</label>
@@ -77,43 +75,10 @@
                         </div>
                         
                     </div>
-                    <div class="row text-right mt-1">
-                        <div class="col-lg-2 text-left">
-                            <label for="" class="font-weight-bold">Sex *</label>
-                            <select name="sex" id="" class="form-control">
-                                <option value="Homme" {{(isset($hand) && $hand->sex == 'Homme') ? 'selected' : ''}}>Homme</option>
-                                <option value="Femme" {{(isset($hand) && $hand->sex == 'Femme') ? 'selected' : ''}}>Femme</option>
-                            </select>
-
-                        </div>
-                        <div class="col ">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">مكان الميلاد *</label>
-                                <input type="text" class="form-control text-right" name="lieuxNaissanceAr" id="" placeholder="مكان الميلاد ..." value="{{isset($hand) ? $hand->lieuxNaissanceAr : ''}}">
-                              </div>
-                         </div>
-                        <div class="col ">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">إسم الإب *</label>
-                                <input type="text" class="form-control text-right" name="prenomPereAr" id="" placeholder="إسم الإب ..." value="{{isset($hand) ? $hand->prenomPereAr : ''}}">
-                              </div>
-                         </div>
-                        
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold ">لقب الأم *</label>
-                                <input type="text" class="form-control text-right" name="nomMereAr" id="" placeholder="لقب الأم .." value="{{ isset($hand) ? $hand->nomMereAr : '' }}">
-                            </div>
-                        </div>          
-                        <div class="col ">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold ">إسم الأم *</label>
-                                <input type="text" class="form-control text-right" name="prenomMereAr" id="" placeholder="إسم الأم ..." value="{{ isset($hand) ? $hand->prenomMereAr : '' }}">
-                            </div>
-                        </div>
-                        
-                    </div>
+                    
                     <div class="row mt-1">
+                         
+                        
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">َAdresse *</label>
@@ -131,14 +96,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-5 text-right">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold text-right">العنوان بالعربية *</label>
-                                <input type="text" class="form-control text-right"  name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
-                            </div>
-                        </div>          
-                    </div>                 
-                    <div class="row mt-1">
                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Situation familiale *</label>
@@ -151,19 +108,64 @@
                                 </select>
                             </div>
                          </div>
-                        
-                        <div class="col ">
+                         <div class="col ">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">Nombre d'enfant *</label>
                             <input type="number" class="form-control" name="nbrenfant" id="" placeholder="Nombre d'enfant .." value="{{ isset($hand) ? $hand->nbrenfant : ''}}">
                             </div>
+                        </div> 
+                                
+                    </div>    
+                    <div class="row text-right mt-1">
+                        <div class="col text-right">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold text-right">اللقب *</label>
+                                <input type="text" class="form-control text-right"  id="" name="nomAr" placeholder="اللقب" value="{{ isset($hand) ? $hand->nomAr : '' }}">
+                            </div>
+                        </div>    
+                        <div class="col text-right">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold text-right">الإسم *</label>
+                                <input type="text" class="form-control text-right" name="prenomAr" id="" placeholder="الإسم" value="{{ isset($hand) ? $hand->prenomAr : '' }}">
+                            </div>
+                        </div>
+                        
+                        <div class="col ">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold">إسم الإب *</label>
+                                <input type="text" class="form-control text-right" name="prenomPereAr" id="" placeholder="إسم الإب ..." value="{{isset($hand) ? $hand->prenomPereAr : ''}}">
+                              </div>
+                         </div>
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold ">لقب الأم *</label>
+                                <input type="text" class="form-control text-right" name="nomMereAr" id="" placeholder="لقب الأم .." value="{{ isset($hand) ? $hand->nomMereAr : '' }}">
+                            </div>
                         </div>          
                         <div class="col text-right">
                             <div class="form-group">
-                                <label for="" class="font-weight-bold ">الوضعية العائلية *</label>
-                                <input type="text" class="form-control text-right" name="situationFamilialeAr" id="" placeholder="الوضعية العائلية ..." value="{{ isset($hand) ? $hand->situationFamilialeAr : ''}}">
+                                <label for="" class="font-weight-bold ">إسم الأم *</label>
+                                <input type="text" class="form-control text-right" name="prenomMereAr" id="" placeholder="إسم الأم ..." value="{{ isset($hand) ? $hand->prenomMereAr : '' }}">
                             </div>
                         </div>
+                        
+                    </div>             
+                    <div class="row mt-1">
+                        <div class="col-lg-4 text-right">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold">مكان الميلاد *</label>
+                                <input type="text" class="form-control text-right" name="lieuxNaissanceAr" id="" placeholder="مكان الميلاد ..." value="{{isset($hand) ? $hand->lieuxNaissanceAr : ''}}">
+                              </div>
+                         </div>
+                        <div class="col text-right">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold text-right">العنوان بالعربية *</label>
+                                <input type="text" class="form-control text-right"  name="addressAr" id="" placeholder="العنوان بالعربية" value="{{ isset($hand) ? $hand->addressAr : '' }}">
+                            </div>
+                        </div>  
+                                 
+                        
                         
                     </div>
                     <hr>
@@ -254,13 +256,13 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">CCP *</label>
-                                <input type="text" class="form-control"  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
+                                <input type="text" class="form-control" required  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
                               </div>
                          </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">RIP *</label>
-                                <input type="text" class="form-control"  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
+                                <input type="text" class="form-control" required  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
                             </div>
                         </div>
                         <div class="col">

@@ -73,6 +73,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/cds/CdMondatement','CdController@CdMondatement')->name('cds.CdMondatement');
     Route::post('/cds/CdBeneficier','CdController@CdBeneficier')->name('cds.CdBeneficier');
 
+    Route::get('/download/exportHandsMondate','listHandController@exportHandsMondate')->name('hands.exportHandsMondate');
+    Route::get('/download/exportHandsSuspendu','listHandController@exportHandsSuspendu')->name('hands.exportHandsSuspendu');
+
 });
 
 

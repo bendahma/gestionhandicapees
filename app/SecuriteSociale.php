@@ -7,7 +7,7 @@ use App\Hand;
 
 class SecuriteSociale extends Model
 {
-    protected $fillable = [ 'NSS','DateDebutAssurance'];
+    protected $fillable = ['NSS','DateDebutAssurance'];
     public function hand(){
         return $this->belongsTo(Hand::class);
     }

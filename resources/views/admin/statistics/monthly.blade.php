@@ -43,6 +43,23 @@
                   </div>
                 </div>      
               </div> 
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                      <label for="" class="font-weight-bold text-right">Date Journée Tresor</label>
+                      <input type="date" name="dateJourneTresor" id="" class="form-control">
+                  </div>
+                </div>      
+                <div class="col">
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold text-right">Date Virement </label>
+                    <input type="date" name="dateVirement" id="" class="form-control">
+                </div>
+                </div>      
+              </div> 
+              <hr>
+              <h5 style="font-weight: 700;color:darkred">Statistique des suspendu</h5>
+              <hr>
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
