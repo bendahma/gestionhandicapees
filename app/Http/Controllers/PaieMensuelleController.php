@@ -285,84 +285,104 @@ class PaieMensuelleController extends Controller
                     ->join('hand_paie_statuses', function ($join) {
                         $join->on('hands.id', '=', 'hand_paie_statuses.hand_id')
                         ->where('hand_paie_statuses.status', '=', 'en cours');
-                })->select('commune', DB::raw('count(*) as total'))
-                ->groupBy('commune')
+                })->select('codeCommune', DB::raw('count(*) as total'))
+                ->groupBy('codeCommune')
                 ->having('total', '>=', '0')
                 ->get();
-
-        // $t =0;
-        // foreach ($hands as $h) {
-        //     dump($h->commune . "  " . $h->total);
-        //     $t+=$h->total;
-        // }
-        // dd($t);
 
         $nbrt =0;
         foreach ($hands as $h) {
             $nbrt+=$h->total;
         }
-       
         foreach ($hands as $hand){
-            switch($hand->commune){
-                case " EL AMRIA":
+            switch($hand->codeCommune){
+                case 4607:
                     $ELAMRIA = $hand->total;
-                case "A-TEMOU":
+                    break;
+                case 4601:
                     $AT = $hand->total;
-                case "AGHLLAL":
+                    break;
+                case 4622:
                     $AGHLLAL = $hand->total;
-                case "AIN KIHAL":
+                    break;
+                case 4620:
                     $AINKIHAL = $hand->total;
-                case "AIN LABAA":
+                    break;
+                case 4616:
                     $AINLABAA = $hand->total;
-                case "AIN TOLBA":
+                    break;
+                case 4621:
                     $AINTOLBA = $hand->total;
-                case "AOUGBELLIL":
+                    break;
+                case 4623:
                     $AOUGBELLIL = $hand->total;
-                case "BENI SAF":
+                    break;
+                case 4624:
                     $BENISAF = $hand->total;
-                case "BOUZEDJAR":
+                    break;
+                case 4610:
                     $BOUZEDJAR = $hand->total;
-                case "CHAABAT":
+                    break;
+                case 4604:
                     $CHAABAT = $hand->total;
-                case "CHENTOUF":
+                    break;
+                case 4613:
                     $CHENTOUF = $hand->total;
-                case "El MALEH":
+                    break;
+                case 4603:
                     $ElMALEH = $hand->total;
-                case "EMIR-AEK":
+                    break;
+                case 4626:
                     $EMIRAEK = $hand->total;
-                case "H-El-Ghella":
+                    break;
+                case 4608:
                     $HElGhella = $hand->total;
-                case "HASSASNA":
+                    break;
+                case 4614:
                     $HASSASNA = $hand->total;
-                case "HBH":
+                    break;
+                case 4612:
                     $HBH = $hand->total;
-                case "M'SAID":
+                    break;
+                case 4611:
                     $MSAID = $hand->total;
-                case "O-Berkeche":
+                    break;
+                case 4615:
                     $OBerkeche = $hand->total;
-                case "O-Boudjema":
+                    break;
+                case 4609:
                     $OBoudjema = $hand->total;
-                case "O-SEBBAH":
+                    break;
+                case 4618:
                     $OSEBBAH = $hand->total;
-                case "Ouled- kihal":
+                    break;
+                case 4606:
                     $Ouledkihal = $hand->total;
-                case "OULHAÇA":
+                    break;
+                case 4627:
                     $OULHACA = $hand->total;
-                case "S-Boumediene":
+                    break;
+                case 4617:
                     $SBoumediene = $hand->total;
-                case "SIDI BEN ADDA":
+                    break;
+                case 4602:
                     $SIDIBENADDA = $hand->total;
-                case "SIDI Ouriache":
+                    break;
+                case 4628:
                     $SIDIOuriache = $hand->total;
-                case "SIDI SAFI":
+                    break;
+                case 4625:
                     $SIDISAFI = $hand->total;
-                case "TAMEZOURA":
+                    break;
+                case 4619:
                     $TAMEZOURA = $hand->total;
-                case "TERGA":
+                    break;
+                case 4605:
                     $TERGA = $hand->total;
+                    break;
+
             }
         }
-
         $montantChiffre = $nbrt*config('paie.MontantPaie');
         $annee = date('Y');
         $mois = MoisAnnee::find(date('m'));
@@ -372,7 +392,7 @@ class PaieMensuelleController extends Controller
 
         $template->setValue('annee', $annee);
         $template->setValue('mois', $mois->moisAr);
-        
+        //dd($AT);
         $template->setValue('AT', $AT);
         $template->setValue('ADDA', $SIDIBENADDA);
         $template->setValue('MALEH', $ElMALEH);
