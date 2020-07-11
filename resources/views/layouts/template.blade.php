@@ -180,8 +180,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Rappel</h6>
               <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
-              <a class="collapse-item" href="">Ajouter Rappel</a>
-              <a class="collapse-item" href="">Traitement du Rappel</a>
             </div>
           </div>
 
@@ -202,8 +200,7 @@
               <h6 class="collapse-header">Lists</h6>
               <a class="collapse-item" href="{{route('listhands.encours')}}">En-cours</a>
               <a class="collapse-item" href="{{route('listhands.enattente')}}">En-Attente</a>
-              <a class="collapse-item" href="{{route('listhands.suspendu')}}">Suspendu</a>
-              <a class="collapse-item" href="{{route('listhands.arrete')}}">Arrete</a>
+              <a class="collapse-item" href="{{route('listhands.arrete')}}">Suspendu & Arrete</a>
             </div>
           </div>
         </li>

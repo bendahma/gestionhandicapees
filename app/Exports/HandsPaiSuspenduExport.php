@@ -23,7 +23,10 @@ class HandsPaiSuspenduExport implements FromCollection, WithMapping, WithHeading
     */
     public function collection()
     {
-        $hands = Hand::all(); // Change this to get only suspended hands
+        $hands = Hand::onlyTrashed()->whereHas('status',function($s){
+            $s->where('status', 'suspendu')->orWhere('status', 'arrete');
+        })->get();
+        
         return $hands;
     }
 
@@ -75,7 +78,7 @@ class HandsPaiSuspenduExport implements FromCollection, WithMapping, WithHeading
             ['REPUBLIQUE  ALGERIENNE  DEMOCRATIQUE  ET  POPULAIRE'],
             ['WILAYA  D\'AIN  TEMOUCHENT'],
             ['DIRECTION DE L\'ACTION  SOCIALE'],
-            ['LISTE DE L\'ALLOCATION DES HANDICAPES A 100%'],
+            ['LISTE DES HANDICAPES SUSPENDU OU ARRETE'],
             [''],
             [''],
             ['N° ORD',

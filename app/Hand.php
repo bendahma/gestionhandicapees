@@ -100,19 +100,15 @@ class Hand extends Model
         return $hands;
     }
 
-    public function HandSuspendu(){
+    public function HandSuspenduArrete(){
         $hands = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'suspendu');
+            $s->where('status', 'suspendu')->orWhere('status', 'arrete');
         })->get();
+
         return $hands;
     }
     
-    public function HandArrete(){
-        $hands = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'arrete');
-        })->get();
-        return $hands;
-    }
+    
     public function HandEnAttente(){
         $hands = Hand::onlyTrashed()->whereHas('status',function($s){
             $s->where('status', 'En attente');

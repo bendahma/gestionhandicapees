@@ -69,6 +69,10 @@ function remiHandaler(id){
     form.action = link;
 }
 
+function suspenduRange(id){
+    $('#suspensionArreteRange').modal('show');
+}
+
 if(document.getElementById('NewSituation') != null){
     document.getElementById('NewSituation').addEventListener('change',()=>{
       const situationSelector = document.getElementById('NewSituation');

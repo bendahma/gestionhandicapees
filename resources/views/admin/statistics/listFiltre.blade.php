@@ -15,9 +15,9 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="allNature" id="all" name="natures[]">
-                                    <label class="form-check-label" for="moteur">
-                                      All
+                                    <input type="checkbox" class="form-check-input"  value="allNature" id="Tous" name="natures[]">
+                                    <label class="form-check-label" for="Tous">
+                                      Tous
                                     </label>
                                   </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="allCommune" id="allCommune" name="communes[]">
                                     <label class="form-check-label" for="allCommune">
-                                      All
+                                      Tous
                                     </label>
                                   </div>
                             </div>
@@ -328,13 +328,13 @@
                     <div class="form-group">
                         <label for="" style="color: black; font-weight:700">L'AGE</label>
                         <div class="row">
-                            <div class="col" style="border-right:solid 1px black">
+                            <div class="col" style="">
                                 <label class="form-check-label" for="ageExacte">
                                     Exacte
                                   </label>
                                   <input type="number" name="ageExacte" id="ageExacte" class="form-control">
                             </div>
-                            <div class="col" style="border-right:solid 1px black">
+                            <div class="col" style="">
                                 <label class="form-check-label" for="ageLess">
                                     Inférieur à
                                   </label>
@@ -344,7 +344,7 @@
                                     Equal
                                     </label>
                             </div>
-                            <div class="col" style="border-right:solid 1px black">
+                            <div class="col" style="">
                                 <label class="form-check-label" for="ageMore" >
                                     Supérieur à 
                                   </label>
@@ -379,9 +379,9 @@
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="" id="ALL" name="sexs">
-                                    <label class="form-check-label" for="ALL">
-                                      ALL
+                                    <input type="checkbox" class="form-check-input"  value="" id="Tous" name="sexs">
+                                    <label class="form-check-label" for="Tous">
+                                      Tous
                                     </label>
                                   </div>
                             </div>

@@ -1,1 +1,0 @@
-<h1>Lists des hands suspendu</h1>

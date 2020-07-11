@@ -15,7 +15,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('/upload' , 'UploadHandInfoController');
 
-    Route::get('/ListHands/Suspendu', "listHandController@suspendu")->name('listhands.suspendu');
     Route::get('/ListHands/Arrete', "listHandController@arrete")->name('listhands.arrete');
     Route::get('/ListHands/EnCours', "listHandController@encours")->name('listhands.encours');
     Route::get('/ListHands/EnAttente', "listHandController@enAttente")->name('listhands.enattente');
@@ -75,6 +74,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/download/exportHandsMondate','listHandController@exportHandsMondate')->name('hands.exportHandsMondate');
     Route::get('/download/exportHandsSuspendu','listHandController@exportHandsSuspendu')->name('hands.exportHandsSuspendu');
+    Route::post('/download/suspensionHandRange','listHandController@suspensionHandRange')->name('hands.suspensionHandRange');
 
 });
 

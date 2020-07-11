@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Exports\HandsPaiementExport;
 use App\Exports\HandsPaiSuspenduExport;
+use App\Exports\MonthlySuspensionExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
 use App\HandPaieStatus;
 use DB;
+use Carbon\Carbon;
+
 class listHandController extends Controller
 {
     public $hands;
@@ -21,22 +24,12 @@ class listHandController extends Controller
         $this->hands = new Hand;
     }
 
-    public function suspendu(){
-
-         $handSusp = $this->hands->HandSuspendu();
-
-        return view('dashboard')
-                ->with('hands', $handSusp)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
-    }
-
     public function arrete(){
 
-        $handsList = $this->hands->HandArrete();
+         $handSusp = $this->hands->HandSuspenduArrete();
 
-        return view('dashboard')
-                ->with('hands', $handsList)
+        return view('admin.hands.lists.arrete')
+                ->with('hands', $handSusp)
                 ->with('carts',CartHand::all())
                 ->with('paieinformations',PaieInformation::all());
     }
@@ -55,7 +48,7 @@ class listHandController extends Controller
 
         $handsList = $this->hands->HandMondate();
 
-        return view('dashboard')
+        return view('admin.hands.lists.encours')
                 ->with('hands', $handsList)
                 ->with('carts',CartHand::all())
                 ->with('paieinformations',PaieInformation::all());
@@ -94,12 +87,18 @@ class listHandController extends Controller
         dump($nature);
     }
 
-    public function exportHandsMondate() 
+    public function exportHandsMondate(Request $request) 
     {
         return Excel::download(new HandsPaiementExport, 'HandsMondate.xlsx');
     }
 
     public function exportHandsSuspendu(){
         return Excel::download(new HandsPaiSuspenduExport, 'HandsSuspendu.xlsx');
+    }
+
+    public function suspensionHandRange(Request $request){
+
+        return (new MonthlySuspensionExport($request))->download('Hand Suspendu.xlsx');
+
     }
 }
