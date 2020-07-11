@@ -186,9 +186,11 @@ class RappelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Rappel $rappel)
     {
-        //
+        $rappel->delete();
+        session()->flash('success','Rappel deleted successfully');
+        return redirect()->back();
     }
 
     public function export() {

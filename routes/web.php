@@ -1,5 +1,12 @@
 <?php
 
+use App\Budget;
+
+Route::get('/budgetbudget',function(){
+    $b = Budget::where('annee','2020')->first();
+    $b->Consommation('2020');
+});
+
 Auth::routes(['register' => false]);
 
 Route::get('/', "MainController@index")->name('index');

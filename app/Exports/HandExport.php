@@ -39,12 +39,12 @@ class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvent
         return $hands;
     }
 
-    public function map($hand): array
+    public function map($hand,$i = 1): array
     {   
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();     
 
         return [
-            '',
+            $i+1,
             $commune->nomCommuneFr,
             $hand->nameFr,
             $hand->sex,

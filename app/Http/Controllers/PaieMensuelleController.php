@@ -295,16 +295,13 @@ class PaieMensuelleController extends Controller
             $nbrt+=$h->total;
         }
         foreach ($hands as $hand){
-            switch($hand->codeCommune){
+            switch($hand->commune){
                 case 4607:
                     $ELAMRIA = $hand->total;
-                    break;
                 case 4601:
                     $AT = $hand->total;
-                    break;
                 case 4622:
                     $AGHLLAL = $hand->total;
-                    break;
                 case 4620:
                     $AINKIHAL = $hand->total;
                     break;

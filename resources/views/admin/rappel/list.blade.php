@@ -44,21 +44,29 @@
                            @endif
                         </td>
                         <td>
-                          <div class="row">
-                            <div class="col-lg-2 align-self-center">
-                              @if($r->RappelFait == 0)
-                              <form action="{{route('rappel.confirm',$r->rappel_id)}}" method="POST">
-                                @method('PATCH')
-                                @csrf
-                                <button tyle="submit" class="btn btn-link" style="font-size: 1.5rem; margin:0;padding:0;"> <span style="color:rgb(64, 14, 243); cursor: pointer;"><i class="far fa-check-circle"></i></span></button>
-                              </form> 
-                            </div>
-                            <div class="col-lg-2 align-self-center">
-                              <a class="btn btn-link" href="{{route('rappel.findInfo',[$r->rappel_id,$r->hand_id])}}" style="font-size: 1.5rem"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
-                            </div>
-                            @endif
-                          </div>
-                          
+                          <ul class="nav">
+                              <div class="d-flex">
+                                 @if($r->RappelFait == 0)
+                                    <form action="{{route('rappel.confirm',$r->rappel_id)}}" method="POST">
+                                          @method('PATCH')
+                                          @csrf
+                                          <button tyle="submit" class="btn btn-link" style="font-size: 1.5rem; "> <span style="color:rgb(64, 14, 243); cursor: pointer;"><i class="far fa-check-circle"></i></span></button>
+                                    </form> 
+                                 @endif
+                            
+                                 <a class="btn btn-link" href="{{route('rappel.findInfo',[$r->rappel_id,$r->hand_id])}}" style="font-size: 1.5rem"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
+
+                                 <form action="{{route('rappel.destroy',$r->rappel_id)}}" method="POST">
+                                       @method('DELETE')
+                                       @csrf
+                                       <button tyle="submit" onclick="alert('Are you sure you want to delete rappel')" class="btn btn-link" style="font-size: 1.5rem;"> 
+                                          <span style="color:tomato"><i class="far fa-trash-alt"></i> 
+                                       </button>
+                                 </form> 
+                              </div>
+
+                           </ul>
+                         
                            
                            
                         </td>
