@@ -68,17 +68,10 @@ class Budget extends Model
             $montantRappelAssurance += $r->montantAssurance;
         }
 
-<<<<<<< HEAD
         $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement ) - ($montantMondatementConsomme + $montantRappelPaie);
         $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance ) -  ($montantAssuranceConsomme + $montantRappelAssurance);
         $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement ) - ($montantMondatementConsommeActuellement + $montantRappelPaie);
         $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance ) - ($montantAssuranceConsommeActuellement+$montantRappelAssurance);
-=======
-        $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->desengagementMondatement + $budget->budgetSupplimentaireMondatement + $budget->desengagementMondatement) - ($montantMondatementConsomme + $montantRappelPaie);
-        $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->desengagementAssurance + $budget->budgetSupplimentaireAssurance + $budget->desengagementAssurance) -  ($montantAssuranceConsomme + $montantRappelAssurance);
-        $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->desengagementMondatement + $budget->budgetSupplimentaireMondatement + $budget->desengagementMondatement) - ($montantMondatementConsommeActuellement + $montantRappelPaie);
-        $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->desengagementAssurance + $budget->budgetSupplimentaireAssurance + $budget->desengagementAssurance) - ($montantAssuranceConsommeActuellement+$montantRappelAssurance);
->>>>>>> 48fa22b71077ab005431f699802612de1c29fe81
 
         return [
             'ancienConsommationBudgetPaie' => $AncienConsommationBudgetMondatement,
