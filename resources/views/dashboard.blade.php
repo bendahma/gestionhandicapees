@@ -40,7 +40,7 @@
                 <td>{{$hand->paieinformation->CCP}}</td>
                 {{-- <td>{{ $hand->status->status != 'En cours' ? <a href=""> $hand->status->status }}</td> --}}
                 <td>
-                  <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}">
+                  <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}" target="_blank">
                     {{$hand->status->status}}
                   </a>
                 </td>

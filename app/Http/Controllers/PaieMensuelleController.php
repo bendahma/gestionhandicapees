@@ -285,10 +285,12 @@ class PaieMensuelleController extends Controller
                     ->join('hand_paie_statuses', function ($join) {
                         $join->on('hands.id', '=', 'hand_paie_statuses.hand_id')
                         ->where('hand_paie_statuses.status', '=', 'en cours');
-                })->select('commune', DB::raw('count(*) as total'))
-                ->groupBy('commune')
+                })->select('codeCommune', DB::raw('count(*) as total'))
+                ->groupBy('codeCommune')
                 ->having('total', '>=', '0')
                 ->get();
+
+                dd($hands);
 
         // $t =0;
         // foreach ($hands as $h) {
@@ -304,13 +306,13 @@ class PaieMensuelleController extends Controller
        
         foreach ($hands as $hand){
             switch($hand->commune){
-                case " EL AMRIA":
+                case 4607:
                     $ELAMRIA = $hand->total;
-                case "A-TEMOU":
+                case 4601:
                     $AT = $hand->total;
-                case "AGHLLAL":
+                case 4622:
                     $AGHLLAL = $hand->total;
-                case "AIN KIHAL":
+                case 4620:
                     $AINKIHAL = $hand->total;
                 case "AIN LABAA":
                     $AINLABAA = $hand->total;
