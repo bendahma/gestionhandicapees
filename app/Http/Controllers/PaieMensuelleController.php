@@ -290,24 +290,11 @@ class PaieMensuelleController extends Controller
                 ->having('total', '>=', '0')
                 ->get();
 
-<<<<<<< HEAD
-                dd($hands);
-
-        // $t =0;
-        // foreach ($hands as $h) {
-        //     dump($h->commune . "  " . $h->total);
-        //     $t+=$h->total;
-        // }
-        // dd($t);
-
-=======
->>>>>>> a0cdecfe7d24a4e097356804fda5c0e5fec8ca26
         $nbrt =0;
         foreach ($hands as $h) {
             $nbrt+=$h->total;
         }
         foreach ($hands as $hand){
-<<<<<<< HEAD
             switch($hand->commune){
                 case 4607:
                     $ELAMRIA = $hand->total;
@@ -315,18 +302,6 @@ class PaieMensuelleController extends Controller
                     $AT = $hand->total;
                 case 4622:
                     $AGHLLAL = $hand->total;
-=======
-            switch($hand->codeCommune){
-                case 4607:
-                    $ELAMRIA = $hand->total;
-                    break;
-                case 4601:
-                    $AT = $hand->total;
-                    break;
-                case 4622:
-                    $AGHLLAL = $hand->total;
-                    break;
->>>>>>> a0cdecfe7d24a4e097356804fda5c0e5fec8ca26
                 case 4620:
                     $AINKIHAL = $hand->total;
                     break;
