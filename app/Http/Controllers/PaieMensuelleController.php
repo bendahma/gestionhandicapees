@@ -377,7 +377,6 @@ class PaieMensuelleController extends Controller
                 case 4605:
                     $TERGA = $hand->total;
                     break;
-
             }
         }
         $montantChiffre = $nbrt*config('paie.MontantPaie');
