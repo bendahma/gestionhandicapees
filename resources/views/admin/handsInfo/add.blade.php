@@ -88,7 +88,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Commune *</label>
-                                <select name="commune" id="" class="form-control">
+                                <select name="codeCommune" id="" class="form-control">
                                     <option value="" selected disabled>Choisi une Commune</option>
                                     @foreach ($communes as $commune)
                                         <option value="{{$commune->codeCommune}}" {{ isset($hand) && $hand->codeCommune  == $commune->codeCommune ? 'selected' : '' }}>{{$commune->nomCommuneFr}}</option>

@@ -43,7 +43,7 @@ class HandsInfoController extends Controller
         $national = new CarteNational();
         $ss = new SecuriteSociale();
         $status = new HandPaieStatus();
-        
+        // dd($request->codeCommune);
         $hand->numeroactenaissance = $request->numeroactenaissance;
         $hand->nameFr = $request->nameFr;
         $hand->nomAr = $request->nomAr;
@@ -54,8 +54,7 @@ class HandsInfoController extends Controller
         $hand->lieuxNaissanceAr = $request->lieuxNaissanceAr;
         $hand->address = $request->address;
         $hand->addressAr = $request->addressAr;
-        $hand->commune = $request->commune;
-        $hand->communeAr = $request->communeAr;
+        $hand->codeCommune = $request->codeCommune;
         $hand->prenomPereFr = $request->prenomPereFr;
         $hand->nomMereFr = $request->nomMereFr;
         $hand->prenomMereFr = $request->prenomMereFr;
@@ -148,8 +147,7 @@ class HandsInfoController extends Controller
             'lieuxNaissanceAr' => $request->lieuxNaissanceAr,
             'address' => $request->address,
             'addressAr' => $request->addressAr,
-            'codeCommune' => $request->commune,
-            'communeAr' => $request->communeAr,
+            'codeCommune' => $request->codeCommune,
             'prenomPereFr' => $request->prenomPereFr,
             'nomMereFr' => $request->nomMereFr,
             'prenomMereFr' => $request->prenomMereFr,
