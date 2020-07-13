@@ -95,13 +95,15 @@ class PaieMensuelleController extends Controller
             $s->where('status', 'en cours');
         })->get();
 
-        $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'suspendu');
-        })->get();
+        // $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
+        //     $s->where('status', 'suspendu');
+        // })->get();
 
-        $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'Arrete');
-        })->get();
+        // $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
+        //     $s->where('status', 'Arrete');
+        // })->get();
+
+        $allHand = Hand::withTrashed()->get();
 
         // Calculating
         $budgetI = new Budget();
@@ -124,32 +126,15 @@ class PaieMensuelleController extends Controller
 
         }
         else {
-            $hands = Hand::whereHas('status',function($s){
-                $s->where('status', 'en cours');
-            })->get();
-    
-            $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
-                $s->where('status', 'suspendu');
-            })->get();
-    
-            $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
-                $s->where('status', 'Arrete');
-            })->get();
-
-            $paieExist->hands()->detach($handsSuspendu);
-            $paieExist->hands()->detach($handsArrete);
-            if (!$paieExist->hands->contains($paieExist->id)) {
-                $paieExist->hands()->attach($hands);
-            }
-
+            $paieExist->hands()->detach($allHand);
+            $paieExist->hands()->attach($hands);
             $paieExist->update([
                 'montantPaiement'=> $hands->count() * config('paie.MontantPaie'),
                 'montantAssurance'=> $hands->count() * config('paie.MontantAssurance')
             ]);
             session()->flash('success','Paiement du mois ' . date('M Y') . ' à été mis à jours avec success.' );
         }
-
-       
+        
         return view('admin.paie.documents');
     }
 

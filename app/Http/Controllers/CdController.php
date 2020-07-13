@@ -294,6 +294,7 @@ class CdController extends Controller
                         ->where('paie_information.Beneficier','=',0)
                         ->get();
 
+
         $countBenef = $hands->count();
 
         $content =  '137246'.'|'.$countBenef;
@@ -305,11 +306,20 @@ class CdController extends Controller
             $address = $hand->address . ' ' .$commune->nomCommuneFr;
             $content .= "\r\n";
             $content .= $rip.'|'.$nss.'|'.$name.'|'.$address;
-            
+           
         }
+        
+        $handsBenif = DB::table('hands')
+                        ->join('paie_information','paie_information.hand_id','hands.id')
+                        ->join('hand_paie','hand_paie.hand_id','hands.id')
+                        ->join('paies','paies.id','hand_paie.paie_id')
+                        ->select('paie_information.Beneficier')
+                        ->where('paies.moisPaiement','=',$request->moisPaiement)
+                        ->where('paies.anneesPaiement','=',$request->anneePaiement)
+                        ->where('paie_information.Beneficier','=',0)
+                        ->update(array('Beneficier' => 1));
 
-        $benificier = DB::table('paie_information')->where('Beneficier', '=', 0)->update(array('Beneficier' => 1));
-
+        
         $fileName = "CD Beneficier". date('m-Y') .".txt";
 
         $headers = [
