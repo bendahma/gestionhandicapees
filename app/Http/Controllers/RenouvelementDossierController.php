@@ -19,14 +19,9 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-        $hands = Hand::all();
-
-        return view('admin.renouvellement.index')
-                ->with('hands', $hands)
-                ->with('carts', CartHand::all())
-                ->with('carts', CartHand::all())
-                ->with('renouvellement', RenouvellementDossier::all())
-                ->with('paieinformations', PaieInformation::all());
+        $hands = Hand::with('cartehand')->with('renouvellementdossier')->with('paieinformation')->withTrashed()->get();
+        
+        return view('admin.renouvellement.index')->with('hands', $hands);
     
     }
 

@@ -125,7 +125,7 @@ class PaieMensuelleController extends Controller
         }
         else {
             $hands = Hand::whereHas('status',function($s){
-                $s->where('status', 'en cours');
+                $s->where('status', 'En cours');
             })->get();
     
             $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){

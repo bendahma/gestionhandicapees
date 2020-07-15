@@ -41,20 +41,20 @@
                     {{$hand->status->status}}
                   </a>
                 </td>
-                @if($hand->renouvellementdossier->dossierRenouvelle == 0)
-                <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <td>
-                      <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}" >
-                    </td>
-                    <td>
-                      <input type="submit" class="btn btn-success btn-block " value="Confirmé"> 
-                    </td>
-                </form>
+                @if(isset($hand->renouvellementdossier->dossierRenouvelle) && $hand->renouvellementdossier->dossierRenouvelle == 0)
+                  <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
+                      @csrf
+                      @method('PATCH')
+                      <td>
+                        <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}" >
+                      </td>
+                      <td>
+                        <input type="submit" class="btn btn-success btn-block " value="Confirmé"> 
+                      </td>
+                  </form>
                 @else
-                <td> {{$hand->renouvellementdossier->DateRenouvellement}} </td>
-                <td style="font-weight: 600">Dossier Annuel Renouvelle</td>
+                  <td> {{ isset($hand->renouvellementdossier->DateRenouvellement) ? $hand->renouvellementdossier->DateRenouvellement : '' }} </td>
+                  <td style="font-weight: 600">Dossier Annuel Renouvelle</td>
                @endif
               </tr>
             @endforeach
