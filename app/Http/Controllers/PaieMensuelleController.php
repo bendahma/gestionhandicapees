@@ -95,13 +95,15 @@ class PaieMensuelleController extends Controller
             $s->where('status', 'en cours');
         })->get();
 
-        $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'suspendu');
-        })->get();
+        // $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
+        //     $s->where('status', 'suspendu');
+        // })->get();
 
-        $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
-            $s->where('status', 'Arrete');
-        })->get();
+        // $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
+        //     $s->where('status', 'Arrete');
+        // })->get();
+
+        $allHand = Hand::withTrashed()->get();
 
         // Calculating
         $budgetI = new Budget();
@@ -148,8 +150,7 @@ class PaieMensuelleController extends Controller
             ]);
             session()->flash('success','Paiement du mois ' . date('M Y') . ' à été mis à jours avec success.' );
         }
-
-       
+        
         return view('admin.paie.documents');
     }
 
