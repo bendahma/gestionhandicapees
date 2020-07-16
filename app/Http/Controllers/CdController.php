@@ -305,7 +305,7 @@ class CdController extends Controller
             $nss = $hand->NSS;
             $address = $hand->address . ' ' .$commune->nomCommuneFr;
             $content .= "\r\n";
-            $content .= $rip.'|'.$nss.'|'.$name.'|'.$address;
+            $content .= $rip.'|'.$nss.'|'.$name.'|'.$address."|";
            
         }
         

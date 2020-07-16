@@ -279,8 +279,17 @@
             </div>
           </div>
         </li>
-        
-
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          DATABASE
+        </div>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
+            <i class="fas fa-database"></i>
+            <span>Base Du Données</span>
+          </a>
+          
+        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
