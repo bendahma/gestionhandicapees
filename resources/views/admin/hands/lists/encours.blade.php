@@ -1,5 +1,8 @@
 @extends('layouts.template')
 
+@section('page')
+    Liste Des Mondates
+@endsection
 
 @section('dashboard')
     <!-- Begin Page Content -->

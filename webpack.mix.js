@@ -13,16 +13,12 @@ const mix = require('laravel-mix');
 
 mix.js(
    [
-      'resources/js/app.js',
       'resources/js/bootstrap.bundle.min.js',
-      'resources/js/datatables-demo.js',
-      'resources/js/dataTables.bootstrap4.min.js',
       'resources/js/jquery.dataTables.min.js',
-      'resources/js/jquery.easing.min.js',
       'resources/js/jquery.min.js',
       'resources/js/sb-admin-2.js',
    ],
-   'public/js/allJs.js'
+   'public/js/site.js'
 );
 
 // mix.sass(
@@ -40,5 +36,5 @@ mix.styles(
          'resources/css/solid.min.css',
          'resources/css/style.css',
       ],
-      'public/css/allStyle.css'
+      'public/css/site.css'
 );

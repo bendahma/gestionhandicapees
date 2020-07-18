@@ -10,6 +10,9 @@ use App\PaieInformation;
 use App\HandPaieStatus;
 use App\MoisAnnee;
 use App\Commune;
+
+use DataTables;
+
 class MainController extends Controller
 {
     /**
@@ -26,8 +29,12 @@ class MainController extends Controller
 
     public function dashboard()
     {
-        $hands = Hand::with('cartehand')->with('paieinformation')->withTrashed()->orderBy('codeCommune','asc')->get();
-        return view('dashboard')->with('hands', $hands);
+         $hands = cache()->remember('HANDS_LISTS_ALL', 60*60*24 , function(){
+            return Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->withTrashed()->get(['id','nameFr','dob']);
+         });
+
+        return view('dashboard')->with('hands',$hands);
+                   
     }
 
     public function suspendu($id){

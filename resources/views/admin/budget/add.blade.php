@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('page')
+    Budget
+@endsection
+
 @section('addBudget')
     <div class="container-fluid">
        <!-- Page Heading -->

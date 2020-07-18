@@ -69,6 +69,13 @@ function remiHandaler(id){
     form.action = link;
 }
 
+function suspenduRange(){
+    $('#suspensionArreteRange').modal('show');
+}
+function donneeCfTresor(){
+    $('#donneeCFTresorForm').modal('show');
+}
+
 if(document.getElementById('NewSituation') != null){
     document.getElementById('NewSituation').addEventListener('change',()=>{
       const situationSelector = document.getElementById('NewSituation');
@@ -129,3 +136,23 @@ if(document.getElementById('PaieStatusHand') != null){
     });
 }
 
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable').DataTable({
+    "columnDefs": [
+      { "width": "0%", "targets": 1 },
+      { "width": "8%", "targets": 2 }
+    ]
+  });
+});
+
+
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTableRe').DataTable({
+    "columnDefs": [
+      { "width": "0%", "targets": 1 },
+      { "width": "0%", "targets": 5 }
+    ]
+  });
+});

@@ -27,10 +27,12 @@
 
 12. DESENGAGEMENT : CHANGEMENT PAIE PROCESS
 
+13 . AJOUTER OPTION DE SUPPRIME UN RAPPEL PARMI LES LISTS DES RAPPEL NON PAYERPHP
+
+14 . Les Convocations
+
 _______________________________________________________________________
 
-IMPORTANT : AJOUTER OPTION DE SUPPRIME UN RAPPEL PARMI LES LISTS DES RAPPEL NON PAYERPHP
-_______________________________________________________________________
 .name length no more than 26 character - in Create Hand
 
 . CD Section

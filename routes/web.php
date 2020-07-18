@@ -1,12 +1,5 @@
 <?php
 
-use App\Budget;
-
-Route::get('/budgetbudget',function(){
-    $b = Budget::where('annee','2020')->first();
-    $b->Consommation('2020');
-});
-
 Auth::routes(['register' => false]);
 
 Route::get('/', "MainController@index")->name('index');
@@ -83,6 +76,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/download/exportHandsMondate','listHandController@exportHandsMondate')->name('hands.exportHandsMondate');
     Route::get('/download/exportHandsSuspendu','listHandController@exportHandsSuspendu')->name('hands.exportHandsSuspendu');
     Route::post('/download/suspensionHandRange','listHandController@suspensionHandRange')->name('hands.suspensionHandRange');
+
+    Route::get('/convocation','ConvocationController@index')->name('convocation.index');
+    Route::get('/convocation/suspension/{hand}','ConvocationController@Suspension')->name('convocation.suspension');
+    Route::post('/convocation/{hand}','ConvocationController@SuspensionAny')->name('convocation.any');
 
 });
 

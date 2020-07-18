@@ -13,6 +13,12 @@
               <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="{{route('decision.telecharger', [$hand->id,'reglement'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du Réglement </a> 
           @endif
           @if($hand->status->status == 'Suspendu')
+              <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{route('convocation.suspension',$hand->id)}}"> 
+                    <span style="color:white">
+                          <i class="fas fa-envelope-open-text"></i>
+                    </span> 
+                    Convocation 
+              </a> 
               <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'suspension'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du suspension </a> 
           @endif
           @if($hand->status->status == 'Arrete')

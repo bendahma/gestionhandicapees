@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('page')
+    Desengagement
+@endsection
+
 @section('addDesengagement')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">

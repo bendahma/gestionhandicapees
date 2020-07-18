@@ -1,5 +1,8 @@
 @extends('layouts.template')
 
+@section('page')
+    Listes Des Suspendu
+@endsection
 
 @section('dashboard')
     <!-- Begin Page Content -->

@@ -16,17 +16,16 @@ class HistoryPaiementController extends Controller
 
     public function index(){
 
-        $hands = Hand::with('cartehand')->with('paieinformation')->withTrashed()->get();
-
+        $hands = Hand::with('paieinformation:CCP,hand_id')->withTrashed()->get(['id','nameFr','dob']);
+        //dd($hands->toArray());
         return view('admin.historique.index')->with('hands',$hands);
 
     }
 
     public function HistoriquePaie($id){
         
-        $hand = Hand::with('paieinformation')->with('paies')->withTrashed()->where('id',$id)->first();
+        $hand = Hand::with(['paieinformation:CCP,hand_id','paies'])->withTrashed()->where('id',$id)->first(['id','nameFr','dob']);
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
-        // dd($hand);
         $anneesArr = array();
         $moisArr = array();
 

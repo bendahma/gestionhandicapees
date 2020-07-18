@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('page')
+    Statistique Du Budget
+@endsection
+
 @section('PaieResume')
 
     <div class="container">

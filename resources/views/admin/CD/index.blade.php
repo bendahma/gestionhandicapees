@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('page')
+    CD
+@endsection
+
 @section('CDsection')
     <div class="container-fluid">
         <h4 style="font-weight: 900;color:darkred" class="mb-3">Les CDs du Paiement</h4>

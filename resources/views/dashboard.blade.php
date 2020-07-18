@@ -1,5 +1,8 @@
 @extends('layouts.template')
 
+@section('page')
+    Dashboard
+@endsection
 
 @section('dashboard')
     <!-- Begin Page Content -->
@@ -24,7 +27,7 @@
               <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              <th>Nature</th>
+              {{-- <th>Nature</th> --}}
               <th>CCP</th>
               <th>La Paie</th>
               <th></th>
@@ -33,11 +36,11 @@
           <tbody>
             @foreach ($hands as $n => $hand)
               <tr>
-                <td>{{$n+1}}</td>
+                <td>{{$n++}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
-                <td>{{$hand->cartehand->natureHandFr}}</td>
-                <td>{{$hand->paieinformation->CCP}}</td>
+                {{-- <td>{{ isset($hand->cartehand->natureHandFr) ? $hand->cartehand->natureHandFr : '' }}</td> --}}
+                <td>{{isset($hand->paieinformation->CCP) ? $hand->paieinformation->CCP : ''}}</td>
                 <td>
                       <a href="{{$hand->status->status == 'En cours' 
                                       ? route('historique.HistoriquePaie',$hand->id) 
@@ -59,7 +62,7 @@
               </tr>
             @endforeach
             
-          </tbody>
+          </tbody> 
         </table>
       </div>
     </div>

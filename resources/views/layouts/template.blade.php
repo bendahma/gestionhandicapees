@@ -64,7 +64,7 @@
           <div id="handCrud" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Operation Hand</h6>
-              <a class="collapse-item" href="{{route('hands.create')}}">Ajouter Nouveau</a>
+              <a class="collapse-item" href="{{route('hands.create')}}" target="_blank" >Ajouter Nouveau</a>
             </div>
           </div>
         </li>
@@ -80,8 +80,8 @@
           <div id="dossierAnnuel" class="collapse" aria-labelledby="dossierAnnuel" data-parent="#dossierAnnuel">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Operation Hand</h6>
-              <a class="collapse-item" href="{{route('renouvellement.index')}}">Renouvellement</a>
-              <a class="collapse-item" href="{{route('renouvellement.statistique')}}">Statistique</a>
+              <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">Renouvellement</a>
+              <a class="collapse-item" href="{{route('renouvellement.statistique')}}" target="_blank">Statistique</a>
             </div>
           </div>
         </li>
@@ -90,6 +90,12 @@
           Papiers officiels
         </div>
         <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('convocation.index')}}" target="_blank">
+            <i class="fas fa-envelope-open-text"></i>
+            <span>Convocation </span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#attestation" aria-expanded="true" aria-controls="cd">
             <i class="far fa-file-word"></i>
             <span>Attestation</span>
@@ -97,8 +103,8 @@
           <div id="attestation" class="collapse" aria-labelledby="attestation" data-parent="#attestation">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
-              <a class="collapse-item" href="{{route('attestation','paiement')}}">Attestation Paiement</a>
-              <a class="collapse-item" href="{{route('attestation','desistement')}}">Désistement Paie</a>
+              <a class="collapse-item" href="{{route('attestation','paiement')}}" target="_blank">Attestation Paiement</a>
+              <a class="collapse-item" href="{{route('attestation','desistement')}}" target="_blank">Désistement Paie</a>
             </div>
           </div>
         </li>
@@ -111,10 +117,10 @@
           <div id="decision" class="collapse" aria-labelledby="decision" data-parent="#decision">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
-              <a class="collapse-item" href="{{route('decision','paiement')}}">Décision du Paiement</a>
-              <a class="collapse-item" href="{{route('decision','reglement')}}">Décision du Réglement</a>
-              <a class="collapse-item" href="{{route('decision','suspension')}}">Décision du Suspension</a>
-              <a class="collapse-item" href="{{route('decision','arrete')}}">Décision d'arrete'</a>
+              <a class="collapse-item" href="{{route('decision','paiement')}}" target="_blank">Décision du Paiement</a>
+              <a class="collapse-item" href="{{route('decision','reglement')}}" target="_blank">Décision du Réglement</a>
+              <a class="collapse-item" href="{{route('decision','suspension')}}" target="_blank">Décision du Suspension</a>
+              <a class="collapse-item" href="{{route('decision','arrete')}}" target="_blank">Décision d'arrete'</a>
             </div>
           </div>
         </li>
@@ -132,20 +138,20 @@
           <div id="paieMensuelle"  class="collapse" aria-labelledby="headingTwo" data-parent="#paieMensuelle" >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Paie Mensuelle</h6>
-              <a class="collapse-item" href="{{route('paie.index')}}">Résume</a>
+              <a class="collapse-item" href="{{route('paie.index')}}" target="_blank">Résume</a>
               <a class="collapse-item" onclick="return confirm('Are you sur you want to Do or Re-do the paiement ? Re-doing the paiement will change the intial paiement information . Click OK to continue ')" href="{{route('paie.traitement')}}">Traitement</a>
-              <a class="collapse-item" href="{{route('paie.documents')}}">Télécharger Document</a>
+              <a class="collapse-item" href="{{route('paie.documents')}}" target="_blank">Télécharger Document</a>
             </div>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('cds.index')}}">
+          <a class="nav-link collapsed" href="{{route('cds.index')}}" target="_blank">
             <i class="fas fa-compact-disc"></i>
             <span>CD</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('historique.index')}}" >
+          <a class="nav-link collapsed" href="{{route('historique.index')}}" target="_blank">
             <i class="fas fa-history"></i>
             <span>Historique Des Paiements</span>
           </a>
@@ -314,7 +320,9 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
               <i class="fa fa-bars"></i>
             </button>
-            
+            <h5 style="font-weight: 700">
+              @yield('page')
+            </h5>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
@@ -472,21 +480,13 @@
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-
-  <script src="{{asset('js/jquery.easing.min.js')}}"></script>
-
-  <script src="{{asset('js/sb-admin-2.js')}}"></script>
-
-  <script src="{{asset('js/Chart.js')}}"></script>
-
-  <script src="{{asset('js/chart-area-demo.js')}}"></script>
-  <script src="{{asset('js/chart-pie-demo.js')}}"></script>
-  <script src="{{asset('js/datatables-demo.js')}}"></script>
-
   <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
-@yield('scripts')
+  {{-- <script src="{{asset('js/site.js')}}"></script> --}}
+
+
 </body>
 
 </html>

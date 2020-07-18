@@ -14,7 +14,7 @@ class AddUsersInfos extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nameAr');
+            $table->string('nameAr')->nullable();
         });
     }
 
