@@ -207,7 +207,7 @@ class HandsInfoController extends Controller
         // Paiement History Table    
         $history->create([
             'status'=>$request->status,
-            'motif'=>$request->motif,
+            'motif'=>$request->motifAr,
             'dateSupprission'=>$request->dateSupprission,
             'hand_id'=>$hand->id
         ]);

@@ -29,8 +29,7 @@
               <th>CCP</th>
               <th>Statut</th>
               <th>Historique</th>
-              <th>Historique</th>
-              
+              <th>Historique</th>   
             </tr>
           </thead>
           <tbody>
@@ -46,7 +45,7 @@
                   <span style="font-size: 1rem; font-weight:700; text-decoration:none; color:rgb(61, 9, 204)">Paiement</span></a>
                </td>
                <td>
-                  <a class="btn btn-link" href="" style="font-size: 1.4rem; text-decoration:none"> 
+                  <a class="btn btn-link" href="{{route('historique.HistoireSuspension',$hand->id)}}" style="font-size: 1.4rem; text-decoration:none"> 
                   <span style="font-size: 1rem; font-weight:700; text-decoration:none; color:rgb(241, 10, 10)">Suspension</span> </a>
                </td>
               </tr>

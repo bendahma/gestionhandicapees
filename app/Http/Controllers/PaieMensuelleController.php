@@ -92,12 +92,13 @@ class PaieMensuelleController extends Controller
     public function MakePaie(){
 
         $budgetI = new Budget();
-        $countHand = $hands->count();
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
         })->get();
 
         $allHands = Hand::withTrashed()->get();
+
+        $countHand = $hands->count();
 
         $budget = $budgetI->CreateNewYearBudget(date('Y'));
         $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();

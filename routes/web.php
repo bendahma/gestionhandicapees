@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/historique', 'HistoryPaiementController@index')->name('historique.index');
     Route::get('/historique/paiement/{hand}', 'HistoryPaiementController@HistoriquePaie')->name('historique.HistoriquePaie');
-    Route::get('/historique/histoire/{hand}', 'HistoryPaiementController@HistoireSuspension')->name('historique.HistoireSuspension');
+    Route::get('/historique/suspension/{hand}', 'HistoryPaiementController@HistoriqueSuspension')->name('historique.HistoireSuspension');
     
     Route::patch('/renouvellement/DossierRemi/{hand}', 'RenouvelementDossierController@DossierRemi')->name('renouvellement.DossierRemi');
     Route::get('/renouvellement/statistique', 'RenouvelementDossierController@Statistique')->name('renouvellement.statistique');

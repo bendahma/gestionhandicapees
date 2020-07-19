@@ -19,6 +19,7 @@
 8. Rappel
    - Saisie rappel 
    - Liste des rappels
+   
 9 Added rappel consumption to budget consumption
 
 10. redesign paiement process
@@ -31,6 +32,9 @@
 
 14 . Les Convocations
 
+15 . Historique du Paiement
+          Historique du paiement 
+          Historique du suspension
 _______________________________________________________________________
 
 .name length no more than 26 character - in Create Hand
@@ -44,9 +48,7 @@ _______________________________________________________________________
 . Liste des Mondaté Filtré : 
    - Téléchargé les listes des monfatés par plusieurs filtres
 
-. Historique du Paiement
-   - Historique du paiement 
-   - Historique du suspension
+. Telecharger historique du paiement + suspension d'un handicapée
 
 . Import :
    - Change le script du Upload pour prendre en charge tout les fields du base de données et le fichier excel du hand a uploade
