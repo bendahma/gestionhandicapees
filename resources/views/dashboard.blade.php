@@ -36,7 +36,7 @@
           <tbody>
             @foreach ($hands as $n => $hand)
               <tr>
-                <td>{{$n++}}</td>
+                <td>{{$n=$n+1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 {{-- <td>{{ isset($hand->cartehand->natureHandFr) ? $hand->cartehand->natureHandFr : '' }}</td> --}}

@@ -124,7 +124,8 @@
             </div>
           </div>
         </li>
-        <!-- Divider -->
+        @if (Auth::user()->role == 'admin')
+            <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Gestion Du Paiement
@@ -144,12 +145,14 @@
             </div>
           </div>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('cds.index')}}" target="_blank">
             <i class="fas fa-compact-disc"></i>
             <span>CD</span>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('historique.index')}}" target="_blank">
             <i class="fas fa-history"></i>
@@ -170,6 +173,8 @@
             </div>
           </div>
         </li>
+        @endif
+        
         
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -185,9 +190,11 @@
               <h6 class="collapse-header">Rappel</h6>
               {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
               <a class="collapse-item" href="{{route('rappel.list')}}">Listes Des Rappels</a>
-              <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
-              <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>
-              <a class="collapse-item" href="">Traitement du Rappel</a>
+              @if(Auth::user()->role == 'admin')
+                  <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
+                  <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>
+                  <a class="collapse-item" href="">Traitement du Rappel</a>
+              @endif
             </div>
           </div>
         </li>
@@ -207,7 +214,6 @@
               <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
             </div>
           </div>
-
           
         </li>
         <!-- Divider -->
@@ -235,28 +241,29 @@
             <span>Liste Mondaté Filtre</span>
           </a>
         </li>
-        
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-        <!-- Heading -->
-        <div class="sidebar-heading">
-          Gestion Du Budget
-        </div>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Budget</span>
-          </a>
-          <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Les operations du budget</h6>
-              <a class="collapse-item" href="{{route('budget.index')}}">Résume du Budget</a>
-              <a class="collapse-item" href="{{route('budget.create')}}">Ajouter Budget</a>
-              <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}">Desengagement</a>
+        @if(Auth::user()->role == 'admin')
+            <hr class="sidebar-divider d-none d-md-block">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+              Gestion Du Budget
             </div>
-          </div>
-        </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Budget</span>
+              </a>
+              <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Les operations du budget</h6>
+                  <a class="collapse-item" href="{{route('budget.index')}}">Résume du Budget</a>
+                  <a class="collapse-item" href="{{route('budget.create')}}">Ajouter Budget</a>
+                  <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}">Desengagement</a>
+                </div>
+              </div>
+            </li>
+        @endif
+        
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Source des données
@@ -330,8 +337,9 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;font-weight:700;font-size:0.9rem">
+                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->name . ' : ' }}</span>
+                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->role }}</span>
                   <img class="img-profile rounded-circle" src="{{asset('img/person.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->
