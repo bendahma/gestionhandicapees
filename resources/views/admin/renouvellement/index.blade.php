@@ -21,26 +21,22 @@
         <table class="table table-bordered" id="dataTableRe" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
               <th>CCP</th>
-              <th>Statut</th>
               <th>Date Renouvelement</th>
               <th>Confirmé</th>
               
             </tr>
           </thead>
           <tbody>
-            @foreach ($hands as $hand)
+            @foreach ($hands as $key => $hand)
               <tr>
+                <td>{{$key = $key + 1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td > <span style="max-width: 100px">{{date('d/m/Y', strtotime($hand->dob))}}</span></td>
                 <td>{{$hand->paieinformation->CCP}}</td>
-                <td>
-                  <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}">
-                    {{$hand->status->status}}
-                  </a>
-                </td>
                 @if(isset($hand->renouvellementdossier->dossierRenouvelle) && $hand->renouvellementdossier->dossierRenouvelle == 0)
                   <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
                       @csrf

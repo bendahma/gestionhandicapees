@@ -19,7 +19,7 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-        $hands = Hand::with('cartehand')->with('renouvellementdossier')->with('paieinformation')->withTrashed()->get();
+        $hands = Hand::with('renouvellementdossier')->with('paieinformation:CCP,hand_id')->get(['id','nameFr','dob']);
         
         return view('admin.renouvellement.index')->with('hands', $hands);
     
