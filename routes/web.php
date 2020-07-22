@@ -114,11 +114,19 @@ Route::middleware(['auth'])->group(function(){
 
     Route::prefix('convocation')->group(function(){
         Route::name('convocation.')->group(function(){
-            Route::get('','ConvocationController@index')->name('index');
+            Route::get('/','ConvocationController@index')->name('index');
             Route::get('suspension/{hand}','ConvocationController@Suspension')->name('suspension');
             Route::post('{hand}','ConvocationController@SuspensionAny')->name('any');
         });
     });
+
+    Route::prefix('update')->group(function(){
+        Route::name('database.')->group(function(){
+            Route::get('download', 'UploadHandInfoController@DownloadUpdate')->name('download');
+            Route::get('upload', 'UploadHandInfoController@UploadUpdate')->name('upload');
+        });
+    });
+
     
 });
 

@@ -21,7 +21,7 @@ use App\PaieInformation;
 use App\Commune;
 use App\Paie;
 use App\MoisAnnee;
-
+    
 use DB;
 
 class HandExport implements FromCollection, WithMapping, WithHeadings, WithEvents,ShouldAutoSize,WithColumnFormatting

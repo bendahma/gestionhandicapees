@@ -7,6 +7,8 @@ use App\PaieInformation;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\HandsImport;
+use App\Exports\AllHandExport;
+
 
 class UploadHandInfoController extends Controller
 {
@@ -93,5 +95,9 @@ class UploadHandInfoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function DownloadUpdate(){
+        return Excel::download(new AllHandExport, 'Update Database.xlsx');
     }
 }
