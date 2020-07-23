@@ -22,7 +22,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'EMIR MALIKA',
             'username' => 'MALIKA',
             'email' => 'malika@contact.com',
-            'password' => Hash::make('123456')
+            'password' => Hash::make('123456'),
+            'nameAr' => 'أمير مليكة',
         ]);
     }
 }

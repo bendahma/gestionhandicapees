@@ -319,7 +319,7 @@
             
         @else
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('update.download')}}" target="_blank">
+          <a class="nav-link collapsed" href="{{route('database.download')}}" target="_blank">
             <i class="fas fa-database"></i>
             <span>Update (EXPORT)</span>
           </a>

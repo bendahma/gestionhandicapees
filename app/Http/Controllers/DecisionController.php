@@ -25,10 +25,8 @@ class DecisionController extends Controller
 
         if($listType == 'paiement' || $listType == 'reglement'){
             $handList = $this->hands->HandMondate();
-        } else if($listType == 'suspension'){
-            $handList = $this->hands->HandSuspendu();
-        } else if($listType == 'arrete'){
-            $handList = $this->hands->HandArrete();
+        } else if($listType == 'suspension' || $listType == 'arrete'){
+            $handList = $this->hands->HandSuspenduArrete();
         }
 
         return view('admin.papiers.decision')->with('hands',$handList)
