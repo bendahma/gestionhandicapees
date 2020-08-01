@@ -1,0 +1,63 @@
+
+*************** Done ****************
+1 Suspension Hand selon bareme du ministere
+
+2 Fiche Statistique Mensuelle
+
+3 Add "En Attente Status in paiement"
+
+4. Ajouter Hand :
+   - Ajouet le status d'hand (Paie , suspendu, en attente ... ect)
+
+5. Budget
+   - Ajouter Les opérations du Budget Supplimentaire
+
+6. Paiement Mensuelle : 
+   - Modifier la processus du paiement pour ajouter les changement du budget Supplimentaire
+7. Create CDs : Classique - Mondate - Bénéficier
+
+8. Rappel
+   - Saisie rappel 
+   - Liste des rappels
+   
+9 Added rappel consumption to budget consumption
+
+10. redesign paiement process
+
+11. Added Commune Model and controller and change how commune hands relationship
+
+12. DESENGAGEMENT : CHANGEMENT PAIE PROCESS
+
+13 . AJOUTER OPTION DE SUPPRIME UN RAPPEL PARMI LES LISTS DES RAPPEL NON PAYERPHP
+
+14 . Les Convocations
+
+15 . Historique du Paiement
+          Historique du paiement 
+          Historique du suspension
+_______________________________________________________________________
+
+.name length no more than 26 character - in Create Hand
+
+. CD Section
+   - Verifier les CDs
+
+. Rapple 
+   - Traitement du rappel
+
+. Liste des Mondaté Filtré : 
+   - Téléchargé les listes des monfatés par plusieurs filtres
+
+. Telecharger historique du paiement + suspension d'un handicapée
+
+. Import :
+   - Change le script du Upload pour prendre en charge tout les fields du base de données et le fichier excel du hand a uploade
+
+. Export : 
+   - Export des fichiers excel qui contient toutes les informations du base de données
+
+. users roles and permissions
+
+. Opetimise l'application to be faster(Cache, Mixite, ... ect)
+
+. Securite the application
