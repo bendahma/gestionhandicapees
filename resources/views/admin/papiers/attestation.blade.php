@@ -13,14 +13,11 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTableATT" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              <th>Nature</th>
-              <th>CCP</th>
-              <th>Statut</th>
               <th>Téléchargé</th>
               
             </tr>
@@ -30,13 +27,6 @@
               <tr>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
-                <td>{{$hand->cartehand->natureHandFr}}</td>
-                <td>{{$hand->paieinformation->CCP}}</td>
-                <td>
-                  <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}">
-                    {{$hand->status->status}}
-                  </a>
-                </td>
                 @if($type == 'paiement')
                     <td>
                       <a class="btn btn-link" href="{{route('attestation.telecharger', [$hand->id, 'paiement'])}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 

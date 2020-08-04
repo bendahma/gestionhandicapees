@@ -21,18 +21,18 @@ class AttestationController extends Controller
 
         if($listType == 'paiement'){
 
-            $hands = Hand::all();
+            $hands = cache()->remember('ATTESTATION_PAIEMENT',60*60*24,function(){
+                return Hand::all();
+            });
 
         } else if($listType == 'desistement'){
-
-            $hands = Hand::onlyTrashed()->get();
-            
+            $hands = cache()->remember('ATTESTATION_DESISTEMENT',60*60*24,function(){
+                return Hand::onlyTrashed()->get();
+            });
         }
 
         return view('admin.papiers.attestation')->with('hands',$hands)
-                                                    ->with('carts',CartHand::all())
-                                                    ->with('paieinformations',PaieInformation::all())
-                                                    ->with('type',$listType);
+                                                ->with('type',$listType);
     }
 
     public function Download($id,$papier){

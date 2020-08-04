@@ -94,7 +94,7 @@ class Hand extends Model
     }
  
     public function HandMondate(){
-        $hands = Hand::with('cartehand')->with('paieinformation')->whereHas('status',function($s){
+        $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
         })->get();
         return $hands;

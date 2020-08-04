@@ -24,17 +24,23 @@ class DecisionController extends Controller
     public function index($listType){
 
         if($listType == 'paiement' || $listType == 'reglement'){
-            $handList = $this->hands->HandMondate();
+            $handList = cache()->remember('HAND_MONDATE',60*60*12,function(){
+                return $this->hands->HandMondate();
+            });
+
         } else if($listType == 'suspension'){
-            $handList = $this->hands->HandSuspendu();
+            $handList = cache()->remember('HAND_SUSPENDU',60*60*12,function(){
+                return $this->hands->HandSuspenduArrete();
+            });
+
         } else if($listType == 'arrete'){
-            $handList = $this->hands->HandArrete();
+            $handList = cache()->remember('HAND_ENATTENTE',60*60*12,function(){
+                return $this->hands->HandSuspenduArrete();
+            });
         }
 
         return view('admin.papiers.decision')->with('hands',$handList)
-                                                    ->with('carts',CartHand::all())
-                                                    ->with('paieinformations',PaieInformation::all())
-                                                    ->with('papier',$listType);
+                                             ->with('papier',$listType);
     }
 
     public function Download($id,$papier){

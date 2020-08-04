@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
 use App\RenouvellementDossier;
+use App\Commune;
+use App\HandSuspentionHistory;
 use DB;
-
+use Artisan;
 class RenouvelementDossierController extends Controller
 {
     /**
@@ -19,8 +22,9 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-        $hands = Hand::with('renouvellementdossier')->with('paieinformation:CCP,hand_id')->get(['id','nameFr','dob']);
-        
+        $hands = cache()->remember('HAND_RENOUVELLEMENT',60*60*24,function(){
+            return Hand::with('renouvellementdossier')->get(['id','nameFr','dob']);
+        }); 
         return view('admin.renouvellement.index')->with('hands', $hands);
     
     }
@@ -39,12 +43,25 @@ class RenouvelementDossierController extends Controller
     }
 
     public function Statistique(){
-
-        $hands = Hand::with('renouvellementdossier')->orderBy('codeCommune','ASC')->get();
+        
         $renouvelle = new RenouvellementDossier();
+        $commune = Commune::all();
 
+        $hands = Hand::with('renouvellementdossier')
+                    ->orderBy('codeCommune','ASC')
+                    ->get();        
+
+        $handsGrp = Hand::get()->groupBy('codeCommune');
+        
+        $handRen = Hand::whereHas('renouvellementdossier',function($query){
+            $query->where('dossierRenouvelle',1);
+        })->get()->groupBy('codeCommune');
+        
         return view('admin.renouvellement.stat')
                     ->with('hands', $hands)
+                    ->with('handsGrp', $handsGrp)
+                    ->with('communes',$commune)
+                    ->with('HandRen',$handRen)
                     ->with('renouvelle', $renouvelle->GetNbrRenouvelle());
     }
     
@@ -52,9 +69,44 @@ class RenouvelementDossierController extends Controller
 
         $renouvelle = DB::table('renouvellement_dossiers')->where('dossierRenouvelle', '=', true)->update(array('dossierRenouvelle' => false,'DateRenouvellement'=>NULL));
 
-
         session()->flash('success', 'L\'operation de renouvellemenr des dossiers été renouvelle pour l\'annee '. date('Y'));
 
         return redirect()->back();
+    }
+
+    public function suspenduNonRenouvelle(Request $request){
+
+        $history = new HandSuspentionHistory();
+
+
+        $handNonRen = Hand::whereHas('renouvellementdossier',function($query){
+            $query->where('dossierRenouvelle' ,0);
+        })->whereHas('status',function($query){
+            $query->where('status','En cours');
+        })->where('codeCommune',$request->codeCommune)->get();
+
+        foreach ($handNonRen as $hand) {
+
+            $hand->status->update([
+                'status' => 'Suspendu',
+                'dateSupprission' => $request->dateSuspension,
+                'motifAr' => 'DOSSIER ANNUEL'
+            ]); 
+            
+            $history->create([
+                'status'=>'Suspendu',
+                'motif'=>'DOSSIER ANNUEL',
+                'dateSupprission'=>$request->dateSuspension,
+                'hand_id'=>$hand->id
+            ]);
+ 
+            $hand->delete();
+
+        }
+
+        session()->flash('success','Les Handicapées Non Renouvelle Son Dossier Annuel Ont été Suspendu Avec Success');
+        Artisan::call('cache:clear');
+        return redirect(route('renouvellement.statistique'));
+                
     }
 }

@@ -153,6 +153,15 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  $('#dataTableATT').DataTable({
+    "columnDefs": [
+      { "width": "50%", "targets": 0 },
+      { "width": "25%", "targets": 1 },
+      { "width": "25%", "targets": 2 },
+    ]
+  });
+});
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {

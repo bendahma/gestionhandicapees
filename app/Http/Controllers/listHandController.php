@@ -26,32 +26,32 @@ class listHandController extends Controller
 
     public function arrete(){
 
-         $handSusp = $this->hands->HandSuspenduArrete();
+         $handSusp = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
+            return $this->hands->HandSuspenduArrete();
+         });
 
         return view('admin.hands.lists.arrete')
-                ->with('hands', $handSusp)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
+                ->with('hands', $handSusp);
     }
 
     public function enAttente(){
 
-        $handsList = $this->hands->HandEnAttente();
+        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
+            return $this->hands->HandEnAttente();
+        });
 
-        return view('dashboard')
-                ->with('hands', $handsList)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
+        return view('admin.hands.lists.enattente')
+                ->with('hands', $handsList);
     }
 
     public function encours(){
 
-        $handsList = $this->hands->HandMondate();
+        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
+            return $this->hands->HandMondate();
+        });
 
         return view('admin.hands.lists.encours')
                 ->with('hands', $handsList);
-                // ->with('carts',CartHand::all())
-                // ->with('paieinformations',PaieInformation::all());
     }
 
     public function Filtre(){

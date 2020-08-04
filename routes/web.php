@@ -98,6 +98,7 @@ Route::middleware(['auth'])->group(function(){
             Route::patch('DossierRemi/{hand}', 'RenouvelementDossierController@DossierRemi')->name('DossierRemi');
             Route::get('statistique', 'RenouvelementDossierController@Statistique')->name('statistique');
             Route::get('Init', 'RenouvelementDossierController@Init')->name('intia');
+            Route::post('suspendu', 'RenouvelementDossierController@suspenduNonRenouvelle')->name('suspendu');
             Route::resource('/', 'RenouvelementDossierController');        
         });
     });

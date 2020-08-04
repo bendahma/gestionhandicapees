@@ -14,6 +14,7 @@ use App\Rappel;
 use App\HandSuspentionHistory;
 use App\Commune;
 use DateTime;
+use Artisan;
 
 class HandsInfoController extends Controller
 {
@@ -29,21 +30,20 @@ class HandsInfoController extends Controller
 
     public function create()
     {
-        return view('admin.handsInfo.add')->with('communes',Commune::all());
+        return view('admin.handsInfo.add')
+                        ->with('communes',Commune::all());
     }
 
     public function store(Request $request)
     {
-        //dd($hand);
-        //dd($request->all());
+        
         $hand = new Hand();
-
         $cartHand = new CartHand();
         $paieInfo = new PaieInformation();
         $national = new CarteNational();
         $ss = new SecuriteSociale();
         $status = new HandPaieStatus();
-        // dd($request->codeCommune);
+
         $hand->numeroactenaissance = $request->numeroactenaissance;
         $hand->nameFr = $request->nameFr;
         $hand->nomAr = $request->nomAr;
@@ -189,6 +189,8 @@ class HandsInfoController extends Controller
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
 
+        Artisan::call('cache:clear');
+
         return redirect(route('hand.suspendu',$hand->id));
     }
 
@@ -200,10 +202,13 @@ class HandsInfoController extends Controller
         $status->update([
             'status'=>$request->status,
             'motifAr'=>$request->motifAr,
+            'autreMotif'=> $request->autreSupMotif,
+            'ObsSuspension'=> $request->ObsSuspension,
             'dateSupprission'=>$request->dateSupprission,
             'justification'=>$request->justification,
             'declarepar' =>$request->declarepar
         ]);
+        
         // Paiement History Table    
         $history->create([
             'status'=>$request->status,
@@ -214,6 +219,8 @@ class HandsInfoController extends Controller
         
         // Soft Delete Hand
         $hand->delete();
+
+        Artisan::call('cache:clear');
 
         session()->flash('danger', "L'handicapée à été supprime avec success");
 
@@ -301,6 +308,10 @@ class HandsInfoController extends Controller
             session()->flash('warning', 'La situation du ' . $hand->nameFr . ' à été mette en Attente. ');
         }
         
+        Artisan::call('cache:clear');
+
         return redirect()->back();
     }
+
+
 }

@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('page')
+      Suspension
+@endsection
+
 @section('showSuspenduInfo')
 
 <div class="container">
@@ -34,7 +38,7 @@
    <div class="card shadow">
        <div class="card-body">
            <form>
-               <h4 class="text-danger font-weight-bold">Etat d'handicapée</h3>
+               <h4 class="text-danger font-weight-bold">Etat d'Handicapée</h3>
                <hr>
                <div class="row mt-1">
                    <div class="col-lg-4">
@@ -57,14 +61,14 @@
                  </div>
                </div>
                <div class="row mt-1">
-                  <div class="col-lg-4">
+                  <div class="col">
                       <div class="form-group">
                           <label for="name" class="font-weight-bold">Etat</label>
                           <input type="text" readonly class="form-control" id="" name="" value="{{isset($hand) ? $hand->status->status : ''}}">
                         </div>
                    </div>
                    @if($hand->status->motifAr != NULL)
-                        <div class="col-lg-4" >
+                        <div class="col" >
                               <div class="form-group">
                                   <label for="" class="font-weight-bold" style="text-align: center">Motif</label>
                                   <input type="text" readonly class="form-control text-right" id="" name="" value="{{
@@ -72,6 +76,21 @@
                                   }}">
                               </div>
                         </div>
+                        @if ($hand->status->motifAr == 'AUTRE')
+                        <div class="col">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold">Autre</label>
+                              <input type="text" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->autreMotif : '' }}">
+                          </div>
+                        </div>
+                        @else
+                        <div class="col">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold">MOTIF</label>
+                              <input type="text" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->motifAr : '' }}">
+                          </div>
+                        </div>
+                        @endif
                         <div class="col">
                           <div class="form-group">
                               <label for="" class="font-weight-bold">Date Suppression</label>
@@ -117,7 +136,7 @@
               <div class="row">
                 <div class="col">
                   <label for="" class="font-weight-bold">Observation</label>
-                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->motifAr}}
+                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->ObsSuspension}}
                   </textarea>
                 </div>
               </div>
@@ -138,7 +157,6 @@
             </button>
             </div>
             <div class="modal-body">
-                 {{-- <h6 class="text-center"> Are you sur you want to delete this category. </h6>  --}}
                 <div class="row">
                   <div class="col">
                     <div class="form-group">

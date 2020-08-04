@@ -11,7 +11,7 @@ class RenouvellementDossier extends Model
     public function hands(){
         return $this->belongsTo(Hand::class);
     }
-
+    
     public function GetNbrRenouvelle(){
         $renv = RenouvellementDossier::where('dossierRenouvelle',true)->get();
         return $renv->count();

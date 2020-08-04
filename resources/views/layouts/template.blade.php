@@ -292,38 +292,18 @@
             </div>
           </div>
         </li>
-        <hr class="sidebar-divider">
+        
+        @if (Auth::user()->role == 'admin')
+            <hr class="sidebar-divider">
             <div class="sidebar-heading">
               DATABASE
             </div>
-        @if (Auth::user()->role == 'admin')
-            
             <li class="nav-item">
                   <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
                     <i class="fas fa-database"></i>
                     <span>Base Du Données</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('database.download')}}" >
-                  <i class="fas fa-database"></i>
-                  <span>Update (Download)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                  <a class="nav-link collapsed" href="{{route('database.upload')}}" >
-                    <i class="fas fa-database"></i>
-                    <span>Update (Upload)</span>
-                  </a>
-            </li>
-            
-        @else
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('update.download')}}" target="_blank">
-            <i class="fas fa-database"></i>
-            <span>Update (EXPORT)</span>
-          </a>
-        </li>
         @endif
 
         

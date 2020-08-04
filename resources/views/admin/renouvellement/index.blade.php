@@ -24,7 +24,6 @@
               <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              <th>CCP</th>
               <th>Date Renouvelement</th>
               <th>Confirmé</th>
               
@@ -35,8 +34,7 @@
               <tr>
                 <td>{{$key = $key + 1}}</td>
                 <td>{{$hand->nameFr}}</td>
-                <td > <span style="max-width: 100px">{{date('d/m/Y', strtotime($hand->dob))}}</span></td>
-                <td>{{$hand->paieinformation->CCP}}</td>
+                <td >{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 @if(isset($hand->renouvellementdossier->dossierRenouvelle) && $hand->renouvellementdossier->dossierRenouvelle == 0)
                   <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
                       @csrf
