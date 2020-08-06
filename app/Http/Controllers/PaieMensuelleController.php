@@ -39,56 +39,6 @@ class PaieMensuelleController extends Controller
                         ->with('count',$countHand);
     }
 
-    // public function index() {
-    //     // Getting the lists of hands - En cours : Suspendu : Arrete
-    //     $hands = Hand::whereHas('status',function($s){
-    //         $s->where('status', 'en cours');
-    //     })->get();
-
-    //     $handsSuspendu = Hand::onlyTrashed()->whereHas('status',function($s){
-    //         $s->where('status', 'suspendu');
-    //     })->get();
-
-    //     $handsArrete = Hand::onlyTrashed()->whereHas('status',function($s){
-    //         $s->where('status', 'Arrete');
-    //     })->get();
-
-    //     // Calculating
-    //     $countHand = $hands->count();
-    //     $montantPaie = $countHand * config('paie.MontantPaie');
-    //     $montantAssurance = $countHand * config('paie.MontantAssurance');
-    //     $budgetI = new Budget();
-    //     $budget = $budgetI->CreateNewYearBudget(date('Y'));
-    //     $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();
-        
-        
-    //     if(!$paieExist){
-    //         //Create Paiement 
-    //         $currentPaie = Paie::create([
-    //             'moisPaiement'=>date('m'),
-    //             'anneesPaiement'=>date('Y'),
-    //             'montantPaiement'=>$montantPaie,
-    //             'montantAssurance'=>$montantAssurance
-    //         ]);
-            
-    //     }
-
-    //     if($paieExist){
-    //         $paieExist->hands()->detach($handsSuspendu);
-    //         $paieExist->hands()->detach($handsArrete);
-    //         if (!$paieExist->hands->contains($paieExist->id)) {
-    //             $paieExist->hands()->attach($hands);
-    //         }
-    //     }
-        
-        
-    //     return view('admin.paie.resume')
-    //                 ->with('CurrentPaie',$paieExist)
-    //                 ->with('count',$countHand);
-        
-    // }
-
-
     public function MakePaie(){
 
         $budgetI = new Budget();
@@ -537,5 +487,15 @@ class PaieMensuelleController extends Controller
         ]);
         session()->flash('success','Les données du paiement ont été ajouter avec success');
         return redirect()->back();
+    }
+
+    public function AfficheDonneesCfTresor(){
+
+
+        $paie = cache()->remember('PAIE',60*6024*30,function(){
+            return Paie::orderBy('anneesPaiement','DESC')->orderBy('moisPaiement','DESC')->get();
+        });
+
+        return view('admin.paie.CfTresor.index',compact('paie'));
     }
 }

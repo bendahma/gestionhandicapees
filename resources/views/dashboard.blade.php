@@ -27,7 +27,6 @@
               <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              {{-- <th>Nature</th> --}}
               <th>CCP</th>
               <th>La Paie</th>
               <th></th>
@@ -39,7 +38,6 @@
                 <td>{{$n=$n+1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
-                {{-- <td>{{ isset($hand->cartehand->natureHandFr) ? $hand->cartehand->natureHandFr : '' }}</td> --}}
                 <td>{{isset($hand->paieinformation->CCP) ? $hand->paieinformation->CCP : ''}}</td>
                 <td>
                       <a href="{{$hand->status->status == 'En cours' 
@@ -53,7 +51,7 @@
                        <div class="d-flex">
                           <a class="btn btn-link" href="{{route('hands.show', $hand->id)}}" style="font-size: 1.5rem" target="_blank"> <span style="color:rgb(7, 60, 233)"><i class="far fa-eye"></i></span> </a>
                           <a class="btn btn-link" href="{{route('hands.edit', $hand->id)}}" style="font-size: 1.5rem" target="_blank"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
-                          @if ($hand->status->status == 'En cours')
+                          @if (Auth::user()->role = 'admin' && $hand->status->status == 'En cours')
                             <button type="button" class="btn btn-link" onclick="deleteHandaler({{$hand->id}})" style="font-size: 1.5rem"> <span style="color:tomato"><i class="far fa-trash-alt"></i></span></button>
                           @endif
                         </div>

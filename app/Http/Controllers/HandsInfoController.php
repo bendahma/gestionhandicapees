@@ -13,6 +13,8 @@ use App\HandPaieStatus;
 use App\Rappel;
 use App\HandSuspentionHistory;
 use App\Commune;
+use App\RenouvellementDossier;
+
 use DateTime;
 use Artisan;
 
@@ -43,6 +45,7 @@ class HandsInfoController extends Controller
         $national = new CarteNational();
         $ss = new SecuriteSociale();
         $status = new HandPaieStatus();
+        $dossierAnnuel = new RenouvellementDossier();
 
         $hand->numeroactenaissance = $request->numeroactenaissance;
         $hand->nameFr = $request->nameFr;
@@ -97,6 +100,13 @@ class HandsInfoController extends Controller
             $status->EnAttentedateComissionPension = $request->EnAttentedateComissionPension;
         }
         $hand->status()->save($status);
+        
+        if($statusPaiement == 'En cours'){
+            $dossierAnnuel->dossierRenouvelle = true;
+            $dossierAnnuel->DateRenouvellement = date('Y-m').'-01';
+            $hand->renouvellementdossier()->save($dossierAnnuel);
+        }
+        
 
         session()->flash('success', "L'handicapée a été ajouter avec success");
 

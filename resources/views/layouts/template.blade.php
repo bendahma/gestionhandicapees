@@ -168,7 +168,7 @@
           <div id="CfTresor" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">CF & Trésor</h6>
-              <a class="collapse-item" href="">Affiche Les Données</a>
+              <a class="collapse-item" href="{{route('paie.informationsPaiement')}}">Affiche Les Données</a>
               <a class="collapse-item" onclick="donneeCfTresor(); return false;">Ajouter Les Données</a>
             </div>
           </div>
@@ -438,6 +438,7 @@
           @yield('CDsection')
           @yield('List-Filtre')
           @yield('addDesengagement')
+          @yield('AfficheCfTresor')
         </div>
         <!-- End of Main Content -->
 

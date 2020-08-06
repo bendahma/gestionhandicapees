@@ -172,3 +172,12 @@ $(document).ready(function() {
     ]
   });
 });
+
+$(document).ready(function() {
+  $('#dataTableCF').DataTable({
+    "columnDefs": [
+      { "width": "30%", "targets": 2 },
+      { "width": "30%", "targets": 3 }
+    ]
+  });
+});

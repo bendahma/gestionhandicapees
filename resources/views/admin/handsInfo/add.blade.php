@@ -279,7 +279,7 @@
                         </div>
                     </div>
                     @if (!isset($hand))
-                    <h4 class="text-danger font-weight-bold">Etat Du paiement</h3>
+                    <h4 class="text-danger font-weight-bold">Etat Du paiement</h4>
                         <hr>
                         <div class="row mt-1">
                             <div class="col-lg-4">

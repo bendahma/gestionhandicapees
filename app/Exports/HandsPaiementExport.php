@@ -10,12 +10,12 @@ use App\Commune;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use DB;
-class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize
+
+class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
 {
 
    
@@ -77,7 +77,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings, 
             ['REPUBLIQUE  ALGERIENNE  DEMOCRATIQUE  ET  POPULAIRE'],
             ['WILAYA  D\'AIN  TEMOUCHENT'],
             ['DIRECTION DE L\'ACTION  SOCIALE'],
-            ['LISTE DE L\'ALLOCATION DES HANDICAPES A 100%'],
+            ['LISTE GLOBALE DE L\'ALLOCATION DES HANDICAPES A 100%'],
             [''],
             [''],
             ['N° ORD',

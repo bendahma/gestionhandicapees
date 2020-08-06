@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow">
             <div class="card-header">
-               La Documents du chapitre 46-15 article U
+               Les Documents du chapitre 46-15 article U
             </div>
             <div class="card-body">
               <div class="row">
