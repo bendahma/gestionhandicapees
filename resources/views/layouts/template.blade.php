@@ -168,7 +168,7 @@
           <div id="CfTresor" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">CF & Trésor</h6>
-              <a class="collapse-item" href="{{route('paie.informationsPaiement')}}">Affiche Les Données</a>
+              <a class="collapse-item" href="{{route('cftresor.index')}}">Affiche Les Données</a>
               <a class="collapse-item" onclick="donneeCfTresor(); return false;">Ajouter Les Données</a>
             </div>
           </div>
@@ -306,8 +306,6 @@
             </li>
         @endif
 
-        
-          
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -343,8 +341,8 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;font-weight:700;font-size:0.9rem">
-                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->name . ' : ' }}</span>
-                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->role }}</span>
+                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name . ' : ' }}</span>
+                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->role }}</span>
                   <img class="img-profile rounded-circle" src="{{asset('img/person.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -489,7 +487,7 @@
 
 
   @include('admin.statistics.monthly')
-  @include('admin.paie.donneeCfTresor')
+  @include('admin.cftresor.donneeCfTresor')
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('js/jquery.min.js')}}"></script>

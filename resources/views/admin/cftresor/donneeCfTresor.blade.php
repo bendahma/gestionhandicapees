@@ -1,4 +1,4 @@
-<form action="{{route('paie.updateCfTresorData')}}" method="POST" id="">
+<form action="{{route('cftresor.store')}}" method="POST" id="">
     @csrf
     <div class="modal fade" id="donneeCFTresorForm" tabindex="-1" role="dialog" aria-labelledby="MenthlyStatModelTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -56,6 +56,9 @@
               </div> 
              <input type="hidden" name="moisPaiement" value="{{date('m')}}">
              <input type="hidden" name="anneePaiement" value="{{date('Y')}}">
+             <input type="hidden" name="operation" value="{{"Paiement Mensuelle du mois" . date('m-Y')}}">
+             
+             <input type="hidden" name="type" value="paie">
                
             </div>
             <div class="modal-footer">

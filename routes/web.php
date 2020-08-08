@@ -53,6 +53,12 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::resource('/' , 'RappelController');
         });
     });
+
+    Route::prefix('cftresor')->group(function(){
+        Route::name('cftresor.')->group(function(){
+            Route::resource('/','CfTresorController');
+        });
+    });
     
 });
 
