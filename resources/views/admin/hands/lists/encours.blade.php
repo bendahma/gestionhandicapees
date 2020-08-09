@@ -1,7 +1,11 @@
 @extends('layouts.template')
 
 @section('page')
+<<<<<<< HEAD
     Liste Des Mondates
+=======
+    Liste Des Handicapées Mondates
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 @endsection
 
 @section('dashboard')
@@ -21,15 +25,23 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
+<<<<<<< HEAD
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+=======
+        <table class="table table-bordered" id="dataTableATT" width="100%" cellspacing="0">
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
           <thead>
             <tr>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
+<<<<<<< HEAD
               <th>Nature</th>
               <th>CCP</th>
               <th>La Paie</th>
               <th></th>
+=======
+              <th>ACTION</th>
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
             </tr>
           </thead>
           <tbody>
@@ -37,6 +49,7 @@
               <tr>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
+<<<<<<< HEAD
                 <td>{{$hand->cartehand->natureHandFr}}</td>
                 <td>{{$hand->paieinformation->CCP}}</td>
                 {{-- <td>{{ $hand->status->status != 'En cours' ? <a href=""> $hand->status->status }}</td> --}}
@@ -50,6 +63,10 @@
                     {{-- <li class="nav-item dropdown btn btn-link"> --}}
                       {{-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Details</a> --}}
                       {{-- <div class="dropdown-menu"> --}}
+=======
+                <td>
+                  <ul class="nav ">
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                         <div class="d-flex">
                           <a class="btn btn-link" href="{{route('hands.show', $hand->id)}}" style="font-size: 1.5rem"> <span style="color:rgb(7, 60, 233)"><i class="far fa-eye"></i></span> </a>
                           <a class="btn btn-link" href="{{route('hands.edit', $hand->id)}}" style="font-size: 1.5rem"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
@@ -57,9 +74,12 @@
                             <button type="button" class="btn btn-link" onclick="deleteHandaler({{$hand->id}})" style="font-size: 1.5rem"> <span style="color:tomato"><i class="far fa-trash-alt"></i></span></button>
                           @endif
                         </div>
+<<<<<<< HEAD
                         
                       {{-- </div> --}}
                     {{-- </li> --}}
+=======
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                   </ul>
                 </td>
               </tr>

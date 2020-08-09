@@ -7,7 +7,11 @@ use App\Hand;
 
 class HandPaieStatus extends Model
 {
+<<<<<<< HEAD
     protected $fillable=['status','dateSupprission','justification','declarepar','motifAr','raisonEnAttente','EnAttentedateComissionPension'];
+=======
+    protected $fillable=['status','dateSupprission','justification','declarepar','motifAr','autreMotif','ObsSuspension','raisonEnAttente','EnAttentedateComissionPension'];
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
     public function hand()
     {

@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
+<<<<<<< HEAD
 mix.js(
    [
       'resources/js/bootstrap.bundle.min.js',
@@ -38,3 +39,7 @@ mix.styles(
       ],
       'public/css/site.css'
 );
+=======
+mix.js('resources/js/app.js','public/js')
+    .sass('resources/sass/app.scss','public/css');
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1

@@ -29,20 +29,34 @@ class MainController extends Controller
 
     public function dashboard()
     {
+<<<<<<< HEAD
          $hands = cache()->remember('HANDS_LISTS_ALL', 60*60*24 , function(){
             return Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->withTrashed()->get(['id','nameFr','dob']);
          });
 
         return view('dashboard')->with('hands',$hands);
                    
+=======
+        $hands = cache()->remember('HANDS_LISTS_ALL', 60*60*24 , function(){
+            return Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->withTrashed()->get(['id','nameFr','dob']);
+        });
+        
+        return view('dashboard')->with('hands',$hands);
+       
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function suspendu($id){
         $hand = Hand::with('status')->withTrashed()->where('id',$id)->first();
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         return view('admin.handsInfo.suspendu')
+<<<<<<< HEAD
                 ->with("hand",$hand)
                 ->with("commune",$commune);
+=======
+                                ->with("hand",$hand)
+                                ->with("commune",$commune);
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
     }
 }

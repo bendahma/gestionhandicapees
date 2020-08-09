@@ -7,6 +7,10 @@ use App\PaieInformation;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\HandsImport;
+<<<<<<< HEAD
+=======
+use App\Imports\PaieBeneficierImport;
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 use App\Exports\AllHandExport;
 
 
@@ -40,12 +44,25 @@ class UploadHandInfoController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         Excel::import(new HandsImport, $request->file('file'));
         $info = PaieInformation::all();
         foreach($info as $i){
             $i->RIP = str_replace('*','',$i->RIP);
             $i->save();
         }
+=======
+        if($request->has('file')){
+            Excel::import(new HandsImport, $request->file('file'));
+        }else if($request->has('paieinfofile')){
+            Excel::import(new PaieBeneficierImport, $request->file('paieinfofile'));
+        }
+        // $info = PaieInformation::all();
+        // foreach($info as $i){
+        //     $i->RIP = str_replace('*','',$i->RIP);
+        //     $i->save();
+        // }
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
         session()->flash('success','Données import avec success');
         

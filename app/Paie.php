@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Hand;
+<<<<<<< HEAD
+=======
+use App\CfTresor;
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
 class Paie extends Model
 {
@@ -12,12 +16,15 @@ class Paie extends Model
         'anneesPaiement',
         'montantPaiement',
         'montantAssurance',
+<<<<<<< HEAD
         'NumeroEngagementPaie',
         'NumeroEngagementAssurance',
         'NumeroMondatePaie',
         'NumeroMondateAssurance',
         'dateEngagementPaie',
         'dateMondatePaie'
+=======
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     ];
 
     public function hands(){
@@ -68,4 +75,10 @@ class Paie extends Model
         return $moisLettre;
     }
 
+<<<<<<< HEAD
+=======
+    public function cftresors(){
+        return $this->hasMany(CfTresor::class);
+    }
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 }

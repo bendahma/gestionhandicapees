@@ -39,6 +39,7 @@ class PaieMensuelleController extends Controller
                         ->with('count',$countHand);
     }
 
+<<<<<<< HEAD
     // public function index() {
     //     // Getting the lists of hands - En cours : Suspendu : Arrete
     //     $hands = Hand::whereHas('status',function($s){
@@ -89,6 +90,8 @@ class PaieMensuelleController extends Controller
     // }
 
 
+=======
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     public function MakePaie(){
 
         $budgetI = new Budget();
@@ -538,4 +541,17 @@ class PaieMensuelleController extends Controller
         session()->flash('success','Les données du paiement ont été ajouter avec success');
         return redirect()->back();
     }
+<<<<<<< HEAD
+=======
+
+    public function AfficheDonneesCfTresor(){
+
+
+        $paie = cache()->remember('PAIE',60*6024*30,function(){
+            return Paie::orderBy('anneesPaiement','DESC')->orderBy('moisPaiement','DESC')->get();
+        });
+
+        return view('admin.paie.CfTresor.index',compact('paie'));
+    }
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 }

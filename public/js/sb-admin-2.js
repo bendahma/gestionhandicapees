@@ -153,6 +153,18 @@ $(document).ready(function() {
   });
 });
 
+<<<<<<< HEAD
+=======
+$(document).ready(function() {
+  $('#dataTableATT').DataTable({
+    "columnDefs": [
+      { "width": "50%", "targets": 0 },
+      { "width": "25%", "targets": 1 },
+      { "width": "25%", "targets": 2 },
+    ]
+  });
+});
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
@@ -163,3 +175,15 @@ $(document).ready(function() {
     ]
   });
 });
+<<<<<<< HEAD
+=======
+
+$(document).ready(function() {
+  $('#dataTableCF').DataTable({
+    "columnDefs": [
+      { "width": "30%", "targets": 2 },
+      { "width": "30%", "targets": 3 }
+    ]
+  });
+});
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1

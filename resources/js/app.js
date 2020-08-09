@@ -5,6 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+<<<<<<< HEAD
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -31,3 +32,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+=======
+import './jquery.min.js';
+import './jquery.dataTables.min.js';
+import './bootstrap.bundle.min.js';
+import './sb-admin-2';
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1

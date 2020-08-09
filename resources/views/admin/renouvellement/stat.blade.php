@@ -70,13 +70,18 @@
           </div>
          <div class="card-body">
            <div class="table-responsive">
+<<<<<<< HEAD
              <table class="table table-bordered" width="100%" cellspacing="0">
+=======
+             <table class="table table-bordered" width="100%" cellspacing="0" id="">
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                <thead>
                  <tr>
                    <th>Commune</th>
                    <th>Nombre des mondates</th>
                    <th>Nombre des renouvelle</th>
                    <th>Nombre des non renouvelle</th>
+<<<<<<< HEAD
                  </tr>
                </thead>
                <tbody>
@@ -86,6 +91,39 @@
                      <td></td>
                      <td></td>
                    </tr>
+=======
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 @php
+                     $j=0;
+                 @endphp
+                  @for ($i = 4601; $i<=4628;$i++)
+                    <tr>
+                      <td>
+                        {{$communes[$j]->nomCommuneFr}}
+                      </td>
+                      <td>{{$handsGrp[$i]->count()}}</td>
+                      <td>{{$HandRen[$i]->count()}}</td>
+                      <td>{{$handsGrp[$i]->count() - $HandRen[$i]->count()}}</td>
+                      <td>
+                        @if (Auth::user()->role == 'admin')
+                          <form action="{{route('renouvellement.suspendu')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="codeCommune" value='{{$communes[$j]->codeCommune}}'>
+                            <input type="hidden" name="dateSuspension" value="{{date('Y-m').'-01'}}">
+                            <input type="submit" value="Suspendu" class="btn btn-danger btn-block">
+                          </form>
+                        @endif
+                      </td>
+                    </tr>
+                    @php
+                        $j++;
+                    @endphp
+                  @endfor
+                   
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                </tbody>
              </table>
            </div>

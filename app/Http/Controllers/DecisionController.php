@@ -24,6 +24,7 @@ class DecisionController extends Controller
     public function index($listType){
 
         if($listType == 'paiement' || $listType == 'reglement'){
+<<<<<<< HEAD
             $handList = $this->hands->HandMondate();
         } else if($listType == 'suspension' || $listType == 'arrete'){
             $handList = $this->hands->HandSuspenduArrete();
@@ -33,6 +34,25 @@ class DecisionController extends Controller
                                                     ->with('carts',CartHand::all())
                                                     ->with('paieinformations',PaieInformation::all())
                                                     ->with('papier',$listType);
+=======
+            $handList = cache()->remember('HAND_MONDATE',60*60*12,function(){
+                return $this->hands->HandMondate();
+            });
+
+        } else if($listType == 'suspension'){
+            $handList = cache()->remember('HAND_SUSPENDU',60*60*12,function(){
+                return $this->hands->HandSuspenduArrete();
+            });
+
+        } else if($listType == 'arrete'){
+            $handList = cache()->remember('HAND_ENATTENTE',60*60*12,function(){
+                return $this->hands->HandSuspenduArrete();
+            });
+        }
+
+        return view('admin.papiers.decision')->with('hands',$handList)
+                                             ->with('papier',$listType);
+>>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function Download($id,$papier){
