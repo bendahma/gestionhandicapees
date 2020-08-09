@@ -199,8 +199,6 @@ class HandsInfoController extends Controller
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
 
-        Artisan::call('cache:clear');
-
         return redirect(route('hand.suspendu',$hand->id));
     }
 
@@ -229,8 +227,6 @@ class HandsInfoController extends Controller
         
         // Soft Delete Hand
         $hand->delete();
-
-        Artisan::call('cache:clear');
 
         session()->flash('danger', "L'handicapée à été supprime avec success");
 

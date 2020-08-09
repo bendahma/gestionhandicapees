@@ -190,11 +190,11 @@
               <h6 class="collapse-header">Rappel</h6>
               {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
               <a class="collapse-item" href="{{route('rappel.list')}}">Listes Des Rappels</a>
-              @if(Auth::user()->role == 'admin')
+              {{-- @if(Auth::user()->name == 'Bendahma') --}}
                   <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
                   <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>
                   <a class="collapse-item" href="">Traitement du Rappel</a>
-              @endif
+              {{-- @endif --}}
             </div>
           </div>
         </li>
@@ -241,7 +241,7 @@
             <span>Liste Mondaté Filtre</span>
           </a>
         </li>
-        @if(Auth::user()->role == 'admin')
+        {{-- @if(Auth::user()->name == 'Bendahma') --}}
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -262,7 +262,7 @@
                 </div>
               </div>
             </li>
-        @endif
+        {{-- @endif --}}
         
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -293,7 +293,7 @@
           </div>
         </li>
         
-        @if (Auth::user()->role == 'admin')
+        {{-- @if (Auth::user()->name == 'Bendahma') --}}
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
               DATABASE
@@ -304,7 +304,7 @@
                     <span>Base Du Données</span>
                 </a>
             </li>
-        @endif
+        {{-- @endif --}}
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -342,24 +342,11 @@
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;font-weight:700;font-size:0.9rem">
                   <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name . ' : ' }}</span>
-                  <span class="mr-2 d-none d-lg-inline">{{ auth::user()->role }}</span>
+                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name = 'Bendahma' ? 'admin' : '' }}</span>
                   <img class="img-profile rounded-circle" src="{{asset('img/person.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  {{-- <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
-                  <div class="dropdown-divider"></div> --}}
                   <div>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="dropdown-item">
                       @csrf
@@ -367,10 +354,6 @@
                       <input type="submit" value="Logout" class="btn btn-link">
                     </form>
                   </div>
-                  {{-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    
-                    Logout
-                  </a> --}}
                 </div>
               </li>
 
@@ -389,14 +372,14 @@
               </div>
           @endif
           @if(session()->has('update'))
-          <div class="container">
-              <div class="alert alert-info alert-dismissible fade show">
-                  <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('update') }}</h6>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-          </div>
+            <div class="container">
+                <div class="alert alert-info alert-dismissible fade show">
+                    <h6 class="d-flex justify-content-center" style="font-size: 1.1rem;font-weight:700">{{ session()->get('update') }}</h6>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
           @endif
           @if(session()->has('warning'))
               <div class="container ">
