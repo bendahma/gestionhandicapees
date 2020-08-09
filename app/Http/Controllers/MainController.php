@@ -12,7 +12,8 @@ use App\MoisAnnee;
 use App\Commune;
 
 use DataTables;
-
+use Debugbar;
+use Auth;
 class MainController extends Controller
 {
     /**
@@ -32,8 +33,14 @@ class MainController extends Controller
         $hands = cache()->remember('HANDS_LISTS_ALL', 60*60*24 , function(){
             return Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->withTrashed()->get(['id','nameFr','dob']);
         });
-        
-        return view('dashboard')->with('hands',$hands);
+
+        $user = Auth::user();
+
+        Debugbar::info(Auth::user());
+
+        return view('dashboard')
+                    ->with('hands',$hands)
+                    ->with('user',$user);
        
     }
 

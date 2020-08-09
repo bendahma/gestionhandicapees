@@ -26,9 +26,7 @@ class listHandController extends Controller
 
     public function arrete(){
 
-         $handSusp = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandSuspenduArrete();
-         });
+         $handSusp = $this->hands->HandSuspenduArrete();
 
         return view('admin.hands.lists.arrete')
                 ->with('hands', $handSusp);
@@ -36,9 +34,7 @@ class listHandController extends Controller
 
     public function enAttente(){
 
-        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandEnAttente();
-        });
+        $handsList = $this->hands->HandEnAttente();
 
         return view('admin.hands.lists.enattente')
                 ->with('hands', $handsList);
@@ -46,9 +42,7 @@ class listHandController extends Controller
 
     public function encours(){
 
-        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandMondate();
-        });
+        $handsList = $this->hands->HandMondate();
 
         return view('admin.hands.lists.encours')
                 ->with('hands', $handsList);

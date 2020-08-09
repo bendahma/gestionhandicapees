@@ -80,7 +80,9 @@ class DecisionController extends Controller
             $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('natureAr',$hand->cartehand->natureHandAr);
             $template->setValue('dateDecision',$hand->paieinformation->datePremierPension);
-
+            $template->setValue('nCart',$hand->cartehand->numeroCart);
+            $template->setValue('dateCart',$hand->cartehand->dateCarte);
+            $template->setValue('dateCommission',$hand->paieinformation->datePremierPension);
 
             $output = "Décision Paiement " . $hand->nameFr .".docx";
         }
