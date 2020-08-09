@@ -55,6 +55,12 @@ function deleteHandaler(id){
     form.action = link;
 }
 
+function addRappel(id){
+    $('#AddRappel').modal('show');
+    let hid = document.getElementById('hand_id');
+    hid.value = id;
+}
+
 function convocationHandler(id){
     $('#convocationModel').modal('show');
     let link = '/convocation/' + id ;

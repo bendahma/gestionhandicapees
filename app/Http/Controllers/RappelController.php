@@ -79,12 +79,14 @@ class RappelController extends Controller
     }
 
     public function Add(){
-        return view('admin.rappel.add');
+        $hands = Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->get(['id','nameFr','dob']);
+        return view('admin.rappel.add')->with('hands',$hands);
     }
 
     public function store(Request $request)
     {
-        //
+        $hand = Hand::where('id',$request->hand_id)->first();
+        dd($hand);
     }
 
     public function Saisie(Request $request){
