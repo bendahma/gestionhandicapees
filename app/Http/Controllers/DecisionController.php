@@ -24,17 +24,6 @@ class DecisionController extends Controller
     public function index($listType){
 
         if($listType == 'paiement' || $listType == 'reglement'){
-<<<<<<< HEAD
-            $handList = $this->hands->HandMondate();
-        } else if($listType == 'suspension' || $listType == 'arrete'){
-            $handList = $this->hands->HandSuspenduArrete();
-        }
-
-        return view('admin.papiers.decision')->with('hands',$handList)
-                                                    ->with('carts',CartHand::all())
-                                                    ->with('paieinformations',PaieInformation::all())
-                                                    ->with('papier',$listType);
-=======
             $handList = cache()->remember('HAND_MONDATE',60*60*12,function(){
                 return $this->hands->HandMondate();
             });
@@ -52,7 +41,6 @@ class DecisionController extends Controller
 
         return view('admin.papiers.decision')->with('hands',$handList)
                                              ->with('papier',$listType);
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function Download($id,$papier){
@@ -92,7 +80,9 @@ class DecisionController extends Controller
             $template->setValue('communeAr',$commune->nomCommuneAr);
             $template->setValue('natureAr',$hand->cartehand->natureHandAr);
             $template->setValue('dateDecision',$hand->paieinformation->datePremierPension);
-
+            $template->setValue('nCart',$hand->cartehand->numeroCart);
+            $template->setValue('dateCart',$hand->cartehand->dateCarte);
+            $template->setValue('dateCommission',$hand->paieinformation->datePremierPension);
 
             $output = "Décision Paiement " . $hand->nameFr .".docx";
         }

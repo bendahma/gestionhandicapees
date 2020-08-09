@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-    "/js/site.js": "/js/site.js",
-    "/css/site.css": "/css/site.css"
-=======
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 }

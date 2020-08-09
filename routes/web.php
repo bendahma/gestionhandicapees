@@ -4,10 +4,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/', "MainController@index")->name('index');
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 Route::middleware(['auth','admin'])->group(function(){
 
     Route::prefix('paie')->group(function(){
@@ -24,10 +21,7 @@ Route::middleware(['auth','admin'])->group(function(){
         Route::get('traitement' , 'PaieMensuelleController@MakePaie')->name('paie.traitement');
         Route::get('documents' , 'PaieMensuelleController@DocumentsPaie')->name('paie.documents');
         Route::post('donneeCfTresor' , 'PaieMensuelleController@DonneeCfTresor')->name('paie.updateCfTresorData');
-<<<<<<< HEAD
-=======
         Route::get('informationsPaiement' , 'PaieMensuelleController@AfficheDonneesCfTresor')->name('paie.informationsPaiement');
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     });
 
     Route::prefix('cds')->group(function(){
@@ -60,15 +54,12 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::resource('/' , 'RappelController');
         });
     });
-<<<<<<< HEAD
-=======
 
     Route::prefix('cftresor')->group(function(){
         Route::name('cftresor.')->group(function(){
             Route::resource('/','CfTresorController');
         });
     });
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     
 });
 
@@ -114,10 +105,7 @@ Route::middleware(['auth'])->group(function(){
             Route::patch('DossierRemi/{hand}', 'RenouvelementDossierController@DossierRemi')->name('DossierRemi');
             Route::get('statistique', 'RenouvelementDossierController@Statistique')->name('statistique');
             Route::get('Init', 'RenouvelementDossierController@Init')->name('intia');
-<<<<<<< HEAD
-=======
             Route::post('suspendu', 'RenouvelementDossierController@suspenduNonRenouvelle')->name('suspendu');
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
             Route::resource('/', 'RenouvelementDossierController');        
         });
     });

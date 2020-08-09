@@ -15,34 +15,6 @@
                     <h4 class="text-danger font-weight-bold">Les informations Du Rappel</h3>
                     <hr>
                     <div class="row mt-1">
-<<<<<<< HEAD
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="name" class="font-weight-bold">Date Debut Rappel</label>
-                                <input type="date" class="form-control" required name="dateDebutRappel" value="">
-                              </div>
-                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">Date Fin Rappel</label>
-                                <input type="date" class="form-control"  name="dateFinRappel" value="">
-                            </div>
-                        </div>
-                    
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="name" class="font-weight-bold">Date Paiement Rappel</label>
-                            <input type="date" class="form-control" required name="datePaiementRappel" >
-                          </div>
-                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold">ANNEE Du Rappel</label>
-                            <input type="text" class="form-control"  name="anneeRappel" >
-                        </div>
-                    </div>
-                </div>
-=======
                             <div class="col">
                                 <div class="form-group">
                                     <label for="name" class="font-weight-bold">Date Debut Rappel</label>
@@ -68,7 +40,6 @@
                                 </div>
                             </div>
                     </div>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                     <h4 class="text-danger font-weight-bold">Les informations Du Paiement</h3>
                      <hr>
                      <div class="row mt-1">
@@ -96,12 +67,7 @@
                                  <input type="number" class="form-control" name="montantAssurance" placeholder="Montant D'Assurance" >
                              </div>
                          </div>
-<<<<<<< HEAD
-                     </div>
-                     
-=======
                      </div> 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                     <hr>
                     <div class="row">
                         <div class="col">

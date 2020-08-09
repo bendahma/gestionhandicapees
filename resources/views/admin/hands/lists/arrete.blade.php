@@ -30,11 +30,6 @@
             <tr>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-<<<<<<< HEAD
-              <th>Nature</th>
-              <th>CCP</th>
-=======
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
               <th>Date suspension</th>
               <th>Motif</th>
             </tr>
@@ -44,11 +39,6 @@
               <tr>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
-<<<<<<< HEAD
-                <td>{{$hand->cartehand->natureHandFr}}</td>
-                <td>{{$hand->paieinformation->CCP}}</td>
-=======
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                 <td>
                     {{$hand->status->dateSupprission}}
                 </td>

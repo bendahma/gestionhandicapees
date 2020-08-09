@@ -21,20 +21,6 @@ class AttestationController extends Controller
 
         if($listType == 'paiement'){
 
-<<<<<<< HEAD
-            $hands = Hand::all();
-
-        } else if($listType == 'desistement'){
-
-            $hands = Hand::onlyTrashed()->get();
-            
-        }
-
-        return view('admin.papiers.attestation')->with('hands',$hands)
-                                                    ->with('carts',CartHand::all())
-                                                    ->with('paieinformations',PaieInformation::all())
-                                                    ->with('type',$listType);
-=======
             $hands = cache()->remember('ATTESTATION_PAIEMENT',60*60*24,function(){
                 return Hand::all();
             });
@@ -47,7 +33,6 @@ class AttestationController extends Controller
 
         return view('admin.papiers.attestation')->with('hands',$hands)
                                                 ->with('type',$listType);
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function Download($id,$papier){

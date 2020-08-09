@@ -26,59 +26,26 @@ class listHandController extends Controller
 
     public function arrete(){
 
-<<<<<<< HEAD
          $handSusp = $this->hands->HandSuspenduArrete();
 
         return view('admin.hands.lists.arrete')
-                ->with('hands', $handSusp)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
-=======
-         $handSusp = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandSuspenduArrete();
-         });
-
-        return view('admin.hands.lists.arrete')
                 ->with('hands', $handSusp);
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function enAttente(){
 
-<<<<<<< HEAD
         $handsList = $this->hands->HandEnAttente();
-
-        return view('dashboard')
-                ->with('hands', $handsList)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
-=======
-        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandEnAttente();
-        });
 
         return view('admin.hands.lists.enattente')
                 ->with('hands', $handsList);
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function encours(){
 
-<<<<<<< HEAD
         $handsList = $this->hands->HandMondate();
 
         return view('admin.hands.lists.encours')
                 ->with('hands', $handsList);
-                // ->with('carts',CartHand::all())
-                // ->with('paieinformations',PaieInformation::all());
-=======
-        $handsList = cache()->remember('HAND_SUSPENDU',60*60*24,function(){
-            return $this->hands->HandMondate();
-        });
-
-        return view('admin.hands.lists.encours')
-                ->with('hands', $handsList);
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function Filtre(){

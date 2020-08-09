@@ -4,11 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow">
             <div class="card-header">
-<<<<<<< HEAD
-               La Documents du chapitre 46-15 article U
-=======
                Les Documents du chapitre 46-15 article U
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
             </div>
             <div class="card-body">
               <div class="row">

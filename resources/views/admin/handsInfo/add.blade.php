@@ -279,11 +279,7 @@
                         </div>
                     </div>
                     @if (!isset($hand))
-<<<<<<< HEAD
-                    <h4 class="text-danger font-weight-bold">Etat Du paiement</h3>
-=======
                     <h4 class="text-danger font-weight-bold">Etat Du paiement</h4>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                         <hr>
                         <div class="row mt-1">
                             <div class="col-lg-4">

@@ -70,28 +70,13 @@
           </div>
          <div class="card-body">
            <div class="table-responsive">
-<<<<<<< HEAD
-             <table class="table table-bordered" width="100%" cellspacing="0">
-=======
              <table class="table table-bordered" width="100%" cellspacing="0" id="">
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                <thead>
                  <tr>
                    <th>Commune</th>
                    <th>Nombre des mondates</th>
                    <th>Nombre des renouvelle</th>
                    <th>Nombre des non renouvelle</th>
-<<<<<<< HEAD
-                 </tr>
-               </thead>
-               <tbody>
-                   <tr>
-                     <td>Ain Temouchent</td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                   </tr>
-=======
                    <th>Action</th>
                  </tr>
                </thead>
@@ -123,7 +108,6 @@
                     @endphp
                   @endfor
                    
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                </tbody>
              </table>
            </div>

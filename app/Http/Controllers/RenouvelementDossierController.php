@@ -3,24 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Collection;
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
 use App\RenouvellementDossier;
-<<<<<<< HEAD
-use DB;
-
-=======
 use App\Commune;
 use App\HandSuspentionHistory;
 use DB;
 use Artisan;
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 class RenouvelementDossierController extends Controller
 {
     /**
@@ -30,14 +22,9 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $hands = Hand::with('renouvellementdossier')->with('paieinformation:CCP,hand_id')->get(['id','nameFr','dob']);
-        
-=======
         $hands = cache()->remember('HAND_RENOUVELLEMENT',60*60*24,function(){
             return Hand::with('renouvellementdossier')->get(['id','nameFr','dob']);
         }); 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         return view('admin.renouvellement.index')->with('hands', $hands);
     
     }
@@ -56,14 +43,6 @@ class RenouvelementDossierController extends Controller
     }
 
     public function Statistique(){
-<<<<<<< HEAD
-
-        $hands = Hand::with('renouvellementdossier')->orderBy('codeCommune','ASC')->get();
-        $renouvelle = new RenouvellementDossier();
-
-        return view('admin.renouvellement.stat')
-                    ->with('hands', $hands)
-=======
         
         $renouvelle = new RenouvellementDossier();
         $commune = Commune::all();
@@ -83,7 +62,6 @@ class RenouvelementDossierController extends Controller
                     ->with('handsGrp', $handsGrp)
                     ->with('communes',$commune)
                     ->with('HandRen',$handRen)
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                     ->with('renouvelle', $renouvelle->GetNbrRenouvelle());
     }
     
@@ -91,16 +69,10 @@ class RenouvelementDossierController extends Controller
 
         $renouvelle = DB::table('renouvellement_dossiers')->where('dossierRenouvelle', '=', true)->update(array('dossierRenouvelle' => false,'DateRenouvellement'=>NULL));
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         session()->flash('success', 'L\'operation de renouvellemenr des dossiers été renouvelle pour l\'annee '. date('Y'));
 
         return redirect()->back();
     }
-<<<<<<< HEAD
-=======
 
     public function suspenduNonRenouvelle(Request $request){
 
@@ -137,5 +109,4 @@ class RenouvelementDossierController extends Controller
         return redirect(route('renouvellement.statistique'));
                 
     }
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 }

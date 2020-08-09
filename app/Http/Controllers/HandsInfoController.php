@@ -13,14 +13,10 @@ use App\HandPaieStatus;
 use App\Rappel;
 use App\HandSuspentionHistory;
 use App\Commune;
-<<<<<<< HEAD
-use DateTime;
-=======
 use App\RenouvellementDossier;
 
 use DateTime;
 use Artisan;
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
 class HandsInfoController extends Controller
 {
@@ -36,36 +32,21 @@ class HandsInfoController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
-        return view('admin.handsInfo.add')->with('communes',Commune::all());
-=======
         return view('admin.handsInfo.add')
                         ->with('communes',Commune::all());
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     }
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        //dd($hand);
-        //dd($request->all());
-        $hand = new Hand();
-
-=======
         
         $hand = new Hand();
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         $cartHand = new CartHand();
         $paieInfo = new PaieInformation();
         $national = new CarteNational();
         $ss = new SecuriteSociale();
         $status = new HandPaieStatus();
-<<<<<<< HEAD
-        // dd($request->codeCommune);
-=======
         $dossierAnnuel = new RenouvellementDossier();
 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         $hand->numeroactenaissance = $request->numeroactenaissance;
         $hand->nameFr = $request->nameFr;
         $hand->nomAr = $request->nomAr;
@@ -119,8 +100,6 @@ class HandsInfoController extends Controller
             $status->EnAttentedateComissionPension = $request->EnAttentedateComissionPension;
         }
         $hand->status()->save($status);
-<<<<<<< HEAD
-=======
         
         if($statusPaiement == 'En cours'){
             $dossierAnnuel->dossierRenouvelle = true;
@@ -128,7 +107,6 @@ class HandsInfoController extends Controller
             $hand->renouvellementdossier()->save($dossierAnnuel);
         }
         
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
         session()->flash('success', "L'handicapée a été ajouter avec success");
 
@@ -221,11 +199,8 @@ class HandsInfoController extends Controller
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
 
-<<<<<<< HEAD
-=======
         Artisan::call('cache:clear');
 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         return redirect(route('hand.suspendu',$hand->id));
     }
 
@@ -237,19 +212,13 @@ class HandsInfoController extends Controller
         $status->update([
             'status'=>$request->status,
             'motifAr'=>$request->motifAr,
-<<<<<<< HEAD
-=======
             'autreMotif'=> $request->autreSupMotif,
             'ObsSuspension'=> $request->ObsSuspension,
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
             'dateSupprission'=>$request->dateSupprission,
             'justification'=>$request->justification,
             'declarepar' =>$request->declarepar
         ]);
-<<<<<<< HEAD
-=======
         
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         // Paiement History Table    
         $history->create([
             'status'=>$request->status,
@@ -261,11 +230,8 @@ class HandsInfoController extends Controller
         // Soft Delete Hand
         $hand->delete();
 
-<<<<<<< HEAD
-=======
         Artisan::call('cache:clear');
 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         session()->flash('danger', "L'handicapée à été supprime avec success");
 
         return redirect(route('hand.suspendu',$hand->id));
@@ -352,15 +318,10 @@ class HandsInfoController extends Controller
             session()->flash('warning', 'La situation du ' . $hand->nameFr . ' à été mette en Attente. ');
         }
         
-<<<<<<< HEAD
-        return redirect()->back();
-    }
-=======
         Artisan::call('cache:clear');
 
         return redirect()->back();
     }
 
 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 }

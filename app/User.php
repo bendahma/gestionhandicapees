@@ -16,12 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-<<<<<<< HEAD
-        'name', 'email', 'password','nameAr'
-=======
         'name', 'email', 'password','nameAr','role',
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
     ];
+
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,4 +38,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        return Auth::user()->role == 'admin' ? true : false ;
+    }
 }

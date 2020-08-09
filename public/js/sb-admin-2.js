@@ -153,8 +153,6 @@ $(document).ready(function() {
   });
 });
 
-<<<<<<< HEAD
-=======
 $(document).ready(function() {
   $('#dataTableATT').DataTable({
     "columnDefs": [
@@ -164,7 +162,6 @@ $(document).ready(function() {
     ]
   });
 });
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
@@ -175,8 +172,6 @@ $(document).ready(function() {
     ]
   });
 });
-<<<<<<< HEAD
-=======
 
 $(document).ready(function() {
   $('#dataTableCF').DataTable({
@@ -186,4 +181,3 @@ $(document).ready(function() {
     ]
   });
 });
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1

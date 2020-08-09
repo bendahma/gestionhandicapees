@@ -1,12 +1,9 @@
 @extends('layouts.template')
 
-<<<<<<< HEAD
-=======
 @section('page')
       Suspension
 @endsection
 
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 @section('showSuspenduInfo')
 
 <div class="container">
@@ -41,11 +38,7 @@
    <div class="card shadow">
        <div class="card-body">
            <form>
-<<<<<<< HEAD
-               <h4 class="text-danger font-weight-bold">Etat d'handicapée</h3>
-=======
                <h4 class="text-danger font-weight-bold">Etat d'Handicapée</h3>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                <hr>
                <div class="row mt-1">
                    <div class="col-lg-4">
@@ -68,22 +61,14 @@
                  </div>
                </div>
                <div class="row mt-1">
-<<<<<<< HEAD
-                  <div class="col-lg-4">
-=======
                   <div class="col">
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                       <div class="form-group">
                           <label for="name" class="font-weight-bold">Etat</label>
                           <input type="text" readonly class="form-control" id="" name="" value="{{isset($hand) ? $hand->status->status : ''}}">
                         </div>
                    </div>
                    @if($hand->status->motifAr != NULL)
-<<<<<<< HEAD
-                        <div class="col-lg-4" >
-=======
                         <div class="col" >
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                               <div class="form-group">
                                   <label for="" class="font-weight-bold" style="text-align: center">Motif</label>
                                   <input type="text" readonly class="form-control text-right" id="" name="" value="{{
@@ -91,8 +76,6 @@
                                   }}">
                               </div>
                         </div>
-<<<<<<< HEAD
-=======
                         @if ($hand->status->motifAr == 'AUTRE')
                         <div class="col">
                           <div class="form-group">
@@ -108,7 +91,6 @@
                           </div>
                         </div>
                         @endif
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                         <div class="col">
                           <div class="form-group">
                               <label for="" class="font-weight-bold">Date Suppression</label>
@@ -154,11 +136,7 @@
               <div class="row">
                 <div class="col">
                   <label for="" class="font-weight-bold">Observation</label>
-<<<<<<< HEAD
-                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->motifAr}}
-=======
                   <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->ObsSuspension}}
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                   </textarea>
                 </div>
               </div>
@@ -179,10 +157,6 @@
             </button>
             </div>
             <div class="modal-body">
-<<<<<<< HEAD
-                 {{-- <h6 class="text-center"> Are you sur you want to delete this category. </h6>  --}}
-=======
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
                 <div class="row">
                   <div class="col">
                     <div class="form-group">

@@ -124,7 +124,7 @@
             </div>
           </div>
         </li>
-        @if (Auth::user()->role == 'admin')
+        {{-- @if (Auth::user()->isAdmin()) --}}
             <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -168,16 +168,12 @@
           <div id="CfTresor" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">CF & Trésor</h6>
-<<<<<<< HEAD
-              <a class="collapse-item" href="">Affiche Les Données</a>
-=======
               <a class="collapse-item" href="{{route('cftresor.index')}}">Affiche Les Données</a>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
               <a class="collapse-item" onclick="donneeCfTresor(); return false;">Ajouter Les Données</a>
             </div>
           </div>
         </li>
-        @endif
+        {{-- @endif --}}
         
         
         <hr class="sidebar-divider">
@@ -296,56 +292,20 @@
             </div>
           </div>
         </li>
-<<<<<<< HEAD
-        <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-              DATABASE
-            </div>
-        @if (Auth::user()->role == 'admin')
-            
-=======
         
         @if (Auth::user()->role == 'admin')
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
               DATABASE
             </div>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
             <li class="nav-item">
                   <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
                     <i class="fas fa-database"></i>
                     <span>Base Du Données</span>
                 </a>
             </li>
-<<<<<<< HEAD
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('database.download')}}" >
-                  <i class="fas fa-database"></i>
-                  <span>Update (Download)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                  <a class="nav-link collapsed" href="{{route('database.upload')}}" >
-                    <i class="fas fa-database"></i>
-                    <span>Update (Upload)</span>
-                  </a>
-            </li>
-            
-        @else
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('database.download')}}" target="_blank">
-            <i class="fas fa-database"></i>
-            <span>Update (EXPORT)</span>
-          </a>
-        </li>
         @endif
 
-        
-          
-=======
-        @endif
-
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -381,13 +341,8 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;font-weight:700;font-size:0.9rem">
-<<<<<<< HEAD
-                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->name . ' : ' }}</span>
-                  <span class="mr-2 d-none d-lg-inline">{{ auth()->user()->role }}</span>
-=======
                   <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name . ' : ' }}</span>
-                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->role }}</span>
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
+                  <span class="mr-2 d-none d-lg-inline">{{ auth::user()->role }}</span>
                   <img class="img-profile rounded-circle" src="{{asset('img/person.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -481,10 +436,7 @@
           @yield('CDsection')
           @yield('List-Filtre')
           @yield('addDesengagement')
-<<<<<<< HEAD
-=======
           @yield('AfficheCfTresor')
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
         </div>
         <!-- End of Main Content -->
 
@@ -535,11 +487,7 @@
 
 
   @include('admin.statistics.monthly')
-<<<<<<< HEAD
-  @include('admin.paie.donneeCfTresor')
-=======
   @include('admin.cftresor.donneeCfTresor')
->>>>>>> ebcea4b0270816f32e0a24123fc7538b230a81b1
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('js/jquery.min.js')}}"></script>
