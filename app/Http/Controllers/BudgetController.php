@@ -327,18 +327,18 @@ class BudgetController extends Controller
         $PaieNov = $Pnov != NULL ? $Pnov->montantAssurance : 0;
         $PaieDec = $Pdec != NULL ? $Pdec->montantAssurance : 0;
 
-        $NbrJan = $PaieJanv == 0 ? 0 : $PaieJanv/1000;
-        $NbrFev = $PaieFev == 0 ? 0 : $PaieFev/1000;
-        $NbrMars = $PaieMars == 0 ? 0 : $PaieMars/1000;
-        $NbrAvr = $PaieAvr == 0 ? 0 : $PaieAvr/1000;
-        $NbrMai = $PaieMai == 0 ? 0 : $PaieMai/1000;
-        $NbrJuin = $PaieJuin == 0 ? 0 : $PaieJuin/1000;
-        $NbrJuil = $PaieJuil == 0 ? 0 : $PaieJuil/1000;
-        $NbrAout = $PaieAout == 0 ? 0 : $PaieAout/1000;
-        $NbrSept = $PaieSept == 0 ? 0 : $PaieSept/1000;
-        $NbrOct = $PaieOct == 0 ? 0 : $PaieOct/1000;
-        $NbrNov = $PaieNov == 0 ? 0 : $PaieNov/1000;
-        $NbrDec = $PaieDec == 0 ? 0 : $PaieDec/1000;
+        $NbrJan = $PaieJanv == 0 ? 0 : $PaieJanv/config('paie.MontantAssurance');
+        $NbrFev = $PaieFev == 0 ? 0 : $PaieFev/config('paie.MontantAssurance');
+        $NbrMars = $PaieMars == 0 ? 0 : $PaieMars/config('paie.MontantAssurance');
+        $NbrAvr = $PaieAvr == 0 ? 0 : $PaieAvr/config('paie.MontantAssurance');
+        $NbrMai = $PaieMai == 0 ? 0 : $PaieMai/config('paie.MontantAssurance');
+        $NbrJuin = $PaieJuin == 0 ? 0 : $PaieJuin/config('paie.MontantAssurance');
+        $NbrJuil = $PaieJuil == 0 ? 0 : $PaieJuil/config('paie.MontantAssurance');
+        $NbrAout = $PaieAout == 0 ? 0 : $PaieAout/config('paie.MontantAssurance');
+        $NbrSept = $PaieSept == 0 ? 0 : $PaieSept/config('paie.MontantAssurance');
+        $NbrOct = $PaieOct == 0 ? 0 : $PaieOct/config('paie.MontantAssurance');
+        $NbrNov = $PaieNov == 0 ? 0 : $PaieNov/config('paie.MontantAssurance');
+        $NbrDec = $PaieDec == 0 ? 0 : $PaieDec/config('paie.MontantAssurance');
 
 
 
