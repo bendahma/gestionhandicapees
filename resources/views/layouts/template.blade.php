@@ -124,7 +124,7 @@
             </div>
           </div>
         </li>
-        {{-- @if (Auth::user()->isAdmin()) --}}
+        @if (Auth::user()->isAdmin())
             <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -173,7 +173,7 @@
             </div>
           </div>
         </li>
-        {{-- @endif --}}
+        @endif
         
         
         <hr class="sidebar-divider">
@@ -190,11 +190,11 @@
               <h6 class="collapse-header">Rappel</h6>
               {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
               <a class="collapse-item" href="{{route('rappel.list')}}">Listes Des Rappels</a>
-              {{-- @if(Auth::user()->name == 'Bendahma') --}}
+              @if(Auth::user()->isAdmin())
                   <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
                   <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>
                   <a class="collapse-item" href="">Traitement du Rappel</a>
-              {{-- @endif --}}
+              @endif
             </div>
           </div>
         </li>
@@ -241,7 +241,7 @@
             <span>Liste Mondaté Filtre</span>
           </a>
         </li>
-        {{-- @if(Auth::user()->name == 'Bendahma') --}}
+        @if(Auth::user()->isAdmin())
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -262,24 +262,27 @@
                 </div>
               </div>
             </li>
-        {{-- @endif --}}
+        @endif
         
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Source des données
         </div>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#upload" aria-expanded="true" aria-controls="upload">
-            <i class="fas fa-file-upload"></i>
-            <span>Import</span>
-          </a>
-          <div id="upload" class="collapse" aria-labelledby="headingTwo" data-parent="#upload">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Data source</h6>
-              <a class="collapse-item" href="{{route('upload.index')}}">Upload from Excel</a>             
+        @if (Auth::user()->isAdmin())
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#upload" aria-expanded="true" aria-controls="upload">
+              <i class="fas fa-file-upload"></i>
+              <span>Import</span>
+            </a> 
+            <div id="upload" class="collapse" aria-labelledby="headingTwo" data-parent="#upload">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Data source</h6>
+                <a class="collapse-item" href="{{route('upload.index')}}">Upload from Excel</a>             
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        @endif
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#download" aria-expanded="true" aria-controls="download">
             <i class="fas fa-file-upload"></i>
@@ -293,7 +296,7 @@
           </div>
         </li>
         
-        {{-- @if (Auth::user()->name == 'Bendahma') --}}
+        @if (Auth::user()->isAdmin())
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
               DATABASE
@@ -304,7 +307,7 @@
                     <span>Base Du Données</span>
                 </a>
             </li>
-        {{-- @endif --}}
+        @endif
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -342,7 +345,7 @@
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;font-weight:700;font-size:0.9rem">
                   <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name . ' : ' }}</span>
-                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->name = 'Bendahma' ? 'admin' : '' }}</span>
+                  <span class="mr-2 d-none d-lg-inline">{{ Auth::user()->UserRole }}</span>
                   <img class="img-profile rounded-circle" src="{{asset('img/person.png')}}">
                 </a>
                 <!-- Dropdown - User Information -->

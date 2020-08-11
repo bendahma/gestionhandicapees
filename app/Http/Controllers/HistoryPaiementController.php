@@ -17,7 +17,7 @@ class HistoryPaiementController extends Controller
 
     public function index(){
 
-        $hands = Cache::get('HANDS_LISTS_ALL');            //Hand::with('paieinformation:CCP,hand_id')->withTrashed()->get(['id','nameFr','dob']);
+        $hands = Hand::with('paieinformation:CCP,hand_id')->withTrashed()->get(['id','nameFr','dob']);
 
         return view('admin.historique.index')->with('hands',$hands);
 
@@ -52,9 +52,16 @@ class HistoryPaiementController extends Controller
         }])->withTrashed()->where('id',$id)->first(['id','nameFr','dob','codeCommune']);
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         
+
+        dd($hand);
+
         return view('admin.historique.suspension')
                 ->with('hand',$hand)
                 ->with('commune',$commune);
+    }
+
+    public function DeleteHistoriqueSuspension(Hand $hand,$history){
+        //
     }
 
     public function PaieYearHistory(){

@@ -57,6 +57,7 @@
                      <th>Date suspension</th>
                      <th>Date Régélement</th>
                      <th>Motif</th>
+                     <th>Action</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -66,7 +67,12 @@
                             <td>{{isset($h->dateSupprission) ? $h->dateSupprission : ''}}</td>
                             <td>{{isset($h->dateRemi) ? $h->dateRemi : ''}}</td>
                             <td>{{isset($h->motif) ? $h->motif : ''}}</td>
-                     
+                            <td> 
+                               <form action="{{route('historique.DeleteHistoireSuspension',$hand->id,$h->id)}}" method="POST">
+                                 @csrf
+                                 @method("DELETE")
+                                 <input type="submit" value="Supprime Historique" class="btn btn-danger btn">
+                              </form>
                         </tr>
                     @endforeach           
                  </tbody>

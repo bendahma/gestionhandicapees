@@ -108,7 +108,6 @@ class RappelController extends Controller
             $montant = ($firstDif * 4000) + ($secondDif * 10000);
         }
 
-
         $rappel->create([
             'DateDebut' => $dateDebut,
             'DateFin' => $dateFin,
@@ -145,7 +144,6 @@ class RappelController extends Controller
         //
     }
 
-    
     public function findInfo(Rappel $rappel,Hand $hand)
     {
         return view('admin.rappel.add')->with('hand',$hand)
@@ -187,12 +185,6 @@ class RappelController extends Controller
         return redirect(route('rappel.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Rappel $rappel)
     {
         $rappel->delete();
