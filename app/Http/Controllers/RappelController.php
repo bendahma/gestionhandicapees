@@ -86,7 +86,41 @@ class RappelController extends Controller
     public function store(Request $request)
     {
         $hand = Hand::where('id',$request->hand_id)->first();
-        dd($hand);
+        $rappel = new Rappel();
+
+        $dateDebut = $request->dateDebut;
+        $dateFin = $request->dateFin;
+        $d1 = new DateTime($dateDebut);
+        $d2 = new DateTime($dateFin);
+        $nbrMois= ($d1->diff($d2)->m) + ($d1->diff($d2)->y*12) + 1; 
+        $montant = 0;
+        $dateSeprator = '2019-09-30';
+        $dateSeprator2 = '2019-10-01';
+        $dateTimeSeperator = new DateTime($dateSeprator);
+        $dateTimeSeperatorF = new DateTime($dateSeprator2);
+        if($dateFin < $dateSeprator){
+            $montant = $nbrMois * 4000;
+        }else if($dateDebut > $dateSeprator){
+            $montant = $nbrMois * 10000;
+        }else{
+            $firstDif = ($dateTimeDebut->diff($dateTimeSeperator)->m) + ($dateTimeDebut->diff($dateTimeSeperator)->y*12) + 1; 
+            $secondDif = ($dateTimeSeperatorF->diff($dateTimeFin)->m) + ($dateTimeSeperatorF->diff($dateTimeFin)->y*12) + 1; 
+            $montant = ($firstDif * 4000) + ($secondDif * 10000);
+        }
+
+
+        $rappel->create([
+            'DateDebut' => $dateDebut,
+            'DateFin' => $dateFin,
+            'montantRappel' => $montant,
+            'nombreMois' => $nbrMois,
+        ]);
+
+        $hand->rappels()->attach($rappel);
+
+        session()->flash('success','Le Rappel à été sasie avec success');
+
+        return redirect(url('/rappel/list'));
     }
 
     public function Saisie(Request $request){
