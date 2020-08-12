@@ -16,8 +16,8 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role != 'admin'){
-            session()->flash('error','Vous N\'Avez Pas Le Droit d\'Utiliser Cette Action.');
+        if(!Auth::user()->isAdmin()){
+            session()->flash('error','Vous N\'avez Pas Le Droit d\'Utiliser Cette Action.');
             return redirect(route('dashboard'));
         }
         return $next($request);

@@ -108,13 +108,13 @@ class RappelController extends Controller
             $montant = ($firstDif * 4000) + ($secondDif * 10000);
         }
 
-        $rappel->create([
-            'DateDebut' => $dateDebut,
-            'DateFin' => $dateFin,
-            'montantRappel' => $montant,
-            'nombreMois' => $nbrMois,
-        ]);
-
+       
+            $rappel->DateDebut = $dateDebut;
+            $rappel->DateFin = $dateFin;
+            $rappel->montantRappel = $montant;
+            $rappel->nombreMois = $nbrMois;
+            $rappel->save();
+       
         $hand->rappels()->attach($rappel);
 
         session()->flash('success','Le Rappel à été sasie avec success');

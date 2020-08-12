@@ -28,15 +28,18 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
               <th>Date suspension</th>
               <th>Motif</th>
+              <th>Obs</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($hands as $hand)
+            @foreach ($hands as $k => $hand)
               <tr>
+                <td>{{ $k = $k + 1 }}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 <td>
@@ -44,6 +47,9 @@
                 </td>
                 <td>
                     {{$hand->status->motifAr}}
+                </td>
+                <td dir="rtl" style="text-align: right">
+                    {{$hand->status->motifAr == 'AUTRE' ? $hand->status->autreMotif : ''}}
                 </td>
               </tr>
             @endforeach

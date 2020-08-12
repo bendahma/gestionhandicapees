@@ -49,6 +49,8 @@ class MonthlySuspensionExport implements FromCollection,WithMapping, WithHeading
             $hand->paieinformation->CCP,
             $hand->status->dateSupprission,
             $hand->status->motifAr,
+            $hand->status->autreMotif,
+            $hand->status->ObsSuspension,
         ];
     }
 
@@ -77,7 +79,9 @@ class MonthlySuspensionExport implements FromCollection,WithMapping, WithHeading
             'Adresse',
             'CCP',
             'Date suspension',
-            'Motif'
+            'Motif',
+            'AUTRE',
+            'OBS',
             ]
         ];
     }

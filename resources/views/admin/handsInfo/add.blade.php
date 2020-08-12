@@ -249,35 +249,38 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
-                    <h4 class="text-danger font-weight-bold">Informations Du Paiement</h3>
-                    <hr>
-                    <div class="row mt-1">
-                        <div class="col-lg-2">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">CCP *</label>
-                                <input type="text" class="form-control" required  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
-                              </div>
-                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">RIP *</label>
-                                <input type="text" class="form-control" required  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">Date Premier Pension</label>
-                                <input type="date" class="form-control " id="" name="datePremierPension" placeholder="Date Premier Pension ..." value="{{isset($hand) ? $hand->paieinformation->datePremierPension : ''}}">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="font-weight-bold">Date Decision du Paiement</label>
-                                <input type="date" class="form-control " id="" name="dateDecisionPension" placeholder="Date Decision du Paiement ..." value="{{isset($hand) ? $hand->paieinformation->dateDecisionPension : ''}}">
-                            </div>
-                        </div>
-                    </div>
+                        @if (Auth::user()->isAdmin())
+                                <hr>
+                                <h4 class="text-danger font-weight-bold">Informations Du Paiement</h3>
+                                <hr>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold">CCP *</label>
+                                            <input type="text" class="form-control" required  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold">RIP *</label>
+                                            <input type="text" class="form-control" required  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold">Date Premier Pension</label>
+                                            <input type="date" class="form-control " id="" name="datePremierPension" placeholder="Date Premier Pension ..." value="{{isset($hand) ? $hand->paieinformation->datePremierPension : ''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold">Date Decision du Paiement</label>
+                                            <input type="date" class="form-control " id="" name="dateDecisionPension" placeholder="Date Decision du Paiement ..." value="{{isset($hand) ? $hand->paieinformation->dateDecisionPension : ''}}">
+                                        </div>
+                                    </div>
+                                </div>
+                        @endif
+                   
                     @if (!isset($hand))
                     <h4 class="text-danger font-weight-bold">Etat Du paiement</h4>
                         <hr>
