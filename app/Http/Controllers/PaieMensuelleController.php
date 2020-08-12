@@ -90,38 +90,33 @@ class PaieMensuelleController extends Controller
 
 
     public function MakePaie(){
-        
+
+        $budgetI = new Budget();
+        $countHand = $hands->count();
         $hands = Hand::whereHas('status',function($s){
             $s->where('status', 'en cours');
         })->get();
 
         $allHands = Hand::withTrashed()->get();
 
-        $allHand = Hand::withTrashed()->get();
-
-        // Calculating
-        $budgetI = new Budget();
-        $countHand = $hands->count();
-        $montantPaie = $countHand * config('paie.MontantPaie');
-        $montantAssurance = $countHand * config('paie.MontantAssurance');
         $budget = $budgetI->CreateNewYearBudget(date('Y'));
         $paieExist = Paie::where('anneesPaiement',date('Y'))->where('moisPaiement', date('m'))->first();
         
-        
         if(!$paieExist){
-            //Create Paiement 
+            
             $currentPaie = Paie::create([
                 'moisPaiement'=>date('m'),
                 'anneesPaiement'=>date('Y'),
-                'montantPaiement'=>$montantPaie,
-                'montantAssurance'=>$montantAssurance
+                'montantPaiement'=>$countHand * config('paie.MontantPaie'),
+                'montantAssurance'=>$countHand * config('paie.MontantAssurance')
             ]);
+            $currentPaie->hands()->attach($hands);
             session()->flash('success','Paiement du mois ' . date('M/Y') . ' à été creer avec success.' );
 
         }
         else {
             
-            $paieExist->hands()->detach($allHand);
+            $paieExist->hands()->detach($allHands);
             $paieExist->hands()->attach($hands);
             $paieExist->update([
                 'montantPaiement'=> $hands->count() * config('paie.MontantPaie'),
@@ -138,7 +133,7 @@ class PaieMensuelleController extends Controller
     }
 
     public function export() {
-        $filename = 'EtatPaiementHands' .date('YmdHis'). '.xlsx';
+        $filename = 'Etat ' .date('d-m-Y H:i:s'). '.xlsx';
         ob_end_clean();
         ob_start();
         return Excel::download(new HandExport, $filename);
