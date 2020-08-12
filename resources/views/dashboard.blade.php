@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Listes des Handicapées mondate</h1>
+          <h1 class="h3 mb-0 text-gray-800">Listes des Handicapées mondate </h1>
           <a href="{{route('hands.exportHandsMondate')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i> Liste Hand Mondate</a>
         </div>
 
@@ -38,27 +38,22 @@
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 <td>{{$hand->cartehand->natureHandFr}}</td>
                 <td>{{$hand->paieinformation->CCP}}</td>
-                {{-- <td>{{ $hand->status->status != 'En cours' ? <a href=""> $hand->status->status }}</td> --}}
                 <td>
-                  <a href="{{$hand->status->status != 'En cours' ? route('hand.suspendu', $hand->id) : '#'}}" target="_blank">
-                    {{$hand->status->status}}
-                  </a>
+                      <a href="{{$hand->status->status == 'En cours' 
+                                      ? route('historique.HistoriquePaie',$hand->id) 
+                                      : route('hand.suspendu', $hand->id) }}" target="_blank">
+                        {{$hand->status->status}}
+                      </a>
                 </td>
                 <td>
                   <ul class="nav ">
-                    {{-- <li class="nav-item dropdown btn btn-link"> --}}
-                      {{-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Details</a> --}}
-                      {{-- <div class="dropdown-menu"> --}}
-                        <div class="d-flex">
+                       <div class="d-flex">
                           <a class="btn btn-link" href="{{route('hands.show', $hand->id)}}" style="font-size: 1.5rem"> <span style="color:rgb(7, 60, 233)"><i class="far fa-eye"></i></span> </a>
                           <a class="btn btn-link" href="{{route('hands.edit', $hand->id)}}" style="font-size: 1.5rem"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
                           @if ($hand->status->status == 'En cours')
                             <button type="button" class="btn btn-link" onclick="deleteHandaler({{$hand->id}})" style="font-size: 1.5rem"> <span style="color:tomato"><i class="far fa-trash-alt"></i></span></button>
                           @endif
                         </div>
-                        
-                      {{-- </div> --}}
-                    {{-- </li> --}}
                   </ul>
                 </td>
               </tr>
