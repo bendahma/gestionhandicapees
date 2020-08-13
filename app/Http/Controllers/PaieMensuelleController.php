@@ -210,18 +210,24 @@ class PaieMensuelleController extends Controller
         $hands = DB::table('hands')
                     ->join('hand_paie_statuses', function ($join) {
                         $join->on('hands.id', '=', 'hand_paie_statuses.hand_id')
-                        ->where('hand_paie_statuses.status', '=', 'en cours');
+                        ->where('hand_paie_statuses.status', '=', 'En cours');
                 })->select('codeCommune', DB::raw('count(*) as total'))
                 ->groupBy('codeCommune')
                 ->having('total', '>=', '0')
                 ->get();
 
+
+        $handsMondate = Hand::whereHas('status',function($query){
+            $query->where('status','En Cours');
+        })->get()->groupBy('codeCommune');
+
         $nbrt =0;
         foreach ($hands as $h) {
             $nbrt+=$h->total;
         }
+        dd($handsMondate);
         foreach ($hands as $hand){
-            switch($hand->commune){
+            switch($hand->codeCommune){
                 case 4607:
                     $ELAMRIA = $hand->total;
                 case 4601:
