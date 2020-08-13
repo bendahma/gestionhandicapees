@@ -93,7 +93,7 @@
                       <td>{{$HandRen[$i]->count()}}</td>
                       <td>{{$handsGrp[$i]->count() - $HandRen[$i]->count()}}</td>
                       <td>
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::user()->isAdmin())
                           <form action="{{route('renouvellement.suspendu')}}" method="POST">
                             @csrf
                             <input type="hidden" name="codeCommune" value='{{$communes[$j]->codeCommune}}'>
