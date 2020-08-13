@@ -225,89 +225,90 @@ class PaieMensuelleController extends Controller
         foreach ($hands as $h) {
             $nbrt+=$h->total;
         }
-        dd($handsMondate);
         foreach ($hands as $hand){
             switch($hand->codeCommune){
-                case 4607:
-                    $ELAMRIA = $hand->total;
-                case 4601:
+                case '4601':
                     $AT = $hand->total;
-                case 4622:
-                    $AGHLLAL = $hand->total;
-                case 4620:
-                    $AINKIHAL = $hand->total;
                     break;
-                case 4616:
-                    $AINLABAA = $hand->total;
-                    break;
-                case 4621:
-                    $AINTOLBA = $hand->total;
-                    break;
-                case 4623:
-                    $AOUGBELLIL = $hand->total;
-                    break;
-                case 4624:
-                    $BENISAF = $hand->total;
-                    break;
-                case 4610:
-                    $BOUZEDJAR = $hand->total;
-                    break;
-                case 4604:
-                    $CHAABAT = $hand->total;
-                    break;
-                case 4613:
-                    $CHENTOUF = $hand->total;
-                    break;
-                case 4603:
-                    $ElMALEH = $hand->total;
-                    break;
-                case 4626:
-                    $EMIRAEK = $hand->total;
-                    break;
-                case 4608:
-                    $HElGhella = $hand->total;
-                    break;
-                case 4614:
-                    $HASSASNA = $hand->total;
-                    break;
-                case 4612:
-                    $HBH = $hand->total;
-                    break;
-                case 4611:
-                    $MSAID = $hand->total;
-                    break;
-                case 4615:
-                    $OBerkeche = $hand->total;
-                    break;
-                case 4609:
-                    $OBoudjema = $hand->total;
-                    break;
-                case 4618:
-                    $OSEBBAH = $hand->total;
-                    break;
-                case 4606:
-                    $Ouledkihal = $hand->total;
-                    break;
-                case 4627:
-                    $OULHACA = $hand->total;
-                    break;
-                case 4617:
-                    $SBoumediene = $hand->total;
-                    break;
-                case 4602:
+                case '4602':
                     $SIDIBENADDA = $hand->total;
                     break;
-                case 4628:
-                    $SIDIOuriache = $hand->total;
+                case '4603':
+                    $ElMALEH = $hand->total;
                     break;
-                case 4625:
-                    $SIDISAFI = $hand->total;
+                case '4604':
+                    $CHAABAT = $hand->total;
                     break;
-                case 4619:
+                case '4605':
+                    $TERGA = $hand->total;
+                    break;
+                case '4606':
+                    $Ouledkihal = $hand->total;
+                    break;
+                case '4607':
+                    $ELAMRIA = $hand->total;
+                case '4608':
+                    $HElGhella = $hand->total;
+                    break;
+                case '4609':
+                    $OBoudjema = $hand->total;
+                    break;
+                case '4610':
+                    $BOUZEDJAR = $hand->total;
+                    break;
+                case '4611':
+                    $MSAID = $hand->total;
+                    break;
+                case '4612':
+                    $HBH = $hand->total;
+                    break;
+                case '4613':
+                    $CHENTOUF = $hand->total;
+                    break;
+                case '4614':
+                    $HASSASNA = $hand->total;
+                    break;
+                case '4615':
+                    $OBerkeche = $hand->total;
+                    break;
+                case '4616':
+                    $AINLABAA = $hand->total;
+                    break;
+                case '4617':
+                    $SBoumediene = $hand->total;
+                    break;
+                case '4618':
+                    $OSEBBAH = $hand->total;
+                    break;
+                case '4619':
                     $TAMEZOURA = $hand->total;
                     break;
-                case 4605:
-                    $TERGA = $hand->total;
+                case '4620':
+                    $AINKIHAL = $hand->total;
+                    break;
+                case '4621':
+                    $AINTOLBA = $hand->total;
+                    break;
+                case '4622':
+                    $AGHLLAL = $hand->total;
+                    break;
+                case '4623':
+                    $AOUGBELLIL = $hand->total;
+                    break;
+                case '4624':
+                    $BENISAF = $hand->total;
+                    break;
+                case '4625':
+                    $SIDISAFI = $hand->total;
+                    break;
+                case '4626':
+                    $EMIRAEK = $hand->total;
+                    break;
+                case '4627':
+                    $OULHACA = $hand->total;
+                    break;
+                case '4628':
+                    $SIDIOuriache = $hand->total;
                     break;
             }
         }
