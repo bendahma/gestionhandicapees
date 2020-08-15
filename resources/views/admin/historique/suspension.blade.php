@@ -68,7 +68,7 @@
                             <td>{{isset($h->dateRemi) ? $h->dateRemi : ''}}</td>
                             <td>{{isset($h->motif) ? $h->motif : ''}}</td>
                             <td> 
-                               <form action="{{route('historique.DeleteHistoireSuspension',$hand->id,$h->id)}}" method="POST">
+                               <form action="{{route('historique.DeleteHistoireSuspension',$h->id)}}" method="POST">
                                  @csrf
                                  @method("DELETE")
                                  <input type="submit" value="Supprime Historique" class="btn btn-danger btn">

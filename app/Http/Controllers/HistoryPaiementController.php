@@ -11,6 +11,7 @@ use App\PaieInformation;
 use App\HandPaieStatus;
 use App\Paie;
 use App\Commune;
+use App\HandSuspentionHistory;
 
 class HistoryPaiementController extends Controller
 {
@@ -52,16 +53,15 @@ class HistoryPaiementController extends Controller
         }])->withTrashed()->where('id',$id)->first(['id','nameFr','dob','codeCommune']);
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         
-
-        dd($hand);
-
         return view('admin.historique.suspension')
                 ->with('hand',$hand)
                 ->with('commune',$commune);
     }
 
-    public function DeleteHistoriqueSuspension(Hand $hand,$history){
-        //
+    public function DeleteHistoriqueSuspension(HandSuspentionHistory $history){
+        $history->delete();
+        session()->flash('success','Paiement suspension history has been deleted successfully');
+        return redirect(route('historique.HistoireSuspension'));
     }
 
     public function PaieYearHistory(){

@@ -13,6 +13,7 @@
        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i>  --}}
          {{-- Fiche Handicapées</a> --}}
          <div>
+          
           @if($hand->status->status == 'En cours')
               <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="{{route('decision.telecharger', [$hand->id,'reglement'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du Réglement </a> 
           @endif
@@ -131,12 +132,22 @@
                       <input type="text" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->declarepar : '' }}">
                   </div>
               </div>
+              <div class="col">
+                  <div class="form-group">
+                      <label for="" class="font-weight-bold">Dossier annuel</label>
+                      @if ($hand->renouvellementdossier->dossierRenouvelle == false) 
+                      <input type="text" readonly class="form-control" id="" name="" style="color: red;font-weight:700" value="Dossier Annuel non renouvelle">
+
+                      @endif                 
+                  </div>
+              </div>
               </div>
               @endif
               <div class="row">
                 <div class="col">
                   <label for="" class="font-weight-bold">Observation</label>
-                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->ObsSuspension}}
+                  <textarea name="obs" id="" cols="30" rows="2" class="form-control">{{$hand->status->ObsSuspension}} 
+                    
                   </textarea>
                 </div>
               </div>

@@ -216,11 +216,6 @@ class PaieMensuelleController extends Controller
                 ->having('total', '>=', '0')
                 ->get();
 
-
-        $handsMondate = Hand::whereHas('status',function($query){
-            $query->where('status','En Cours');
-        })->get()->groupBy('codeCommune');
-
         $nbrt =0;
         foreach ($hands as $h) {
             $nbrt+=$h->total;
