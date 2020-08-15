@@ -49,9 +49,9 @@ class listHandController extends Controller
         $handsList = $this->hands->HandMondate();
 
         return view('admin.hands.lists.encours')
-                ->with('hands', $handsList)
-                ->with('carts',CartHand::all())
-                ->with('paieinformations',PaieInformation::all());
+                ->with('hands', $handsList);
+                // ->with('carts',CartHand::all())
+                // ->with('paieinformations',PaieInformation::all());
     }
 
     public function Filtre(){

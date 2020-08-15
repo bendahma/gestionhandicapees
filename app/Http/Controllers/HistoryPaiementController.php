@@ -9,36 +9,40 @@ use App\CartHand;
 use App\PaieInformation;
 use App\HandPaieStatus;
 use App\Paie;
+use App\Commune;
 
 class HistoryPaiementController extends Controller
 {
 
     public function index(){
-        return view('admin.historique.index')
-                ->with('hands',Hand::withTrashed()->get())
-                ->with('cards',CartHand::all())
-                ->with('paieinformation',PaieInformation::all());
+
+        $hands = Hand::with('cartehand')->with('paieinformation')->withTrashed()->get();
+
+        return view('admin.historique.index')->with('hands',$hands);
+
     }
 
-    public function MoisPaiements($id){
+    public function HistoriquePaie($id){
         
-        $hand = Hand::withTrashed()->where('id',$id)->first();
-
-        $paies = Hand::withTrashed()->where('id',$id)->with('paies:moisPaiement,anneesPaiement')->get();
-
+        $hand = Hand::with('paieinformation')->with('paies')->withTrashed()->where('id',$id)->first();
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
+        // dd($hand);
         $anneesArr = array();
+        $moisArr = array();
 
         $i=0;
-        foreach ($paies as $paie) {
-                foreach($paie->paies as $p ){
-                    $anneePaie = array_add($array, $i, $p->anneesPaiement);
-
-                    dump($p->moisPaiement);
-                };
-        }
-
+        foreach($hand->paies as $p ){
+            // dd($p);
+           $anneesArr = array_add($anneesArr, $i, $p->anneesPaiement);
+           $moisArr = array_add($moisArr, $i, $p->moisPaiement);
+           $i++;
+        };
+        
         return view('admin.historique.paiement')
-                ->with('hand',$hand);
+                ->with('hand',$hand)
+                ->with('commune',$commune)
+                ->with('anneesPaiement',$anneesArr)
+                ->with('moisPaiement',$moisArr);
     }
 
     public function HistoreSuspension(Hand $hand){

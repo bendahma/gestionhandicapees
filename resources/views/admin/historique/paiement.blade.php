@@ -28,7 +28,7 @@
                <div class="col">
                   <div class="form-group">
                      <label for="name" class="font-weight-bold">Commune</label>     
-                     <input type="text" class="form-control" readonly value="{{$hand->commune}}">
+                     <input type="text" class="form-control" readonly value="{{$commune->nomCommuneFr}}">
                   </div>                 
                </div>
                <div class="col">
@@ -43,4 +43,48 @@
        </div>
     </div>
     
+    <div class="container-fluid">
+       <div class="card shadow mt-3">
+          <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-primary">Historique du paiement</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 <thead>
+                   <tr>
+                      <th>N°</th>
+                     <th>Annee</th>
+                     <th>Mois</th>
+                     <th>Montant Mensuelle</th>
+                     <th>N° Mondate</th>
+                     <th>Date Mondate</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                     @foreach($hand->paies as $k => $p )
+                       
+                        <tr>
+                           <td>{{$k+1}}</td>
+                           <td> {{ $p->anneesPaiement }} </td>
+                           <td> {{ $p->MoisEnLettre($p->moisPaiement)   }} </td>
+                           <td> 
+                              @if ($p->anneesPaiement <= '2019' && $p->moisPaiement <= '09')
+                                  {{ number_format('4000','2',' ','.') }}
+                              @else
+                                 {{ number_format('10000','2','.',' ')}}
+                              @endif
+                           </td>
+                           <td> {{ $p->NumeroMondatePaie }} </td>
+                           <td></td>
+                        </tr>
+                        
+
+                     @endforeach
+                 </tbody>
+               </table>
+             </div>
+          </div>
+       </div>
+    </div>
 @endsection

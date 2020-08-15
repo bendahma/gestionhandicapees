@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/paie' , 'PaieMensuelleController@index')->name('paie.index');
     Route::get('/paie/traitement' , 'PaieMensuelleController@MakePaie')->name('paie.traitement');
     Route::get('/paie/documents' , 'PaieMensuelleController@DocumentsPaie')->name('paie.documents');
+    Route::post('/paie/donneeCfTresor' , 'PaieMensuelleController@DonneeCfTresor')->name('paie.updateCfTresorData');
 
     Route::patch('/budget/updateBudgetSupplimentaire', 'BudgetController@BudgetSupplimenatire')->name('budget.updateBudgetSupplimentaire');
     Route::get('/budget/DownloadBudgetConsomptionPaie' , 'BudgetController@DownloadBudgetConsomptionPaie')->name('budget.DownloadBudgetConsomptionPaie'); 
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/decision/telecharger/{hand}/{papier}', 'DecisionController@Download')->name('decision.telecharger');
     
     Route::get('/historique', 'HistoryPaiementController@index')->name('historique.index');
-    Route::get('/historique/paiement/{hand}', 'HistoryPaiementController@MoisPaiements')->name('historique.MoisPaiements');
+    Route::get('/historique/paiement/{hand}', 'HistoryPaiementController@HistoriquePaie')->name('historique.HistoriquePaie');
     Route::get('/historique/histoire/{hand}', 'HistoryPaiementController@HistoireSuspension')->name('historique.HistoireSuspension');
     
     Route::patch('/renouvellement/DossierRemi/{hand}', 'RenouvelementDossierController@DossierRemi')->name('renouvellement.DossierRemi');

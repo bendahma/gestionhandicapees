@@ -21,6 +21,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
               <th>Nature</th>
@@ -30,8 +31,9 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($hands as $hand)
+            @foreach ($hands as $n => $hand)
               <tr>
+                <td>{{$n+1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 <td>{{$hand->cartehand->natureHandFr}}</td>

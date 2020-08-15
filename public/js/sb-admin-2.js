@@ -69,8 +69,11 @@ function remiHandaler(id){
     form.action = link;
 }
 
-function suspenduRange(id){
+function suspenduRange(){
     $('#suspensionArreteRange').modal('show');
+}
+function donneeCfTresor(){
+    $('#donneeCFTresorForm').modal('show');
 }
 
 if(document.getElementById('NewSituation') != null){

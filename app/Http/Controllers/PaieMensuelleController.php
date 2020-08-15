@@ -531,4 +531,19 @@ class PaieMensuelleController extends Controller
         return response()->download(storage_path($filename. " ".$mois->moisFr. " ".date('Y').".docx"));
         
     }
+
+
+    public function DonneeCfTresor(Request $request){
+        $paie = Paie::where('moisPaiement',$request->moisPaiement)->where('anneesPaiement',$request->anneePaiement)->first();
+        $paie->update([
+            'NumeroEngagementPaie'=>$request->NumEngagementPaie,
+            'NumeroEngagementAssurance'=>$request->NumEngagementAssurance,
+            'dateEngagementPaie'=>$request->dateEngagement,
+            'NumeroMondatePaie'=>$request->NumMondatePaie,
+            'NumeroMondateAssurance'=>$request->NumMondateAssurance,
+            'dateMondatePaie'=>$request->dateMondate,
+        ]);
+        session()->flash('success','Les données du paiement ont été ajouter avec success');
+        return redirect()->back();
+    }
 }

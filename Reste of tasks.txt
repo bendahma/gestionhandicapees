@@ -24,10 +24,12 @@
 10. redesign paiement process
 
 11. Added Commune Model and controller and change how commune hands relationship
+
+12. DESENGAGEMENT : CHANGEMENT PAIE PROCESS
+
 _______________________________________________________________________
 
 
-DESENGAGEMENT : CHANGEMENT PAIE PROCESS
 
 .name length no more than 26 character - in Create Hand
 

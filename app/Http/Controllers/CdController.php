@@ -255,7 +255,7 @@ class CdController extends Controller
         }
 
         $content = "*00846001514444600177" . $montant  . $nbrHand.$request->moisPaiement.$request->anneePaiement.'137246';
-        $nMondate = $request->NumeroMondate;
+        $nMondate = $request->NumeroMondatePaie;
         $separtor = '';
         
         while((strlen($content) + strlen($nMondate) + strlen($separtor)) < 61){

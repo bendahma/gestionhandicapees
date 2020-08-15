@@ -20,14 +20,17 @@ mix.js(
       'resources/js/jquery.dataTables.min.js',
       'resources/js/jquery.easing.min.js',
       'resources/js/jquery.min.js',
-      'resources/js/jsb-admin-2.js',
+      'resources/js/sb-admin-2.js',
    ],
-   'public/js'
-   )
-   .sass(
-      'resources/sass/app.scss', 
-      'public/css'
-   ).style(
+   'public/js/allJs.js'
+);
+
+// mix.sass(
+//       'resources/sass/app.scss', 
+//       'public/css'
+//    );
+
+mix.styles(
       [
          'resources/css/all.min.css',
          'resources/css/app.css',
@@ -37,5 +40,5 @@ mix.js(
          'resources/css/solid.min.css',
          'resources/css/style.css',
       ],
-      'public/css'
-   );
+      'public/css/allStyle.css'
+);

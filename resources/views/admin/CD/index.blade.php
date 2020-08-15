@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input type="number" name="NumeroMondate" id="" class="form-control" placeholder="N° Mondate">
+                                    <input type="number" name="NumeroMondatePaie" id="" class="form-control" placeholder="N° Mondate">
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="submit" value="Télécharger CD Mondate" class="btn btn-success btn-block">

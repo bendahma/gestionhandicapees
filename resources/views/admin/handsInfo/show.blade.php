@@ -78,8 +78,8 @@
                         <div class="col-lg-2 text-left">
                             <label for="" class="font-weight-bold">Sex</label>
                             <select name="sex" id="" class="form-control">
-                                <option value="Homme" {{(isset($hand) && $hand->sex == 'Homme') ? 'selected' : ''}}>Homme</option>
-                                <option value="Femme" {{(isset($hand) && $hand->sex == 'Femme') ? 'selected' : ''}}>Femme</option>
+                                <option value="Homme" {{(isset($hand) && $hand->sex == 'H') ? 'selected' : ''}}>Homme</option>
+                                <option value="Femme" {{(isset($hand) && $hand->sex == 'F') ? 'selected' : ''}}>Femme</option>
                             </select>
 
                         </div>

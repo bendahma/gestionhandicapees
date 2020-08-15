@@ -21,6 +21,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>N° </th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
               <th>Nature</th>
@@ -32,8 +33,9 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($hands as $hand)
+            @foreach ($hands as $n => $hand)
               <tr>
+                <td>{{$n+1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 <td>{{$hand->cartehand->natureHandFr}}</td>
@@ -44,7 +46,7 @@
                   </a>
                 </td>
                <td>
-                  <a class="btn btn-link" href="{{route('historique.MoisPaiements', $hand->id)}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 
+                  <a class="btn btn-link" href="{{route('historique.HistoriquePaie', $hand->id)}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 
                   <span style="font-size: 1rem; font-weight:700; text-decoration:none; color:rgb(61, 9, 204)">Paiement</span></a>
                </td>
                <td>

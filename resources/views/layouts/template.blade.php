@@ -144,7 +144,26 @@
             <span>CD</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('historique.index')}}" >
+            <i class="fas fa-history"></i>
+            <span>Historique Des Paiements</span>
+          </a>
+        </li>
         
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#CfTresor" aria-expanded="true" aria-controls="CfTresor">
+            <i class="fas fa-align-center"></i>
+            <span class="" >Données CF et Trésor</span>
+          </a>
+          <div id="CfTresor" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">CF & Trésor</h6>
+              <a class="collapse-item" href="">Affiche Les Données</a>
+              <a class="collapse-item" onclick="donneeCfTresor(); return false;">Ajouter Les Données</a>
+            </div>
+          </div>
+        </li>
         
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -178,7 +197,7 @@
           </a>
           <div id="statistics" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Rappel</h6>
+              <h6 class="collapse-header"></h6>
               <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
             </div>
           </div>
@@ -211,17 +230,6 @@
           </a>
         </li>
         
-        <hr class="sidebar-divider d-none d-md-block">
-        <!-- Heading -->
-        <div class="sidebar-heading">
-          historieque
-        </div>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('historique.index')}}" >
-            <i class="fas fa-history"></i>
-            <span>Historique Des Paiements</span>
-          </a>
-        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
         <!-- Heading -->
@@ -450,6 +458,7 @@
 
 
   @include('admin.statistics.monthly')
+  @include('admin.paie.donneeCfTresor')
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('js/jquery.min.js')}}"></script>
