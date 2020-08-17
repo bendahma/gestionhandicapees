@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/', 'HistoryPaiementController@index')->name('index');
             Route::get('paiement/{hand}', 'HistoryPaiementController@HistoriquePaie')->name('HistoriquePaie');
             Route::get('suspension/{hand}', 'HistoryPaiementController@HistoriqueSuspension')->name('HistoireSuspension');        
-            Route::delete('suspension/delete/{hand}/{history}', 'HistoryPaiementController@DeleteHistoriqueSuspension')->name('DeleteHistoireSuspension');        
+            Route::delete('suspension/delete/{history}', 'HistoryPaiementController@DeleteHistoriqueSuspension')->name('DeleteHistoireSuspension');        
         });
     });
 

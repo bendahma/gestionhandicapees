@@ -38,7 +38,7 @@ class MainController extends Controller
     }
 
     public function suspendu($id){
-        $hand = Hand::with('status')->withTrashed()->where('id',$id)->first();
+        $hand = Hand::with(['status','renouvellementdossier'])->withTrashed()->where('id',$id)->first();
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         return view('admin.handsInfo.suspendu')
                                 ->with("hand",$hand)
