@@ -5,7 +5,10 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Statistique du Renouvellement des Dossiers Annuel Pour l'Année </h1>
-         </div>
+            <a href="{{route('renouvellement.NonRenouvelleDownload')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i> Télécharger Non Renouvelle</a>
+
+            
+          </div>
 
         <div class="row">
             <div class="col-xl-4 col-md-6 mb-4">
@@ -77,7 +80,8 @@
                    <th>Nombre des mondates</th>
                    <th>Nombre des renouvelle</th>
                    <th>Nombre des non renouvelle</th>
-                   <th>Action</th>
+                   <th>Lists</th>
+                   <th>Supprime</th>
                  </tr>
                </thead>
                <tbody>
@@ -92,6 +96,7 @@
                       <td>{{$handsGrp[$i]->count()}}</td>
                       <td>{{$HandRen[$i]->count()}}</td>
                       <td>{{$handsGrp[$i]->count() - $HandRen[$i]->count()}}</td>
+                      <td> <a href="{{ route('renouvellement.listnonrenouvelle',$communes[$j]->codeCommune)}}" class="btn btn-primary btn-block">Details</a> </td>
                       <td>
                         @if (Auth::user()->isAdmin())
                           <form action="{{route('renouvellement.suspendu')}}" method="POST">

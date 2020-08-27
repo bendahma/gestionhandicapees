@@ -94,9 +94,11 @@ class Hand extends Model
     }
  
     public function HandMondate(){
-        $hands = Hand::whereHas('status',function($s){
-            $s->where('status', 'en cours');
-        })->get();
+        $hands = cache()->remember('HAND_MONDATE_MODEL',60*60*24,function(){
+            return Hand::whereHas('status',function($s){
+                    $s->where('status', 'en cours');
+            })->get();
+        });
         return $hands;
     }
 

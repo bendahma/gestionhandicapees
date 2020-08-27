@@ -107,6 +107,8 @@ Route::middleware(['auth'])->group(function(){
             Route::get('statistique', 'RenouvelementDossierController@Statistique')->name('statistique');
             Route::get('Init', 'RenouvelementDossierController@Init')->name('intia');
             Route::post('suspendu', 'RenouvelementDossierController@suspenduNonRenouvelle')->name('suspendu');
+            Route::get('listnonrenouvelle/{codeComune}', 'RenouvelementDossierController@ListNonRenouvelle')->name('listnonrenouvelle');
+            Route::get('listnonrenouvelle/NonRenouvelle/download', 'RenouvelementDossierController@export')->name('NonRenouvelleDownload');
             Route::resource('/', 'RenouvelementDossierController');        
         });
     });

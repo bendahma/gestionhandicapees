@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use Maatwebsite\Excel\Facades\Excel;
 use App\Hand;
 use App\CartHand;
 use App\PaieInformation;
 use App\RenouvellementDossier;
 use App\Commune;
 use App\HandSuspentionHistory;
+
+use App\Exports\HandNonRenouvelle;
 use DB;
 use Artisan;
 class RenouvelementDossierController extends Controller
@@ -108,5 +110,26 @@ class RenouvelementDossierController extends Controller
         Artisan::call('cache:clear');
         return redirect(route('renouvellement.statistique'));
                 
+    }
+
+    public function ListNonRenouvelle($code){
+        $handNonRen = Hand::whereHas('renouvellementdossier',function($query){
+            $query->where('dossierRenouvelle' ,0);
+        })->whereHas('status',function($query){
+            $query->where('status','En cours');
+        })->where('codeCommune',$code)->get();
+
+        $commune = Commune::where('codeCommune',$code)->first();
+
+        return view('admin.renouvellement.list')
+                        ->with('handNonRen', $handNonRen)
+                        ->with('commune', $commune);
+    }
+
+    public function export() {
+        $filename = 'Lists des non renouvelle' .date('YmdHis'). '.xlsx';
+        ob_end_clean();
+        ob_start();
+        return Excel::download(new HandNonRenouvelle, $filename);
     }
 }
