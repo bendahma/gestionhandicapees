@@ -28,7 +28,6 @@ class RenouvelementDossierController extends Controller
             return Hand::with('renouvellementdossier')->get(['id','nameFr','dob']);
         }); 
         return view('admin.renouvellement.index')->with('hands', $hands);
-    
     }
 
     public function DossierRemi(Request $request, Hand $hand){
@@ -55,9 +54,14 @@ class RenouvelementDossierController extends Controller
 
         $handsGrp = Hand::get()->groupBy('codeCommune');
         
+        // $handRen = Hand::whereHas('renouvellementdossier',function($query){
+        //     $query->where('dossierRenouvelle',1);
+        // })->orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
         $handRen = Hand::whereHas('renouvellementdossier',function($query){
-            $query->where('dossierRenouvelle',1);
-        })->get()->groupBy('codeCommune');
+            $query->where('dossierRenouvelle','=',true);
+        })->get();
+        
+        dd($handRen);
         
         return view('admin.renouvellement.stat')
                     ->with('hands', $hands)
