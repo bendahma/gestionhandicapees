@@ -11,7 +11,7 @@ use App\PaieInformation;
 use App\RenouvellementDossier;
 use App\Commune;
 use App\HandSuspentionHistory;
-
+use App\Imports\DossierAnnuelRenouvelleImport;
 use App\Exports\HandNonRenouvelle;
 use DB;
 use Artisan;
@@ -24,9 +24,18 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-        $hands = cache()->remember('HAND_RENOUVELLEMENT',60*60*24,function(){
-            return Hand::with('renouvellementdossier')->get(['id','nameFr','dob']);
-        }); 
+        // $hands = Hand::with(['renouvellementdossier'=> function($q){
+        //         $q->where('dossierRenouvelle',false);
+        //     }])->get(['id','nameFr','dob']);
+
+        $hands = DB::table('hands')
+                ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
+                ->join('renouvellement_dossiers','renouvellement_dossiers.hand_id','hands.id')
+                ->select('hands.*','renouvellement_dossiers.*' ) 
+                ->where('hand_paie_statuses.status','=','En cours')
+                ->where('renouvellement_dossiers.dossierRenouvelle','=','0')
+                ->get();
+      
         return view('admin.renouvellement.index')->with('hands', $hands);
     }
 
@@ -48,27 +57,28 @@ class RenouvelementDossierController extends Controller
         $renouvelle = new RenouvellementDossier();
         $commune = Commune::all();
 
-        $hands = Hand::with('renouvellementdossier')
-                    ->orderBy('codeCommune','ASC')
-                    ->get();        
+        $hands =  $hands = DB::table('hands')
+                ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
+                ->select('hands.*' ) 
+                ->where('hand_paie_statuses.status','=','En cours')
+                ->get(); 
 
         $handsGrp = Hand::get()->groupBy('codeCommune');
         
-        // $handRen = Hand::whereHas('renouvellementdossier',function($query){
-        //     $query->where('dossierRenouvelle',1);
-        // })->orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
         $handRen = Hand::whereHas('renouvellementdossier',function($query){
-            $query->where('dossierRenouvelle','=',true);
-        })->get();
+            $query->where('dossierRenouvelle',1);
+        })->orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
         
-        dd($handRen);
+
+        
         
         return view('admin.renouvellement.stat')
                     ->with('hands', $hands)
                     ->with('handsGrp', $handsGrp)
                     ->with('communes',$commune)
                     ->with('HandRen',$handRen)
-                    ->with('renouvelle', $renouvelle->GetNbrRenouvelle());
+                    ->with('renouvelle', $renouvelle->GetNbrRenouvelle())
+                    ->with('nonRenouvelle', $renouvelle->GetNbrnonRenouvelle());
     }
     
     public function Init(){
@@ -135,5 +145,27 @@ class RenouvelementDossierController extends Controller
         ob_end_clean();
         ob_start();
         return Excel::download(new HandNonRenouvelle, $filename);
+    }
+
+    public function renouvelleDossierFromFile(Request $request){
+        
+        Excel::import(new DossierAnnuelRenouvelleImport, $request->file('dossierAnnuelRenouvelle'));
+        
+        session()->flash('success','Données import avec success');
+        
+        return redirect()->back();
+    }
+
+    public function ListNonRenouvelleToutes(){
+        $hands = DB::table('hands')
+                ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
+                ->join('renouvellement_dossiers','renouvellement_dossiers.hand_id','hands.id')
+                ->select('hands.*','renouvellement_dossiers.*' ) 
+                ->where('hand_paie_statuses.status','=','En cours')
+                ->where('renouvellement_dossiers.dossierRenouvelle','=','1')
+                ->get();
+
+        return view('admin.renouvellement.renouvelle')
+                ->with('hands',$hands);
     }
 }

@@ -81,6 +81,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Operation Hand</h6>
               <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">Renouvellement</a>
+              <a class="collapse-item" href="{{route('renouvellement.renouvelleTous')}}" target="_blank">Lists des renouvelles</a>
               <a class="collapse-item" href="{{route('renouvellement.statistique')}}" target="_blank">Statistique</a>
             </div>
           </div>
@@ -423,6 +424,7 @@
           @yield('List-Filtre')
           @yield('addDesengagement')
           @yield('AfficheCfTresor')
+          @yield('uploadDossierAnnuel')
         </div>
         <!-- End of Main Content -->
 

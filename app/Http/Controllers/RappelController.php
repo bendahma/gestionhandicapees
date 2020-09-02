@@ -207,7 +207,7 @@ class RappelController extends Controller
 
         session()->flash('success','Rappel a été confirme');
 
-        return redirect(route('rappel.index'));
+        return redirect()->back();
 
     }
 }

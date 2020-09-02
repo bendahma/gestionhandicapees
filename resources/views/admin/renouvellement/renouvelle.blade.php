@@ -7,8 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Renouvellement Dossier Annuel Des Handicapées Mondate</h1>
-          <a href="{{route('renouvellement.intia')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Debut de Renouvellement</a>
+          <h1 class="h3 mb-0 text-gray-800">Listes Des Handicpaée renouvelle son dossier annuel</h1>
         </div>
 
  <!-- DataTales Example -->
@@ -24,8 +23,7 @@
               <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              <th>Date Renouvelement</th>
-              <th>Confirmé</th>
+              
               
             </tr>
           </thead>
@@ -33,20 +31,8 @@
             @foreach ($hands as $key => $hand)
               <tr>
                 <td>{{$key = $key + 1}}</td>
-                <td>{{$hand->nameFr}}</td>
-                <td >{{date('d/m/Y', strtotime($hand->dob))}}</td>
-                
-                  <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
-                      @csrf
-                      @method('PATCH')
-                      <td>
-                        <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}" >
-                      </td>
-                      <td>
-                        <input type="submit" class="btn btn-success btn-block " value="Confirmé"> 
-                      </td>
-                  </form>
-               
+                <td width="40%">{{$hand->nameFr}}</td>
+                <td width="40%">{{date('d/m/Y', strtotime($hand->dob))}}</td>
               </tr>
             @endforeach
             

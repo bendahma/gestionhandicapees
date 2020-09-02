@@ -52,7 +52,7 @@
                      <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">Nombre des dossiers  <br />non renouvellé</div>
                         <div class="h4 mb-0 font-weight-bold text-gray-800">
-                           {{$hands->count() - $renouvelle}}
+                           {{$nonRenouvelle}}
                         </div>
                      </div>
                      <div class="col-auto">

@@ -46,11 +46,6 @@ class UploadHandInfoController extends Controller
         }else if($request->has('paieinfofile')){
             Excel::import(new PaieBeneficierImport, $request->file('paieinfofile'));
         }
-        // $info = PaieInformation::all();
-        // foreach($info as $i){
-        //     $i->RIP = str_replace('*','',$i->RIP);
-        //     $i->save();
-        // }
 
         session()->flash('success','Données import avec success');
         
