@@ -317,7 +317,8 @@
                                 </textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> 
+                    <input type="hidden" name="incomingRequest" value="{{URL::previous()}}">
                     <hr>
                     <div class="row">
                         <div class="col">

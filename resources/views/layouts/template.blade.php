@@ -80,7 +80,7 @@
           <div id="dossierAnnuel" class="collapse" aria-labelledby="dossierAnnuel" data-parent="#dossierAnnuel">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Operation Hand</h6>
-              <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">Renouvellement</a>
+              <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">List non renouvelle</a>
               <a class="collapse-item" href="{{route('renouvellement.renouvelleTous')}}" target="_blank">Lists des renouvelles</a>
               <a class="collapse-item" href="{{route('renouvellement.statistique')}}" target="_blank">Statistique</a>
             </div>
@@ -190,11 +190,11 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Rappel</h6>
               {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
-              <a class="collapse-item" href="{{route('rappel.list')}}">Listes Des Rappels</a>
+              <a class="collapse-item" href="{{route('rappel.list')}}" target="_blank">Listes Des Rappels</a>
               @if(Auth::user()->isAdmin())
-                  <a class="collapse-item" href="{{route('rappel.create')}}">Saisie Rappel</a>
-                  <a class="collapse-item" href="{{route('rappel.add')}}">Ajouter Rappel</a>
-                  <a class="collapse-item" href="">Traitement du Rappel</a>
+                  <a class="collapse-item" href="{{route('rappel.create')}}" target="_blank">Saisie Rappel</a>
+                  <a class="collapse-item" href="{{route('rappel.add')}}" target="_blank">Ajouter Rappel</a>
+                  <a class="collapse-item" href="" target="_blank">Traitement du Rappel</a>
               @endif
             </div>
           </div>
@@ -230,9 +230,9 @@
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Lists</h6>
-              <a class="collapse-item" href="{{route('listhands.encours')}}">En-cours</a>
-              <a class="collapse-item" href="{{route('listhands.enattente')}}">En-Attente</a>
-              <a class="collapse-item" href="{{route('listhands.arrete')}}">Suspendu & Arrete</a>
+              <a class="collapse-item" href="{{route('listhands.encours')}}" target="_blank">En-cours</a>
+              <a class="collapse-item" href="{{route('listhands.enattente')}}" target="_blank">En-Attente</a>
+              <a class="collapse-item" href="{{route('listhands.arrete')}}" target="_blank">Suspendu & Arrete</a>
             </div>
           </div>
         </li>
@@ -257,9 +257,9 @@
               <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Les operations du budget</h6>
-                  <a class="collapse-item" href="{{route('budget.index')}}">Résume du Budget</a>
-                  <a class="collapse-item" href="{{route('budget.create')}}">Ajouter Budget</a>
-                  <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}">Desengagement</a>
+                  <a class="collapse-item" href="{{route('budget.index')}} target="_blank"">Résume du Budget</a>
+                  <a class="collapse-item" href="{{route('budget.create')}}" target="_blank">Ajouter Budget</a>
+                  <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}" target="_blank">Desengagement</a>
                 </div>
               </div>
             </li>
@@ -278,7 +278,7 @@
             <div id="upload" class="collapse" aria-labelledby="headingTwo" data-parent="#upload">
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data source</h6>
-                <a class="collapse-item" href="{{route('upload.index')}}">Upload from Excel</a>             
+                <a class="collapse-item" href="{{route('upload.index')}}" target="_blank">Upload from Excel</a>             
               </div>
             </div>
           </li>
@@ -292,7 +292,7 @@
           <div id="download" class="collapse" aria-labelledby="headingTwo" data-parent="#download">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Data source</h6>
-              <a class="collapse-item" href="">Export (Excel)</a>             
+              <a class="collapse-item" href="" target="_blank">Export (Excel)</a>             
             </div>
           </div>
         </li>

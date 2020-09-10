@@ -198,8 +198,10 @@ class HandsInfoController extends Controller
         ]);
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
-
-        return redirect(route('hand.suspendu',$hand->id));
+        
+        $incommingURL = $request->incomingRequest;
+        
+        return redirect($incommingURL);
     }
 
     public function destroy(Hand $hand,Request $request)

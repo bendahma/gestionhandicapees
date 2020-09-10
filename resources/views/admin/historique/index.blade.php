@@ -26,8 +26,6 @@
               <th>N° </th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
-              <th>CCP</th>
-              <th>Statut</th>
               <th>Historique</th>
               <th>Historique</th>   
             </tr>
@@ -38,8 +36,6 @@
                 <td>{{$n+1}}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
-                <td>{{$hand->paieinformation->CCP}}</td>
-                <td>{{$hand->status->status}}</td>
                <td>
                   <a class="btn btn-link" href="{{route('historique.HistoriquePaie', $hand->id)}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 
                   <span style="font-size: 1rem; font-weight:700; text-decoration:none; color:rgb(61, 9, 204)">Paiement</span></a>
