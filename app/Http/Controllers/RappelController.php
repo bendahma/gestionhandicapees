@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Exports\RappelsExport;
+use App\Imports\ListRappelFait;
 
 use App\Hand;
 use App\CartHand;
@@ -61,14 +62,13 @@ class RappelController extends Controller
     public function listePaiementRappel()
     {        
         $RappelHandsInstance = DB::table('hands')
-                        ->join('paie_information','paie_information.hand_id','hands.id')
-                        ->join('hand_rappel','hand_rappel.hand_id','hands.id')
-                        ->join('rappels','rappels.id','hand_rappel.rappel_id')
-                        ->select('hands.nameFr', 'hands.dob','paie_information.CCP','rappels.dateDebut', 'rappels.dateFin','rappels.nombreMois','rappels.RappelFait','hand_rappel.hand_id','hand_rappel.rappel_id')
-                        ->get();
-
-        
-        
+                                    ->join('paie_information','paie_information.hand_id','hands.id')
+                                    ->join('hand_rappel','hand_rappel.hand_id','hands.id')
+                                    ->join('rappels','rappels.id','hand_rappel.rappel_id')
+                                    ->select('hands.nameFr', 'hands.dob','paie_information.CCP','rappels.dateDebut', 'rappels.dateFin','rappels.nombreMois','rappels.RappelFait','hand_rappel.hand_id','hand_rappel.rappel_id')
+                                    ->orderBy('rappels.dateFin','desc')
+                                    ->get();
+        // dd($RappelHandsInstance);
         return view('admin.rappel.list')
                 ->with('rappels',$RappelHandsInstance);
     }
@@ -123,18 +123,18 @@ class RappelController extends Controller
     }
 
     public function Saisie(Request $request){
-        $rappel = new Rappel();
-        $rappel->create([
-            'AnneeRappel' => $request->anneeRappel,
-            'DatePaiementRappel' => $request->datePaiementRappel,
-            'DateDebut' => $request->dateDebutRappel,
-            'DateFin' => $request->dateFinRappel,
-            'montantRappel' => $request->montantPaiement,
+        
+        DB::table('traitement_rappel')->insert([
+            'montantRappel' =>  $request->montantPaiement,
             'montantAssurance' => $request->montantAssurance,
             'nombreMois' => $request->nbrMois,
             'nombrePersonne' => $request->nbrPersonne,
-            'RappelFait' => 1
+            'moisRappel' => $request->moisRappel,
+            'anneesRappel' => $request->anneeRappel,
+            'dateDebutRappel' => $request->dateDebutRappel,
+            'dateFinRappel' => $request->dateFinRappel,
         ]);
+
         session()->flash('success','Rappel Added Successfully');
         return redirect(route('rappel.index'));
     }
@@ -209,5 +209,14 @@ class RappelController extends Controller
 
         return redirect()->back();
 
+    }
+
+
+    public function rappelFait(Request $request){
+
+        Excel::import(new ListRappelFait, $request->file('listRappelHand'));
+        dd('1');
+        session()->flash('success','Rappel saisie avec success');
+        return redirect()->back();
     }
 }

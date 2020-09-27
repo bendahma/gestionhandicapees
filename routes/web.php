@@ -40,10 +40,10 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::get('DownloadBudgetConsomptionCnas' , 'BudgetController@DownloadBudgetConsomptionCnas')->name('DownloadBudgetConsomptionCnas'); 
             Route::get('Desengagement' , 'BudgetController@getDesengagemengt')->name('getDesengagemengt'); 
             Route::patch('DesengagementBudget' , 'BudgetController@DesengagementBudget')->name('DesengagementBudget');
-            Route::resource('/' , 'BudgetController');
         });
 
     });
+    Route::resource('/budget' , 'BudgetController');
 
     Route::prefix('rappel')->group(function(){
         Route::name('rappel.')->group(function(){
@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/hand/suspendu/{hand}', "MainController@suspendu")->name('hand.suspendu');
 
     Route::post('/hands/restore/{hand}', "HandsInfoController@restore")->name('hands.restore');
+    Route::get('/hands/editSuspensionInfo/{id}', "HandsInfoController@editHandSuspensionInfo")->name('hands.editSuspensionInfo');
+    Route::patch('/hands/UpdateSuspendu', "HandsInfoController@updateHandSuspensionInfo")->name('hands.updateSuspensionInfo');
     Route::resource('/hands' , 'HandsInfoController');
 
     Route::resource('/upload' , 'UploadHandInfoController');
@@ -83,8 +85,15 @@ Route::middleware(['auth'])->group(function(){
         });
     });
 
-    Route::get('/rappel/list' , 'RappelController@listePaiementRappel')->name('rappel.list');
-    Route::get('/rappel/export' , 'RappelController@export')->name('rappel.export');
+    Route::prefix('rappel')->group(function(){
+        Route::name('rappel.')->group(function(){
+            Route::get('list' , 'RappelController@listePaiementRappel')->name('list');
+            Route::get('export' , 'RappelController@export')->name('export');
+            Route::post('rappelFait' , 'RappelController@rappelFait')->name('rappelFait');
+        });
+    });
+
+    
 
     Route::get('/attestation/{listType}', 'AttestationController@index')->name('attestation');
     Route::get('/attestation/telecharger/{hand}/{papier}', 'AttestationController@Download')->name('attestation.telecharger');

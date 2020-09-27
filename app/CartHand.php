@@ -7,7 +7,7 @@ use app\Hand;
 
 class CartHand extends Model
 {
-    protected $fillable = ['numeroCart', 'natureHandFr','natureHandAr', 'pourcentage','dateCarte'];
+    protected $fillable = ['numeroCart', 'natureHandFr','natureHandAr', 'pourcentage','dateCarte','dateCommissionPension'];
 
     public function hand()
     {

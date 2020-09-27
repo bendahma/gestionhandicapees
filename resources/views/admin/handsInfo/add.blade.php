@@ -172,31 +172,39 @@
                     <h4 class="text-danger font-weight-bold">Carte d'Handicapée</h3>
                     <hr>
                     <div class="row mt-1">
-                        <div class="col-lg-2">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="name" class="font-weight-bold">N° carte *</label>
                                 <input type="number" class="form-control" id=""  name="numeroCart" placeholder="N° carte handicapée ..." value="{{isset($hand) ? $hand->cartehand->numeroCart : ''}}">
                               </div>
                          </div>
-                        <div class="col-lg-3">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Nature d'handicapé *</label>
                                 <input type="text" class="form-control" id=""  name="natureHandFr" placeholder="Nature handicapée ..." value="{{isset($hand) ? $hand->cartehand->natureHandFr : ''}}">
                             </div>
                         </div>
-                        <div class="col-lg-3 text-right">
+                        <div class="col text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">طبيعة الإعاقة * </label>
                                 <input type="text" class="form-control text-right"  id="" name="natureHandAr" placeholder="طبيعة الإعاقة ..." value="{{isset($hand) ? $hand->cartehand->natureHandAr : ''}}">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col">
                             <div class="form-group">
-                                <label for="lieuxNaiss" class="font-weight-bold">Date Du Commission * </label>
+                                <label for="lieuxNaiss" class="font-weight-bold">Date Du Carte </label>
                                 <input type="date" class="form-control " id="lieuxNaiss"  name="dateCarte" placeholder="Date du commission ..." value="{{isset($hand) ? $hand->cartehand->dateCarte : ''}}">
                             </div>
                         </div>
-                        <div class="col-lg-1 ">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lieuxNaiss" class="font-weight-bold">Date Du Pension </label>
+                                <input type="date" class="form-control " id="lieuxNaiss"  name="dateCommissionPension" placeholder="Date du commission ..." value="{{isset($hand) ? $hand->cartehand->dateCommissionPension : ''}}">
+                            </div>
+                        </div>
+
+                        
+                        <div class="col">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold ">% *</label>
                                 <input type="number" class="form-control" name="pourcentage" id=""  placeholder="%" value="{{isset($hand) ? $hand->cartehand->pourcentage : ''}}">
@@ -254,16 +262,22 @@
                         <h4 class="text-danger font-weight-bold">Informations Du Paiement</h3>
                         <hr>
                         <div class="row mt-1">
-                            <div class="col-lg-2">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">CCP *</label>
                                     <input type="text" class="form-control" required  id="" name="CCP" placeholder="CCP..." value="{{isset($hand) ? $hand->paieinformation->CCP : ''}}">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">RIP *</label>
                                     <input type="text" class="form-control" required  id="" name="RIP" placeholder="RIP ..." value="{{isset($hand) ? $hand->paieinformation->RIP : ''}}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Date Debut Pension</label>
+                                    <input type="date" class="form-control " id="" name="dateDebutPension" placeholder="Date Debut Pension ..." value="{{isset($hand) ? $hand->paieinformation->dateDebutPension : ''}}">
                                 </div>
                             </div>
                             <div class="col">

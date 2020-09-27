@@ -34,6 +34,7 @@
               <th>Date suspension</th>
               <th>Motif</th>
               <th>Obs</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -42,14 +43,19 @@
                 <td>{{ $k = $k + 1 }}</td>
                 <td>{{$hand->nameFr}}</td>
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
+                <td>{{$hand->status->dateSupprission}}</td>
+                <td>{{$hand->status->motifAr}}</td>
+                <td dir="rtl" style="text-align: right">{{$hand->status->motifAr == 'AUTRE' ? $hand->status->autreMotif : ''}}</td>
                 <td>
-                    {{$hand->status->dateSupprission}}
-                </td>
-                <td>
-                    {{$hand->status->motifAr}}
-                </td>
-                <td dir="rtl" style="text-align: right">
-                    {{$hand->status->motifAr == 'AUTRE' ? $hand->status->autreMotif : ''}}
+                  <ul class="nav ">
+                    <div class="d-flex">
+                       <a class="btn btn-link" href="" style="font-size: 1.5rem" target="_blank"> <span style="color:rgb(7, 60, 233)"><i class="far fa-eye"></i></span> </a>
+                       <a class="btn btn-link" href=" {{route('hands.editSuspensionInfo',$hand->id)}} " style="font-size: 1.5rem" target="_blank"> <span style="color:rgb(14, 243, 91)"><i class="fas fa-user-edit "></i></span></a>
+                       
+                       <a class="btn btn-link" href="" style="font-size: 1.5rem" target="_blank"> <span style="color:tomato"><i class="far fa-trash-alt"></i></span></a>
+                      
+                     </div>
+               </ul>
                 </td>
               </tr>
             @endforeach

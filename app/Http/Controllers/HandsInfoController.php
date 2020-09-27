@@ -75,11 +75,13 @@ class HandsInfoController extends Controller
         $cartHand->natureHandAr=$request->natureHandAr;
         $cartHand->pourcentage=$request->pourcentage;
         $cartHand->dateCarte=$request->dateCarte;
+        $cartHand->dateCommissionPension=$request->dateCommissionPension;
         $hand->cartehand()->save($cartHand);
 
         $paieInfo->CCP = $request->CCP;
         $paieInfo->RIP = $request->RIP;
         $paieInfo->datePremierPension = $request->datePremierPension;
+        $paieInfo->dateDebutPension = $request->dateDebutPension;
         $paieInfo->dateDecisionPension = $request->dateDecisionPension;
         $hand->paieinformation()->save($paieInfo);
 
@@ -175,13 +177,15 @@ class HandsInfoController extends Controller
             'natureHandFr'=>$request->natureHandFr,
             'natureHandAr'=>$request->natureHandAr,
             'pourcentage'=>$request->pourcentage,
-            'dateCarte'=>$request->dateCarte
+            'dateCarte'=>$request->dateCarte,
+            'dateCommissionPension'=>$request->dateCommissionPension,
         ]);
 
         $paieInfo->update([
             'CCP' => $request->CCP,
             'RIP' => $request->RIP,
             'datePremierPension' => $request->datePremierPension,
+            'dateDebutPension' => $request->dateDebutPension,
             'dateDecisionPension' => $request->dateDecisionPension,
         ]);
 
@@ -321,6 +325,16 @@ class HandsInfoController extends Controller
         Artisan::call('cache:clear');
 
         return redirect()->back();
+    }
+
+    public function editHandSuspensionInfo($id){
+        $status = HandPaieStatus::where('hand_id',$id)->first();
+        return view('admin.handsInfo.editSuspension')
+                        ->with('status',$status);
+    }
+
+    public function updateHandSuspensionInfo(Request $request){
+        //
     }
 
 

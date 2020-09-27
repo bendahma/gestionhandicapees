@@ -29,8 +29,22 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="name" class="font-weight-bold">Date Paiement Rappel</label>
-                                    <input type="date" class="form-control" required name="datePaiementRappel" >
+                                    <label for="name" class="font-weight-bold">Mois Paiement Rappel</label>
+                                    <select name="moisRappel" id="" class="custom-select">
+                                        <option value="" selected disabled>Choisi mois paiement rappel</option>
+                                        <option value="01">Janvier</option>
+                                        <option value="02">Fevrier</option>
+                                        <option value="03">Mars</option>
+                                        <option value="04">Avril</option>
+                                        <option value="05">Mai</option>
+                                        <option value="06">Juin</option>
+                                        <option value="07">Juillet</option>
+                                        <option value="08">Aout</option>
+                                        <option value="09">Septembre</option>
+                                        <option value="10">Octobre</option>
+                                        <option value="11">Novembre</option>
+                                        <option value="12">Decembre</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">

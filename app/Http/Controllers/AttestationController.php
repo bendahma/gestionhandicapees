@@ -25,6 +25,12 @@ class AttestationController extends Controller
                 return Hand::all();
             });
 
+        }else if($listType == 'perde'){
+
+            $hands = cache()->remember('ATTESTATION_PAIEMENT',60*60*24,function(){
+                return Hand::all();
+            });
+
         } else if($listType == 'desistement'){
             $hands = cache()->remember('ATTESTATION_DESISTEMENT',60*60*24,function(){
                 return Hand::onlyTrashed()->get();
@@ -37,6 +43,7 @@ class AttestationController extends Controller
 
     public function Download($id,$papier){
         $templateAttPaie = new \PhpOffice\PhpWord\TemplateProcessor(dirname(dirname(__DIR__)) . '\Templates\AttestationPaiement.docx');
+        $templateAttPerde = new \PhpOffice\PhpWord\TemplateProcessor(dirname(dirname(__DIR__)) . '\Templates\AttestationPerde.docx');
         $templateDesistement = new \PhpOffice\PhpWord\TemplateProcessor(dirname(dirname(__DIR__)) . '\Templates\DesistementPaie.docx');
 
         $hand = Hand::withTrashed()->where('id',$id)->first();
@@ -79,7 +86,23 @@ class AttestationController extends Controller
             $template->setValue('natureAr',$hand->cartehand->natureHandAr);
             $template->setValue('usernameAr',Auth::user()->nameAr);
             $output = "Attestation Paiement " . $hand->nameFr .".docx";
-        }else if($papier == 'desistement'){
+        }else if($papier == 'perde') {
+            $template = $templateAttPerde ;
+            $template->setValue('dateAj',date('Y/m/d'));
+            $template->setValue('annee',date('Y'));
+            $template->setValue('nomAr',$hand->nomAr);
+            $template->setValue('prenomAr',$hand->prenomAr);
+            $template->setValue('dob',$hand->dob);
+            $template->setValue('communeNaissanceAr',$hand->lieuxNaissanceAr);
+            $template->setValue('adresseAr',$hand->addressAr);
+            $template->setValue('commueAr',$commune->nomCommuneAr);
+           
+            $template->setValue('natureAr',$hand->cartehand->natureHandAr);
+            $template->setValue('usernameAr',Auth::user()->nameAr);
+            $output = "Attestation Perde " . $hand->nameFr .".docx";
+        }
+        
+        else if($papier == 'desistement'){
             $status = $hand->status->status;
             if($status == 'En cours'){
                 session()->flash('error','L\'Handicapée est en cours de paiement,Suspendu le avant Téléchargé l\'attestation du désistement');

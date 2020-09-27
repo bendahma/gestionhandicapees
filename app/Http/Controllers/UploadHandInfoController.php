@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\HandsImport;
 use App\Imports\PaieBeneficierImport;
+use App\Imports\SuspendHandImport;
 use App\Exports\AllHandExport;
 
 
@@ -45,9 +46,11 @@ class UploadHandInfoController extends Controller
             Excel::import(new HandsImport, $request->file('file'));
         }else if($request->has('paieinfofile')){
             Excel::import(new PaieBeneficierImport, $request->file('paieinfofile'));
+        }else if($request->has('suspenduHandList')){
+            Excel::import(new SuspendHandImport, $request->file('suspenduHandList'));
         }
 
-        session()->flash('success','Données import avec success');
+        session()->flash('success','Poération terminé avec success');
         
         return redirect('/upload');
     }

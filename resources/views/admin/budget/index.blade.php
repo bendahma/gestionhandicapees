@@ -8,7 +8,7 @@
 
     <div class="container">
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Le Budget d'année {{date('Y')}}  </h1>
          </div>
 
@@ -46,9 +46,9 @@
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Le Budget Supplémentaire d'année {{date('Y')}}  </h1>
-       </div>
+       </div> --}}
 
-      <div class="row">
+      {{-- <div class="row">
           <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-success shadow h-100 py-2">
               <div class="card-body">
@@ -83,8 +83,8 @@
       </div>
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Consommation du Budget Jusqu'a {{date('M Y')}}</h1>
-      </div>
-      <div class="row">
+      </div> --}}
+      {{-- <div class="row">
          <div class="col-xl-4 col-md-6 mb-4">
            <div class="card border-success shadow h-100 py-2">
              <div class="card-body">
@@ -119,8 +119,8 @@
        </div>
        <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Le reste du Budget D'année {{date('Y')}}</h1>
-      </div>
-      <div class="row">
+      </div> --}}
+      {{-- <div class="row">
          <div class="col-xl-4 col-md-6 mb-4">
            <div class="card border-success shadow h-100 py-2">
              <div class="card-body">
@@ -152,10 +152,10 @@
              </div>
            </div>
          </div>
-       </div>
+       </div>--}}
        <div class="d-sm-flex align-items-center justify-content-between mb-4">
        <h1 class="h3 mb-0 text-gray-800">Fiche du consommation du budget d'année {{date('Y')}}</h1>
-      </div>
+      </div> 
       <div class="row">
         <div class="col-lg-5">
           <div class="card border-success shadow h-100 py-2">

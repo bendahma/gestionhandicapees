@@ -19,6 +19,7 @@
                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                      <tr>
+                     <th>N°</th>
                      <th>Nom & Prenom</th>
                      <th>Date Naissance</th>
                      <th>CCP</th>
@@ -29,8 +30,9 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ($rappels as $r)
+                     @foreach ($rappels as $key => $r)
                      <tr>
+                        <td> {{$key = $key +1}} </td>
                         <td>{{$r->nameFr}}</td>
                         <td>{{date('d/m/Y', strtotime($r->dob))}}</td>
                         <td>{{$r->CCP}}</td>
@@ -64,11 +66,7 @@
                                        </button>
                                  </form> 
                               </div>
-
                            </ul>
-                         
-                           
-                           
                         </td>
                      </tr>
                      @endforeach

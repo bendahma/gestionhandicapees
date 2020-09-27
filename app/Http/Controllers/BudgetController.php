@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Budget;
 use App\Paie;
-
+use DB;
 class BudgetController extends Controller
 {
     public function index()
@@ -86,34 +86,32 @@ class BudgetController extends Controller
         $NbrDec = $PaieDec == 0 ? 0 : $PaieDec/10000;
 
 
+        $NbrRappelJan = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','01')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');                 
+        $NbrRappelFev = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','02')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelMars = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','03')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelAvr = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','04')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelMai = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','05')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelJuin = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','06')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelJuil = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','07')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelAout = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','08')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelSept = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','09')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelOct = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','10')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelNov = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','11')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelDec = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','12')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
 
-        // RAPPEL HAND NUMBERS
-        $NbrRappelJan = 0;
-        $NbrRappelFev = 0;
-        $NbrRappelMars = 0;
-        $NbrRappelAvr = 0;
-        $NbrRappelMai = 0;
-        $NbrRappelJuin = 0;
-        $NbrRappelJuil = 0;
-        $NbrRappelAout = 0;
-        $NbrRappelSept = 0;
-        $NbrRappelOct = 0;
-        $NbrRappelNov = 0;
-        $NbrRappelDec = 0;
-
-        // MONTANT RAPPEL HAND
-        $MontantRappelJanv = 0;
-        $MontantRappelFev = 0;
-        $MontantRappelMars = 0;
-        $MontantRappelAvr = 0;
-        $MontantRappelMai = 0;
-        $MontantRappelJuin = 0;
-        $MontantRappelJuil = 0;
-        $MontantRappelAout = 0;
-        $MontantRappelSept = 0;
-        $MontantRappelOct = 0;
-        $MontantRappelNov = 0;
-        $MontantRappelDec = 0;
+        // MONTANT RAPPEL PAIE HAND
+        $MontantRappelPaieJanv = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','01')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieFev = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','02')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieMars = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','03')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieAvr = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','04')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieMai = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','05')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieJuin = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','06')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieJuil = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','07')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieAout = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','08')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieSept = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','09')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieOct = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','10')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieNov = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','11')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
+        $MontantRappelPaieDec = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','12')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantRappel');
 
         // --------------------------------------------------------------------------------
 
@@ -134,18 +132,18 @@ class BudgetController extends Controller
 
         //-------------------------------------------------------------------------------
 
-        $totalMontantJanv = $PaieJanv + $MontantRappelJanv;
-        $totalMontantFev  = $PaieFev + $MontantRappelFev;
-        $totalMontantMars = $PaieMars + $MontantRappelMars;
-        $totalMontantAvril = $PaieAvr + $MontantRappelAvr;
-        $totalMontantMai = $PaieMai + $MontantRappelMai;
-        $totalMontantJuin = $PaieJuin + $MontantRappelJuin;
-        $totalMontantJuil = $PaieJuil + $MontantRappelJuil;
-        $totalMontantAout = $PaieAout + $MontantRappelAout;
-        $totalMontantSept = $PaieSept + $MontantRappelSept;
-        $totalMontantOct = $PaieOct + $MontantRappelOct;
-        $totalMontantNov = $PaieNov + $MontantRappelNov;
-        $totalMontantDec = $PaieDec + $MontantRappelDec;
+        $totalMontantJanv = $PaieJanv + $MontantRappelPaieJanv;
+        $totalMontantFev  = $PaieFev + $MontantRappelPaieFev;
+        $totalMontantMars = $PaieMars + $MontantRappelPaieMars;
+        $totalMontantAvril = $PaieAvr + $MontantRappelPaieAvr;
+        $totalMontantMai = $PaieMai + $MontantRappelPaieMai;
+        $totalMontantJuin = $PaieJuin + $MontantRappelPaieJuin;
+        $totalMontantJuil = $PaieJuil + $MontantRappelPaieJuil;
+        $totalMontantAout = $PaieAout + $MontantRappelPaieAout;
+        $totalMontantSept = $PaieSept + $MontantRappelPaieSept;
+        $totalMontantOct = $PaieOct + $MontantRappelPaieOct;
+        $totalMontantNov = $PaieNov + $MontantRappelPaieNov;
+        $totalMontantDec = $PaieDec + $MontantRappelPaieDec;
 
         // -------------------------------------------------------------------------------
 
@@ -211,18 +209,18 @@ class BudgetController extends Controller
         $template->setValue('rn12', $NbrRappelDec);
 
         // --------------------------------------------------------------------
-        $template->setValue('rm1', number_format($MontantRappelJanv,'2',',',' '));
-        $template->setValue('rm2', number_format($MontantRappelFev,'2',',',' '));
-        $template->setValue('rm3', number_format($MontantRappelMars,'2',',',' '));
-        $template->setValue('rm4', number_format($MontantRappelAvr,'2',',',' '));
-        $template->setValue('rm5', number_format($MontantRappelMai,'2',',',' '));
-        $template->setValue('rm6', number_format($MontantRappelJuin,'2',',',' '));
-        $template->setValue('rm7', number_format($MontantRappelJuil,'2',',',' '));
-        $template->setValue('rm8', number_format($MontantRappelAout,'2',',',' '));
-        $template->setValue('rm9', number_format($MontantRappelSept,'2',',',' '));
-        $template->setValue('rm10', number_format($MontantRappelOct,'2',',',' '));
-        $template->setValue('rm11', number_format($MontantRappelNov,'2',',',' '));
-        $template->setValue('rm12', number_format($MontantRappelDec,'2',',',' '));
+        $template->setValue('rm1', number_format($MontantRappelPaieJanv,'2',',',' '));
+        $template->setValue('rm2', number_format($MontantRappelPaieFev,'2',',',' '));
+        $template->setValue('rm3', number_format($MontantRappelPaieMars,'2',',',' '));
+        $template->setValue('rm4', number_format($MontantRappelPaieAvr,'2',',',' '));
+        $template->setValue('rm5', number_format($MontantRappelPaieMai,'2',',',' '));
+        $template->setValue('rm6', number_format($MontantRappelPaieJuin,'2',',',' '));
+        $template->setValue('rm7', number_format($MontantRappelPaieJuil,'2',',',' '));
+        $template->setValue('rm8', number_format($MontantRappelPaieAout,'2',',',' '));
+        $template->setValue('rm9', number_format($MontantRappelPaieSept,'2',',',' '));
+        $template->setValue('rm10', number_format($MontantRappelPaieOct,'2',',',' '));
+        $template->setValue('rm11', number_format($MontantRappelPaieNov,'2',',',' '));
+        $template->setValue('rm12', number_format($MontantRappelPaieDec,'2',',',' '));
 
 
         // --------------------------------------------------------------------
@@ -342,33 +340,33 @@ class BudgetController extends Controller
 
 
 
-        // RAPPEL HAND NUMBERS
-        $NbrRappelJan = 0;
-        $NbrRappelFev = 0;
-        $NbrRappelMars = 0;
-        $NbrRappelAvr = 0;
-        $NbrRappelMai = 0;
-        $NbrRappelJuin = 0;
-        $NbrRappelJuil = 0;
-        $NbrRappelAout = 0;
-        $NbrRappelSept = 0;
-        $NbrRappelOct = 0;
-        $NbrRappelNov = 0;
-        $NbrRappelDec = 0;
+        $NbrRappelJan = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','01')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');                 
+        $NbrRappelFev = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','02')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelMars = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','03')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelAvr = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','04')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelMai = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','05')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelJuin = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','06')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelJuil = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','07')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelAout = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','08')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelSept = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','09')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelOct = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','10')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelNov = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','11')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
+        $NbrRappelDec = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','12')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.nombreMois');
 
-        // MONTANT RAPPEL HAND
-        $MontantRappelJanv = 0;
-        $MontantRappelFev = 0;
-        $MontantRappelMars = 0;
-        $MontantRappelAvr = 0;
-        $MontantRappelMai = 0;
-        $MontantRappelJuin = 0;
-        $MontantRappelJuil = 0;
-        $MontantRappelAout = 0;
-        $MontantRappelSept = 0;
-        $MontantRappelOct = 0;
-        $MontantRappelNov = 0;
-        $MontantRappelDec = 0;
+        // MONTANT RAPPEL PAIE HAND
+        $MontantRappelPaieJanv = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','01')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieFev = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','02')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieMars = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','03')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieAvr = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','04')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieMai = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','05')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieJuin = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','06')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieJuil = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','07')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieAout = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','08')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieSept = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','09')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieOct = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','10')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieNov = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','11')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+        $MontantRappelPaieDec = DB::table('traitement_rappel')->selectRaw('traitement_rappel.*')->where('traitement_rappel.moisRappel','=','12')->where('traitement_rappel.anneesRappel','=', $annee)->sum('traitement_rappel.montantAssurance');
+
 
         // --------------------------------------------------------------------------------
 
@@ -389,18 +387,18 @@ class BudgetController extends Controller
 
         //-------------------------------------------------------------------------------
 
-        $totalMontantJanv = $PaieJanv + $MontantRappelJanv;
-        $totalMontantFev  = $PaieFev + $MontantRappelFev;
-        $totalMontantMars = $PaieMars + $MontantRappelMars;
-        $totalMontantAvril = $PaieAvr + $MontantRappelAvr;
-        $totalMontantMai = $PaieMai + $MontantRappelMai;
-        $totalMontantJuin = $PaieJuin + $MontantRappelJuin;
-        $totalMontantJuil = $PaieJuil + $MontantRappelJuil;
-        $totalMontantAout = $PaieAout + $MontantRappelAout;
-        $totalMontantSept = $PaieSept + $MontantRappelSept;
-        $totalMontantOct = $PaieOct + $MontantRappelOct;
-        $totalMontantNov = $PaieNov + $MontantRappelNov;
-        $totalMontantDec = $PaieDec + $MontantRappelDec;
+        $totalMontantJanv = $PaieJanv + $MontantRappelPaieJanv;
+        $totalMontantFev  = $PaieFev + $MontantRappelPaieFev;
+        $totalMontantMars = $PaieMars + $MontantRappelPaieMars;
+        $totalMontantAvril = $PaieAvr + $MontantRappelPaieAvr;
+        $totalMontantMai = $PaieMai + $MontantRappelPaieMai;
+        $totalMontantJuin = $PaieJuin + $MontantRappelPaieJuin;
+        $totalMontantJuil = $PaieJuil + $MontantRappelPaieJuil;
+        $totalMontantAout = $PaieAout + $MontantRappelPaieAout;
+        $totalMontantSept = $PaieSept + $MontantRappelPaieSept;
+        $totalMontantOct = $PaieOct + $MontantRappelPaieOct;
+        $totalMontantNov = $PaieNov + $MontantRappelPaieNov;
+        $totalMontantDec = $PaieDec + $MontantRappelPaieDec;
 
         // -------------------------------------------------------------------------------
 
@@ -466,18 +464,18 @@ class BudgetController extends Controller
         $template->setValue('rn12', $NbrRappelDec);
 
         // --------------------------------------------------------------------
-        $template->setValue('rm1', number_format($MontantRappelJanv,'2',',',' '));
-        $template->setValue('rm2', number_format($MontantRappelFev,'2',',',' '));
-        $template->setValue('rm3', number_format($MontantRappelMars,'2',',',' '));
-        $template->setValue('rm4', number_format($MontantRappelAvr,'2',',',' '));
-        $template->setValue('rm5', number_format($MontantRappelMai,'2',',',' '));
-        $template->setValue('rm6', number_format($MontantRappelJuin,'2',',',' '));
-        $template->setValue('rm7', number_format($MontantRappelJuil,'2',',',' '));
-        $template->setValue('rm8', number_format($MontantRappelAout,'2',',',' '));
-        $template->setValue('rm9', number_format($MontantRappelSept,'2',',',' '));
-        $template->setValue('rm10', number_format($MontantRappelOct,'2',',',' '));
-        $template->setValue('rm11', number_format($MontantRappelNov,'2',',',' '));
-        $template->setValue('rm12', number_format($MontantRappelDec,'2',',',' '));
+        $template->setValue('rm1', number_format($MontantRappelPaieJanv,'2',',',' '));
+        $template->setValue('rm2', number_format($MontantRappelPaieFev,'2',',',' '));
+        $template->setValue('rm3', number_format($MontantRappelPaieMars,'2',',',' '));
+        $template->setValue('rm4', number_format($MontantRappelPaieAvr,'2',',',' '));
+        $template->setValue('rm5', number_format($MontantRappelPaieMai,'2',',',' '));
+        $template->setValue('rm6', number_format($MontantRappelPaieJuin,'2',',',' '));
+        $template->setValue('rm7', number_format($MontantRappelPaieJuil,'2',',',' '));
+        $template->setValue('rm8', number_format($MontantRappelPaieAout,'2',',',' '));
+        $template->setValue('rm9', number_format($MontantRappelPaieSept,'2',',',' '));
+        $template->setValue('rm10', number_format($MontantRappelPaieOct,'2',',',' '));
+        $template->setValue('rm11', number_format($MontantRappelPaieNov,'2',',',' '));
+        $template->setValue('rm12', number_format($MontantRappelPaieDec,'2',',',' '));
 
 
         // --------------------------------------------------------------------

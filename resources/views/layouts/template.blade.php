@@ -105,6 +105,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
               <a class="collapse-item" href="{{route('attestation','paiement')}}" target="_blank">Attestation Paiement</a>
+              <a class="collapse-item" href="{{route('attestation','perde')}}" target="_blank">Attestation Perde</a>
               <a class="collapse-item" href="{{route('attestation','desistement')}}" target="_blank">Désistement Paie</a>
             </div>
           </div>
@@ -257,7 +258,7 @@
               <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Les operations du budget</h6>
-                  <a class="collapse-item" href="{{route('budget.index')}} target="_blank"">Résume du Budget</a>
+                  <a class="collapse-item" href="{{route('budget.index')}}" target="_blank"">Résume du Budget</a>
                   <a class="collapse-item" href="{{route('budget.create')}}" target="_blank">Ajouter Budget</a>
                   <a class="collapse-item" href="{{route('budget.getDesengagemengt')}}" target="_blank">Desengagement</a>
                 </div>
@@ -425,6 +426,7 @@
           @yield('addDesengagement')
           @yield('AfficheCfTresor')
           @yield('uploadDossierAnnuel')
+          @yield('rappelFaitList')
         </div>
         <!-- End of Main Content -->
 

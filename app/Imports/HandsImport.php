@@ -44,6 +44,7 @@ class HandsImport implements ToModel
         $hand->sex =  isset($row[2]) ? $row[2] : NULL;
         $hand->dob =  isset($row[3]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3]) : NULL;
         $hand->address = isset($row[4]) ? $row[4] : NULL;
+        $hand->addressAr = isset($row[22]) ? $row[22] : NULL;
         $hand->deleted_at = (isset($row[16]) && ($row[16] == 'suspendu' || $row[16] == 'Arrete')) ? date("Y-m-d H:i:s") : NULL;
         $hand->obs = isset($row[13]) ? $row[13] : NULL;
         $hand->save();
@@ -57,7 +58,7 @@ class HandsImport implements ToModel
         // Paiement Information
         
         $compte->CCP = isset($row[5]) ? $row[5] : NULL;
-        $compte->RIP = isset($row[6]) ? $row[6] : NULL;
+        $compte->RIP = isset($row[6]) ? ltrim($row[6],'*') : NULL;
         $compte->datePremierPension = isset($row[9]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[9]) : NULL;
         $compte->Beneficier = isset($row[14]) ? $row[14] : NULL;
 
@@ -66,6 +67,7 @@ class HandsImport implements ToModel
         // -----------------------------------------------------------------------------------------------------
         // Cart information 
         $cardHand->natureHandFr =  isset($row[7]) ? $row[7] : NULL;
+        $cardHand->natureHandAr =  isset($row[21]) ? $row[21] : NULL;
         $cardHand->dateCarte = isset($row[8]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8]) : NULL;
         $cardHand->pourcentage = 100;
         $hand->cartehand()->save($cardHand);
@@ -76,7 +78,7 @@ class HandsImport implements ToModel
         
         // -------------------------------------------------------------------------------------------------------
         // UPLOAD SOCIALE SECURITE 
-        $securiteSociale->NSS = isset($row[12]) ? $row[12] : NULL;
+        $securiteSociale->NSS = isset($row[12]) ? ltrim($row[12],'*') : NULL;
         $hand->securitesociale()->save($securiteSociale);
 
         // UPLOAD HAND CURRENT SITUATION --------------------------------------------------------------------------------------------------------
