@@ -3,3 +3,9 @@
 [0913/090520.420:ERROR:settings.cc(320)] Settings magic is not 1129342067
 [0914/085042.562:ERROR:settings.cc(320)] Settings magic is not 1129342067
 [0923/085243.596:ERROR:settings.cc(320)] Settings magic is not 1129342067
+[1004/085126.790:ERROR:settings.cc(320)] Settings magic is not 1129342067
+[1015/091433.366:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1018/085114.945:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1019/102122.249:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1020/094440.998:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1020/101247.265:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)

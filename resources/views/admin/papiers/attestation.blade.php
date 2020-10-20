@@ -40,7 +40,8 @@
                         <span style="color:rgb(216, 25, 25)"><i class="fas fa-file-download"></i></span> 
                         <span style="font-size: 0.9rem; font-weight:700; text-decoration:none; color:rgb(216, 25, 25)">Attestation</span></a>
                     </td>
-                @else
+                @endif
+                @if($type == 'desistement')
                     <td>
                       <a class="btn btn-link" href="{{route('attestation.telecharger', [$hand->id, 'desistement'])}}" style="font-size: 1.4rem; text-decoration:none"> 
                         <span style="color:rgb(13, 245, 52)"><i class="fas fa-file-download"></i></span> 

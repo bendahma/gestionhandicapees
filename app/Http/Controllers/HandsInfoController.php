@@ -68,6 +68,7 @@ class HandsInfoController extends Controller
         $hand->situationFamilialeAr = $request->situationFamilialeAr;
         $hand->nbrenfant = $request->nbrenfant;
         $hand->obs = $request->obs;
+        $hand->phone = $request->phone;
         $hand->save();
         
         $cartHand->numeroCart=$request->numeroCart;
@@ -170,6 +171,7 @@ class HandsInfoController extends Controller
             'situationFamilialeAr' => $request->situationFamilialeAr,
             'nbrenfant' => $request->nbrenfant,
             'obs' => $request->obs,
+            'phone' => $request->phone,
         ]);
 
         $cartHand->update([

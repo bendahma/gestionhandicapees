@@ -31,8 +31,7 @@ class MainController extends Controller
     public function dashboard()
     {
         $hands = Hand::with(['paieinformation:hand_id,CCP','status:hand_id,status'])->withTrashed()->get(['id','nameFr','dob']);
-
-        
+    
         return view('dashboard')
                     ->with('hands',$hands);       
     }

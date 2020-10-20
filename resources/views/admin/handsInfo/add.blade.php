@@ -152,6 +152,12 @@
                         
                     </div>             
                     <div class="row mt-1">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold">N° Téléphone *</label>
+                                <input type="integer" class="form-control"  name="phone" id="" placeholder="N° Téléphone" value="{{ isset($phone) ? $hand->phone : '' }}">
+                            </div>
+                        </div>  
                         <div class="col-lg-4 text-right">
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">مكان الميلاد *</label>

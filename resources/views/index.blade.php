@@ -19,7 +19,7 @@
       }
     </style>
   </head>
-  <body style="background: rgb(217, 213, 223);">
+  <body style=" background: rgb(238, 236, 240);">
     <div class="container-fluid mt-3">
       <div class="d-flex justify-content-between">
         <div class="" style="color:rgb(0, 0, 0);">

@@ -76,7 +76,7 @@
                               @endif
                            </td>
                            <td> {{ $p->NumeroMondatePaie }} </td>
-                           <td></td>
+                           <td>{{ $p->dateMondatePaie }}</td>
                         </tr>
                         
 

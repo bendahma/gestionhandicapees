@@ -4,7 +4,7 @@ namespace App;
 
 use App\Paie;
 use App\Rappel;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Budget extends Model
@@ -50,7 +50,17 @@ class Budget extends Model
         $montantdesengagementpaie = 0;
         $montantdesengagementassurance = 0;
         $paies = Paie::where('anneesPaiement',$annee)->get();
-        $rappel = Rappel::where('AnneeRappel',date('Y'))->where('RappelFait',1)->get();
+        // $rappel = Rappel::where('AnneeRappel',date('Y'))->where('RappelFait',1)->get();
+       
+        $montantRappelPaie = DB::table('traitement_rappel')
+                                    ->where('traitement_rappel.anneesRappel','=',$annee)
+                                    ->sum('traitement_rappel.montantRappel');
+
+        $montantRappelAssurance = DB::table('traitement_rappel')
+                                    ->where('traitement_rappel.anneesRappel','=',$annee)
+                                    ->sum('traitement_rappel.montantAssurance');
+                           
+        
         $budget = Budget::where('annee',$annee)->first();     
 
         foreach ($paies as $p) {
@@ -62,17 +72,12 @@ class Budget extends Model
             $montantAssuranceConsommeActuellement += $p->montantAssurance;
 
         }
-        
-        foreach($rappel as $r){
-            $montantRappelPaie += $r->montantRappel;
-            $montantRappelAssurance += $r->montantAssurance;
-        }
 
         $AncienConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement ) - ($montantMondatementConsomme + $montantRappelPaie);
         $AncienConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance ) -  ($montantAssuranceConsomme + $montantRappelAssurance);
         $NouveauConsommationBudgetMondatement = ($budget->budgetMondatement + $budget->budgetSupplimentaireMondatement ) - ($montantMondatementConsommeActuellement + $montantRappelPaie);
         $NouveauConsommationBudgetAssurance = ($budget->budgetAssurance + $budget->budgetSupplimentaireAssurance ) - ($montantAssuranceConsommeActuellement+$montantRappelAssurance);
-
+        
         return [
             'ancienConsommationBudgetPaie' => $AncienConsommationBudgetMondatement,
             'ancienConsommationBudgetAssurance'=> $AncienConsommationBudgetAssurance,

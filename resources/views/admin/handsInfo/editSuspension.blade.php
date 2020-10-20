@@ -23,63 +23,42 @@
                <hr>
                
                <div class="row mt-1">
-                  <div class="col">
-                      <div class="form-group">
-                          <label for="name" class="font-weight-bold">Etat</label>
-                          <input type="text" readonly class="form-control" id="" name="" value=" {{$status->status}} ">
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="name" class="font-weight-bold">Etat</label>
+                                <input type="text" readonly class="form-control" id="" name="" value=" {{$status->status}} ">
+                              </div>
                         </div>
-                   </div>
                   
                         <div class="col" >
                               <div class="form-group">
                                   <label for="" class="font-weight-bold" style="text-align: center">Motif</label>
-                                  <input type="text" readonly class="form-control text-right" id="" name="" value="">
+                                  <input type="text" readonly class="form-control text-right" id="" name="" value=" {{$status->motifAr}} ">
                               </div>
                         </div>
                        
                         <div class="col">
                           <div class="form-group">
                               <label for="" class="font-weight-bold">Autre</label>
-                              <input type="text" readonly class="form-control" id="" name="" value="">
+                              <input type="text" readonly class="form-control" id="" name="" >
                           </div>
                         </div>
-                       
-                        <div class="col">
-                          <div class="form-group">
-                              <label for="" class="font-weight-bold">MOTIF</label>
-                              <input type="text" readonly class="form-control" id="" name="" value="">
-                          </div>
-                        </div>
-                        
+
+                     
                         <div class="col">
                           <div class="form-group">
                               <label for="" class="font-weight-bold">Date Suppression</label>
-                              <input type="date" readonly class="form-control" id="" name="" value="">
+                              <input type="date" readonly class="form-control" id="" name="" value=" {{$status->dateSupprission}} ">
                           </div>
                         </div>
-                      
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="" class="font-weight-bold" style="text-align: center">Raison</label>
-                            <input type="text" readonly class="form-control" id="" name="" value="">
-                        </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <label for="" class="font-weight-bold">Date Commission Pension</label>
-                              <input type="date" readonly class="form-control" id="" name="" value="">
-                          </div>
-                        </div>
-                   
-                  
-               </div>
+                   </div>
               
               
                <div class="row">
                 <div class="col">
                   <div class="form-group">
                       <label for="" class="font-weight-bold">justification</label>
-                      <input type="text" readonly class="form-control" id="" name="" value="">
+                      <input type="text" readonly class="form-control" id="" name="" value=" {{$status->justification}} ">
                   </div>
               </div>
               <div class="col">

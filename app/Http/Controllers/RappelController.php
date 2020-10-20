@@ -59,8 +59,7 @@ class RappelController extends Controller
                     ->with('MontantAssurance',$montantAssuranceTotal);
     }
 
-    public function listePaiementRappel()
-    {        
+    public function listePaiementRappel(){        
         $RappelHandsInstance = DB::table('hands')
                                     ->join('paie_information','paie_information.hand_id','hands.id')
                                     ->join('hand_rappel','hand_rappel.hand_id','hands.id')
@@ -103,8 +102,8 @@ class RappelController extends Controller
         }else if($dateDebut > $dateSeprator){
             $montant = $nbrMois * 10000;
         }else{
-            $firstDif = ($dateTimeDebut->diff($dateTimeSeperator)->m) + ($dateTimeDebut->diff($dateTimeSeperator)->y*12) + 1; 
-            $secondDif = ($dateTimeSeperatorF->diff($dateTimeFin)->m) + ($dateTimeSeperatorF->diff($dateTimeFin)->y*12) + 1; 
+            $firstDif = ($d1->diff($dateTimeSeperator)->m) + ($d1->diff($dateTimeSeperator)->y*12) + 1; 
+            $secondDif = ($dateTimeSeperatorF->diff($d2)->m) + ($dateTimeSeperatorF->diff($d2)->y*12) + 1; 
             $montant = ($firstDif * 4000) + ($secondDif * 10000);
         }
 
