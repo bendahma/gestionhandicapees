@@ -9,9 +9,7 @@
 <div class="container">
 
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-       <h1 class="h3 mb-0 text-gray-800">Les informations du handicapé(e) Suspendu</h1>
-       {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i>  --}}
-         {{-- Fiche Handicapées</a> --}}
+       {{-- <h1 class="h3 mb-0 text-gray-800">Les informations du handicapé(e) Suspendu</h1> --}}
          <div>
           
           @if($hand->status->status == 'En cours')
@@ -25,9 +23,12 @@
                     Convocation 
               </a> 
               <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'suspension'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du suspension </a> 
+              <a class="d-none d-sm-inline-block btn btn-sm btn-warning text-dark shadow-sm" href="{{route('notification.telecharger', [$hand->id,'suspension'])}}"> <span style=""><i class="fas fa-file-download"></i></span> Notification </a> 
           @endif
           @if($hand->status->status == 'Arrete')
               <a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="{{route('decision.telecharger', [$hand->id,'arrete'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision d'Arrete </a> 
+              <a class="d-none d-sm-inline-block btn btn-sm btn-warning text-dark shadow-sm" href="{{route('notification.telecharger', [$hand->id,'arrete'])}}"> <span style=""><i class="fas fa-file-download"></i></span> Notification </a> 
+
           @endif
           @if($hand->status->status != 'En cours')
                 <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="remiHandaler({{$hand->id}})"> <span><i class="far fa-check-circle"></i></span> Régle la situation </button>

@@ -118,7 +118,7 @@ class RappelController extends Controller
 
         session()->flash('success','Le Rappel à été sasie avec success');
 
-        return redirect(url('/rappel/list'));
+        return back();
     }
 
     public function Saisie(Request $request){

@@ -100,6 +100,7 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/decision/{listType}', 'DecisionController@index')->name('decision');
     Route::get('/decision/telecharger/{hand}/{papier}', 'DecisionController@Download')->name('decision.telecharger');
+    Route::get('/notification/telecharger/{hand}/{papier}', 'MainController@Notification')->name('notification.telecharger');
     
     Route::prefix('historique')->group(function(){
         Route::name('historique.')->group(function(){
@@ -112,7 +113,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::prefix('renouvellement')->group(function(){
         Route::name('renouvellement.')->group(function(){
-            Route::patch('DossierRemi/{hand}', 'RenouvelementDossierController@DossierRemi')->name('DossierRemi');
+            Route::put('DossierRemi/{id}', 'RenouvelementDossierController@DossierRemi')->name('DossierRemi');
             Route::get('statistique', 'RenouvelementDossierController@Statistique')->name('statistique');
             Route::get('Init', 'RenouvelementDossierController@Init')->name('intia');
             Route::post('suspendu', 'RenouvelementDossierController@suspenduNonRenouvelle')->name('suspendu');

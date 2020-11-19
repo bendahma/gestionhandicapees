@@ -34,7 +34,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();     
 
         return [
-            '',
+            $hand->id,
             $hand->nameFr,
             $hand->sex,
             $hand->dob,
@@ -45,7 +45,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
             $hand->cartehand->dateCarte,
             $hand->paieinformation->CCP,
             $hand->paieinformation->RIP,
-            $hand->securitesociale->NSS,
+            "*".$hand->securitesociale->NSS ,
             $hand->addressAr,
             $commune->nomCommuneAr,
            
@@ -63,7 +63,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
             ['LISTE GLOBALE DE L\'ALLOCATION DES HANDICAPES A 100%'],
             [''],
             [''],
-            ['N° ORD',
+            ['ID',
             'Nom & Prenom',
             'Sex',
             'Date de Naissance',

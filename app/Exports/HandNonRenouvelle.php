@@ -46,7 +46,9 @@ class HandNonRenouvelle implements FromCollection, WithMapping, WithHeadings
             $hand->address ,
             $hand->addressAr ,
             $hand->paieinformation->CCP ,
-            $hand->status->status
+            $hand->status->status,
+            $hand->paieinformation->datePremierPension,
+            $hand->paieinformation->dateDebutPension,
         ];
     }
 
@@ -64,7 +66,9 @@ class HandNonRenouvelle implements FromCollection, WithMapping, WithHeadings
                 'Address',
                 'AddressAr',
                 'CCP',
-                'status'
+                'status',
+                'Date 1er pension',
+                'Date Debut pension',
             ]
         ];
     }

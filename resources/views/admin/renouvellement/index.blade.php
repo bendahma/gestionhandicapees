@@ -30,15 +30,15 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($hands as $key => $hand)
+            @foreach ($hands as $hand)
               <tr>
-                <td>{{$key = $key + 1}}</td>
+                <td></td>
                 <td>{{$hand->nameFr}}</td>
                 <td >{{date('d/m/Y', strtotime($hand->dob))}}</td>
                 
                   <form action="{{route('renouvellement.DossierRemi', $hand->id)}}" method="POST">
                       @csrf
-                      @method('PATCH')
+                      @method('PUT')
                       <td>
                         <input type="date" name="dateRenouvelloment" id="" class="form-control" value="{{date('d/m/Y')}}" >
                       </td>

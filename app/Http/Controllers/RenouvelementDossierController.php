@@ -24,32 +24,23 @@ class RenouvelementDossierController extends Controller
      */
     public function index()
     {
-        // $hands = Hand::with(['renouvellementdossier'=> function($q){
-        //         $q->where('dossierRenouvelle',false);
-        //     }])->get(['id','nameFr','dob']);
-
-        $hands = DB::table('hands')
-                ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
-                ->join('renouvellement_dossiers','renouvellement_dossiers.hand_id','hands.id')
-                ->select('hands.*','renouvellement_dossiers.*' ) 
-                ->where('hand_paie_statuses.status','=','En cours')
-                ->where('renouvellement_dossiers.dossierRenouvelle','=','0')
-                ->get();
-      
+        $hands = Hand::whereHas('renouvellementdossier',function($q){
+                $q->where('dossierRenouvelle',0);
+            })->with('renouvellementdossier')->get();
         return view('admin.renouvellement.index')->with('hands', $hands);
     }
 
-    public function DossierRemi(Request $request, Hand $hand){
+    public function DossierRemi(Request $request, $id){
 
-        $renv = RenouvellementDossier::where('hand_id', $hand->id)->firstOrFail();
+        $renv = RenouvellementDossier::where('hand_id', $id)->first();
+        $renv->dossierRenouvelle = true;
+        $renv->DateRenouvellement = $request->dateRenouvelloment;
+        $renv->AnneeRenouvelement = date('Y');
+        $renv->save();
 
-        $renv->update([
-            'dossierRenouvelle'=>true,
-            'DateRenouvellement'=>$request->dateRenouvelloment,
-            'AnneeRenouvelement'=>date('Y')
-        ]);
-
-        return redirect()->back();
+        
+        session()->flash('success','l\'operation terminé avec success');
+        return redirect(route('renouvellement.index'));
     }
 
     public function Statistique(){
@@ -69,7 +60,7 @@ class RenouvelementDossierController extends Controller
             $query->where('dossierRenouvelle',1);
         })->orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
         
-
+        // dd($handRen);
         
         
         return view('admin.renouvellement.stat')
