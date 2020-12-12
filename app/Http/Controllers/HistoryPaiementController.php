@@ -61,7 +61,7 @@ class HistoryPaiementController extends Controller
     public function DeleteHistoriqueSuspension(HandSuspentionHistory $history){
         $history->delete();
         session()->flash('success','Paiement suspension history has been deleted successfully');
-        return redirect(route('historique.HistoireSuspension'));
+        return redirect()->back();
     }
 
     public function PaieYearHistory(){

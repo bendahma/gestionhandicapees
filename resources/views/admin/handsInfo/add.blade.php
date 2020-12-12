@@ -300,7 +300,7 @@
                             </div>
                         </div>
                    
-                    @if (!isset($hand))
+                    
                     <h4 class="text-danger font-weight-bold">Etat Du paiement</h4>
                         <hr>
                         <div class="row mt-1">
@@ -308,8 +308,8 @@
                                 <div class="form-group">
                                     <label for="name" class="font-weight-bold">Etat Du Paiement</label>
                                     <select name="statusPaiement" class="form-control" id="PaieStatusHand">
-                                        <option value="En cours">En cours</option>
-                                        <option value="En attente">En Attente</option>
+                                        <option value="En cours" {{isset($hand) && $hand->status->status == 'En cours' ? 'selected' : ''}} >En cours</option>
+                                        <option value="En attente" {{isset($hand) && $hand->status->status == 'En attente' ? 'selected' : ''}}>En Attente</option>
                                     </select>
                                     </div>
                                 </div>
@@ -327,7 +327,7 @@
                                 </div>
                                 
                         </div>
-                    @endif
+                    
                     <hr>
                     <div class="row">
                         <div class="col">

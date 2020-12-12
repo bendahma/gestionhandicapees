@@ -133,7 +133,7 @@
                       <input type="text" readonly class="form-control" id="" name="" value="{{ isset($hand) ? $hand->status->declarepar : '' }}">
                   </div>
               </div>
-              <div class="col">
+              {{-- <div class="col">
                   <div class="form-group">
                       <label for="" class="font-weight-bold">Dossier annuel</label>
                       @if ($hand->renouvellementdossier->dossierRenouvelle == false) 
@@ -141,7 +141,7 @@
 
                       @endif                 
                   </div>
-              </div>
+              </div> --}}
               </div>
               @endif
               <div class="row">

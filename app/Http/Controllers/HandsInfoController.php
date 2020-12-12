@@ -148,6 +148,7 @@ class HandsInfoController extends Controller
         $paieInfo = PaieInformation::where('hand_id', $hand->id)->first();
         $national = CarteNational::where('hand_id', $hand->id)->first();
         $ss = SecuriteSociale::where('hand_id', $hand->id)->first();
+        $status = HandPaieStatus::where('hand_id', $hand->id)->first();
         
         $hand->update([
             'numeroactenaissance' => $request->numeroactenaissance,
@@ -202,6 +203,26 @@ class HandsInfoController extends Controller
             'NSS' => $request->NSS,
             'DateDebutAssurance' => $request->DateDebutAssurance
         ]);
+
+        if($request->statusPaiement == 'En cours'){
+            $status->update([
+                'status' => $request->statusPaiement,
+                'dateSupprission' => NULL,
+                'justification' => NULL,
+                'declarepar' => NULL,
+                'motifAr' => NULL,
+                'autreMotif' => NULL,
+                'ObsSuspension' => NULL,
+            ]);
+        }else if($request->statusPaiement == 'En attente'){
+            $status->update([
+                'status' => $request->statusPaiement,
+                'raisonEnAttente' => $request->raisonEnAttente,
+                'EnAttentedateComissionPension' => $request->EnAttentedateComissionPension,
+            ]);
+        }
+
+        
 
         session()->flash('success', "Les informations ont été mise a jours avec success");
         
