@@ -21,7 +21,7 @@
   <link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
 
   @yield('bgColor')
-
+  @livewireStyles
 
 </head>
 
@@ -54,9 +54,27 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
-          Données des Handicapées
+          dossiers
         </div>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('hands.create')}}">
+            <i class="fas fa-pen"></i>
+            <span>Nouveau Handicapées</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dossierAnnuel" aria-expanded="true" aria-controls="dossierAnnuel">
+            <i class="far fa-file-alt"></i>
+            <span>Dossier Annuel</span>
+          </a>
+          <div id="dossierAnnuel" class="collapse" aria-labelledby="dossierAnnuel" data-parent="#dossierAnnuel">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Operation Hand</h6>
+              <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">List Des Renouvellement</a>
+              <a class="collapse-item" href="{{route('renouvellement.statistique')}}" target="_blank">Statistique</a>
+            </div>
+          </div>
+        </li>
+        {{-- <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#handCrud" aria-expanded="true" aria-controls="handCrud">
             <i class="fas fa-pen"></i>
             <span>Gestion Handicapées</span>
@@ -67,25 +85,24 @@
               <a class="collapse-item" href="{{route('hands.create')}}" target="_blank" >Ajouter Nouveau</a>
             </div>
           </div>
-        </li>
+        </li> --}}
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
-          Renouvelement Dossier Annuel
+          Paiement
         </div>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dossierAnnuel" aria-expanded="true" aria-controls="dossierAnnuel">
-            <i class="far fa-file-alt"></i>
-            <span>Dossier Annuel</span>
+          <a class="nav-link" href="{{route('paie.index')}}" target="_blank">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Listes Des Mondatés</span>
           </a>
-          <div id="dossierAnnuel" class="collapse" aria-labelledby="dossierAnnuel" data-parent="#dossierAnnuel">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Operation Hand</h6>
-              <a class="collapse-item" href="{{route('renouvellement.index')}}" target="_blank">List non renouvelle</a>
-              <a class="collapse-item" href="{{route('renouvellement.renouvelleTous')}}" target="_blank">Lists des renouvelles</a>
-              <a class="collapse-item" href="{{route('renouvellement.statistique')}}" target="_blank">Statistique</a>
-            </div>
-          </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('historique.index')}}" target="_blank">
+            <i class="fas fa-history"></i>
+            <span>Historique Des Paiements</span>
+          </a>
+        </li>
+        
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Papiers officiels
@@ -130,35 +147,44 @@
             <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
-          Gestion Du Paiement
+          Finance
         </div>
         <!-- Paiement Mensuelle -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#paieMensuelle" aria-expanded="true" aria-controls="paieMensuelle">
             <i class="fas fa-money-check-alt"></i>
-            <span>Paie Mensuelle</span>
+            <span>Paiement</span>
           </a>
           <div id="paieMensuelle"  class="collapse" aria-labelledby="headingTwo" data-parent="#paieMensuelle" >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Paie Mensuelle</h6>
-              <a class="collapse-item" href="{{route('paie.index')}}" target="_blank">Résume</a>
               <a class="collapse-item" onclick="return confirm('Are you sur you want to Do or Re-do the paiement ? Re-doing the paiement will change the intial paiement information . Click OK to continue ')" href="{{route('paie.traitement')}}">Traitement</a>
               <a class="collapse-item" href="{{route('paie.documents')}}" target="_blank">Télécharger Document</a>
             </div>
           </div>
         </li>
-        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#RappelMenu" aria-expanded="true" aria-controls="RappelMenu">
+            <i class="fas fa-calendar-week"></i>
+            <span>Rappel</span>
+          </a>
+          <div id="RappelMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Rappel</h6>
+              {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
+              <a class="collapse-item" href="{{route('rappel.list')}}" target="_blank">Listes Des Rappels</a>
+              @if(Auth::user()->isAdmin())
+                  <a class="collapse-item" href="{{route('rappel.create')}}" target="_blank">Saisie Rappel</a>
+                  <a class="collapse-item" href="{{route('rappel.add')}}" target="_blank">Ajouter Rappel</a>
+                  <a class="collapse-item" href="" target="_blank">Traitement du Rappel</a>
+              @endif
+            </div>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('cds.index')}}" target="_blank">
             <i class="fas fa-compact-disc"></i>
             <span>CD</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('historique.index')}}" target="_blank">
-            <i class="fas fa-history"></i>
-            <span>Historique Des Paiements</span>
           </a>
         </li>
         
@@ -178,28 +204,8 @@
         @endif
         
         
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">
-          Gestion des Rappels
-        </div>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#RappelMenu" aria-expanded="true" aria-controls="RappelMenu">
-            <i class="fas fa-calendar-week"></i>
-            <span>Rappel</span>
-          </a>
-          <div id="RappelMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Rappel</h6>
-              {{-- <a class="collapse-item" href="{{route('rappel.index')}}">Résume Des Rappels</a> --}}
-              <a class="collapse-item" href="{{route('rappel.list')}}" target="_blank">Listes Des Rappels</a>
-              @if(Auth::user()->isAdmin())
-                  <a class="collapse-item" href="{{route('rappel.create')}}" target="_blank">Saisie Rappel</a>
-                  <a class="collapse-item" href="{{route('rappel.add')}}" target="_blank">Ajouter Rappel</a>
-                  <a class="collapse-item" href="" target="_blank">Traitement du Rappel</a>
-              @endif
-            </div>
-          </div>
-        </li>
+        
+       
         <hr class="sidebar-divider d-none d-md-block">
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -475,19 +481,17 @@
   @endauth
 
 
-
+  <x-delete-hand-form />
   @include('admin.statistics.monthly')
   @include('admin.cftresor.donneeCfTresor')
 
-  <!-- Bootstrap core JavaScript-->
+  @livewireScripts
+
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('js/sb-admin-2.js')}}"></script>
-
-  {{-- <script src="{{asset('js/site.js')}}"></script> --}}
-
 
 </body>
 

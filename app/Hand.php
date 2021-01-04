@@ -117,4 +117,22 @@ class Hand extends Model
         })->get();
         return $hands;
     }
+
+
+    public static function search($search,$dateNaiss,$commune){
+
+        
+        return ((empty($search) && empty($dateNaiss) && empty($commune)) ? static::query()
+                : (empty($dateNaiss) && empty($commune) ? static::query()->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })                                                                     
+                : (empty($search) && empty($commune) ? static::query()->where('dob',$dateNaiss) 
+                : ( empty($search) && empty($dateNaiss) ?  static::query()->where('codeCommune',$commune)  
+                : (empty($search) ? static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune) 
+                : (empty($dateNaiss) ? static::query()->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+                : (empty($commune) ? static::query()->where('dob',$dateNaiss)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+                : static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })   ))))))
+                );
+                
+                                     
+    }
+    
 }

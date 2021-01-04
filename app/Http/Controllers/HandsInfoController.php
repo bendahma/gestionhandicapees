@@ -259,8 +259,9 @@ class HandsInfoController extends Controller
 
         session()->flash('danger', "L'handicapée à été supprime avec success");
 
-        return redirect(route('hand.suspendu',$hand->id));
+        // return redirect(route('hand.suspendu',$hand->id));
         // return redirect(route('dashboard'));
+        return redirect()->back();
 
 
     }

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+{{-- @extends('layouts.template')
 
 
 @section('listAttestation')
@@ -46,4 +46,11 @@
 
       </div>
       
-@endsection
+@endsection --}}
+
+
+@extends('layouts.template')
+
+<x-pageHolder title="Les Décisions" icon="far fa-file-word">
+      @livewire('hands.hands-list',['actions'=>'decision','type'=>$papier])
+</x-pageHolder>

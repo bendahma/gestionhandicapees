@@ -32,9 +32,11 @@ class PaieMensuelleController extends Controller
                 })->get();
                 
         $countHand = $hands->count();
-        
+
+        $paies = Paie::orderBy('anneesPaiement','DESC')->orderBy('moisPaiement','DESC')->get();
 
         return view('admin.paie.index')
+                        ->with('paies',$paies)
                         ->with('CurrentPaie',$paieExist)
                         ->with('count',$countHand);
     }
@@ -498,5 +500,16 @@ class PaieMensuelleController extends Controller
         });
 
         return view('admin.paie.CfTresor.index',compact('paie'));
+    }
+
+    public function listMensuelle($paieId){
+
+        $paie = Paie::find($paieId);
+
+        $hands = Hand::whereHas('paies',function($q)use($paieId){
+            $q->where('paie_id',$paieId);
+        })->withTrashed()->get();
+        
+        return view('admin.listMensuellePaiement.index')->with('hands',$hands)->with('paie',$paie);
     }
 }

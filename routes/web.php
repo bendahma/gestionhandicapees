@@ -43,6 +43,7 @@ Route::middleware(['auth','admin'])->group(function(){
         });
 
     });
+
     Route::resource('/budget' , 'BudgetController');
 
     Route::prefix('rappel')->group(function(){
@@ -64,6 +65,7 @@ Route::middleware(['auth','admin'])->group(function(){
 });
 
 Route::middleware(['auth'])->group(function(){
+
     Route::get('/dashboard', "MainController@dashboard")->name('dashboard');
 
     Route::get('/hand/suspendu/{hand}', "MainController@suspendu")->name('hand.suspendu');
@@ -92,16 +94,21 @@ Route::middleware(['auth'])->group(function(){
             Route::post('rappelFait' , 'RappelController@rappelFait')->name('rappelFait');
         });
     });
+    
+    Route::prefix('attestation')->group(function(){
+        Route::name('attestation')->group(function(){
+            Route::get('/{listType}', 'AttestationController@index');
+            Route::get('/telecharger/{hand}/{papier}', 'AttestationController@Download')->name('.telecharger');
+        });
+    });
 
-    
-
-    Route::get('/attestation/{listType}', 'AttestationController@index')->name('attestation');
-    Route::get('/attestation/telecharger/{hand}/{papier}', 'AttestationController@Download')->name('attestation.telecharger');
-    
-    Route::get('/decision/{listType}', 'DecisionController@index')->name('decision');
-    Route::get('/decision/telecharger/{hand}/{papier}', 'DecisionController@Download')->name('decision.telecharger');
-    Route::get('/notification/telecharger/{hand}/{papier}', 'MainController@Notification')->name('notification.telecharger');
-    
+    Route::prefix('decision')->group(function(){
+        Route::name('decision')->group(function(){
+            Route::get('/{listType}', 'DecisionController@index');
+            Route::get('/telecharger/{hand}/{papier}', 'DecisionController@Download')->name('.telecharger');
+        });
+    });
+        
     Route::prefix('historique')->group(function(){
         Route::name('historique.')->group(function(){
             Route::get('/', 'HistoryPaiementController@index')->name('index');
@@ -150,6 +157,13 @@ Route::middleware(['auth'])->group(function(){
         });
     });
 
+    Route::get('/notification/telecharger/{hand}/{papier}', 'MainController@Notification')->name('notification.telecharger');
+
+    Route::prefix('monthlyPaie')->group(function(){
+        Route::name('monthlyPaie.')->group(function(){
+            Route::get('/list/{paieId}','PaieMensuelleController@listMensuelle')->name('list');
+        });
+    });
     
 });
 

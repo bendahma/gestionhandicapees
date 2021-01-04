@@ -1,4 +1,4 @@
-@extends('layouts.template')
+{{-- @extends('layouts.template')
 
 
 @section('history')
@@ -58,4 +58,16 @@
 
       </div>
       
-@endsection
+@endsection --}}
+
+
+@extends('layouts.template')
+<!-- Page Heading -->
+
+
+<x-pageHolder title="Renouvellement Dossier Annuel" icon="far fa-file-alt">
+     <x-slot name="topAction">
+        <a href="{{route('renouvellement.intia')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Debut de Renouvellement</a>
+    </x-slot>
+     @livewire('hands.hands-list',['actions'=>'dossierAnnuel','paiementStatus'=>'mondate'])
+</x-pageHolder>

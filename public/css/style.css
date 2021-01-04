@@ -4591,6 +4591,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.35rem;
+  justify-content: center;
 }
 
 .page-link {
@@ -6258,7 +6259,7 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #e74a3b !important;
+  background-color: #ff2714 !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
