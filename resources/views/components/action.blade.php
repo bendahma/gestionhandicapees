@@ -1,22 +1,22 @@
 <div>
     @switch($job)
         @case('details')
-            <select name="" id="" class="custom-select" onchange="window.location.href=this.value;">
+            <select class="custom-select" onchange="window.location.href=this.value;">
                 <option selected disabled >Action</option>
-                <option value="{{route('hands.show', $hand->id)}}">Details</option>
-                <option value=" {{route('hands.edit', $hand->id)}}">Modifier</option>
+                <option value="{{route('hands.show', $hand->id)}}"><i class="fas fa-bars mr-1"></i> Details</option>
+                <option value="{{route('hands.edit', $hand->id)}}"><i class="fas fa-user-edit"></i> Modifier</option>
             </select>
             @break
         
         @case('attestation')
-                <a class="btn btn-link" href="{{route('attestation.telecharger', [$hand->id, $type])}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 
-                    <span style="color:rgb(56, 14, 243)"><i class="fas fa-file-download"></i></span> 
+                <a class="btn btn-outline-success border-0" href="{{route('attestation.telecharger', [$hand->id, $type])}}" style="font-size: 1.4rem" style="font-size: 1.4rem; text-decoration:none"> 
+                    <span style=""><i class="fas fa-file-download"></i></span> 
                     <span style="font-size: 0.9rem; font-weight:700; text-decoration:none; color:black">Attestation {{$type}}</span>
                 </a>
             @break
         @case('decision')
-            <a class="btn btn-link mx-auto" href="{{route('decision.telecharger', [$hand->id,$type])}}" style="font-size: 1.4rem"> 
-                <span style="color:rgb(56, 14, 243)"><i class="fas fa-file-download"></i></span>
+            <a class="btn btn-outline-success border-0 mx-auto" href="{{route('decision.telecharger', [$hand->id,$type])}}" style="font-size: 1.4rem"> 
+                <span style=""><i class="fas fa-file-download"></i></span>
                 <span style="font-size:0.9rem; font-weight:700">Télécharger</span>
               </a>
               @break

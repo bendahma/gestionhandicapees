@@ -31,12 +31,13 @@
           <th>Nom & Prenom</th>
           <th>Date Naissance</th>
           <th>CCP</th>
+          <th>Nature</th>
           <th>La Paie</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($hands as $n => $hand)
+        @forelse ($hands as $n => $hand)
           <tr>
               <td>{{$n = $n + 1}}</td>
             <td>
@@ -49,6 +50,7 @@
             </td>
             <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
             <td>{{isset($hand->paieinformation->CCP) ? $hand->paieinformation->CCP : ''}}</td>
+            <td>{{isset($hand->cartehand->natureHandFr) ? $hand->cartehand->natureHandFr : ''}}</td>
             <td>
                   <a href="{{$hand->status->status == 'En cours' 
                                   ? route('historique.HistoriquePaie',$hand->id) 
@@ -60,7 +62,11 @@
              <x-action id="{{$hand->id}}" :job="$actions" :type="$type" />
             </td>
           </tr>
-        @endforeach
+          @empty
+          <tr>
+            <td colspan="7" class="text-center">Aucune Personne n'a été Trouvé</td>
+          </tr>
+        @endforelse
       </tbody> 
     </table>
             {{-- {{$hands->links('vendor.pagination.bootstrap-4')}} --}}
