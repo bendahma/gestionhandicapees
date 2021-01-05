@@ -4,7 +4,6 @@ Auth::routes(['register' => false]);
 
 Route::get('/', "MainController@index")->name('index');
 
-
 Route::middleware(['auth','admin'])->group(function(){
 
     Route::prefix('paie')->group(function(){
@@ -166,5 +165,3 @@ Route::middleware(['auth'])->group(function(){
     });
     
 });
-
-
