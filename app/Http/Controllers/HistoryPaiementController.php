@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
 
 use App\Hand;
 use App\CartHand;
@@ -35,8 +36,8 @@ class HistoryPaiementController extends Controller
 
         $i=0;
         foreach($hand->paies as $p ){
-           $anneesArr = array_add($anneesArr, $i, $p->anneesPaiement);
-           $moisArr = array_add($moisArr, $i, $p->moisPaiement);
+           $anneesArr = Arr::add($anneesArr, $i, $p->anneesPaiement);
+           $moisArr = Arr::add($moisArr, $i, $p->moisPaiement);
            $i++;
         };
         
