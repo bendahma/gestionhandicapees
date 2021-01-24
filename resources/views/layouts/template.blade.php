@@ -484,6 +484,7 @@
 
 
   <x-delete-hand-form />
+  
   @include('admin.statistics.monthly')
   @include('admin.cftresor.donneeCfTresor')
 
@@ -496,9 +497,10 @@
   <script src="{{asset('js/sb-admin-2.js')}}"></script>
   <script> 
     document.addEventListener('livewire:load', () => { 
-      window.livewire.on('newfocus', inputname => { document.getElementById("dobField").focus(); }) 
+      window.livewire.on('newfocus', inputname => { document.getElementById("dobField").focus(); }),
       window.livewire.on('focusDateRenouvellement', inputname => { document.getElementById("focusDateRenouvellement").focus(); }) 
-      }); 
+
+    });
     </script>
 </body>
 

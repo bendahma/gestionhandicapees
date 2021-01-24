@@ -28,7 +28,7 @@ class HistoryPaiementController extends Controller
     public function HistoriquePaie($id){
         
         $hand = Hand::with(['paieinformation:CCP,hand_id','paies'=>function($q){
-            $q->orderBy('anneesPaiement','DESC')->orderBy('moisPaiement');
+            $q->orderBy('anneesPaiement','DESC')->orderBy('moisPaiement','DESC');
         }])->withTrashed()->where('id',$id)->first(['id','nameFr','dob','codeCommune']);
         $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
         $anneesArr = array();

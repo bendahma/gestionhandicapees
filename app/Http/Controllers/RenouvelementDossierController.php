@@ -49,19 +49,17 @@ class RenouvelementDossierController extends Controller
         $commune = Commune::all();
 
         $hands =  $hands = DB::table('hands')
-                ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
-                ->select('hands.*' ) 
-                ->where('hand_paie_statuses.status','=','En cours')
-                ->get(); 
+                            ->join('hand_paie_statuses','hand_paie_statuses.hand_id','hands.id')
+                            ->where('hand_paie_statuses.status','=','En cours')
+                            ->select('hands.*' ) 
+                            ->get(); 
 
         $handsGrp = Hand::get()->groupBy('codeCommune');
         
         $handRen = Hand::whereHas('renouvellementdossier',function($query){
             $query->where('dossierRenouvelle',1);
         })->orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
-        
-        // dd($handRen);
-        
+                
         
         return view('admin.renouvellement.stat')
                     ->with('hands', $hands)

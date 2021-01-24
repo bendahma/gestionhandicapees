@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Paie;
+use App\Hand;
 use App\MoisAnnee;
+use App\Commune;
 use DB;
 class StaticticsController extends Controller
 {
@@ -88,7 +90,48 @@ class StaticticsController extends Controller
 
     public function StatistiqueMondate(){
 
+        $mentalFemme = Hand::whereIn('sex',['F','Femme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','mental');
+        })->count();
+        $mentalHomme = Hand::whereIn('sex',['H','Homme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','mental');
+        })->count();
+        $moteurFemme = Hand::whereIn('sex',['F','Femme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','moteur');
+        })->count();
+        $moteurHomme = Hand::whereIn('sex',['H','Homme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','moteur');
+        })->count();
+        $polyFemme = Hand::whereIn('sex',['F','Femme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','poly');
+        })->count();
+        $polyHomme = Hand::whereIn('sex',['H','Homme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','poly');
+        })->count();
+        $reversion = Hand::whereIn('sex',['F','Femme'])->whereHas('cartehand',function($q){
+            $q->where('natureHandFr','reversion');
+        })->count();
+        $stats = [
+                    'mentalFemme'=>$mentalFemme,
+                    'mentalHomme'=>$mentalHomme,
+                    'moteurFemme'=>$moteurFemme,
+                    'moteurHomme'=>$moteurHomme,
+                    'polyFemme'=>$polyFemme,
+                    'polyHomme'=>$polyHomme,
+                    'reversion'=>$reversion,
+        ];
 
-        return view('admin.statistics.statistiqueMondate');
+
+        //-----------------------------------------------------------------------------------------------
+
+        $handsParCommune = Hand::orderBy('codeCommune','ASC')->get()->groupBy('codeCommune');
+        $communes = Commune::all();
+        $nbrHands = Hand::count();
+        // dd($handsParCommune);
+        return view('admin.statistics.statistiqueMondate')
+                                    ->with('stats',$stats)
+                                    ->with('communes',$communes)
+                                    ->with('nbrHands',$nbrHands)
+                                    ->with('handsParCommune',$handsParCommune);
     }
 }
