@@ -39,7 +39,7 @@
                     @method('PUT')
                     <div class="row">
                         <div class="col">
-                            <input type="date" name="dateRenouvelloment" id="" class="form-control input-sm" >
+                            <input type="date" name="dateRenouvelloment" id="focusDateRenouvellement" class="form-control input-sm" >
 
                         </div>
                         <div class="col">

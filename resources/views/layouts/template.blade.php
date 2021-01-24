@@ -220,6 +220,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
               <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
+              <a href=" {{route('statistique.mondate')}} " class="collapse-item">Statistique Mondaté</a>
             </div>
           </div>
           
@@ -433,6 +434,7 @@
           @yield('AfficheCfTresor')
           @yield('uploadDossierAnnuel')
           @yield('rappelFaitList')
+          @yield('statTables')
         </div>
         <!-- End of Main Content -->
 
@@ -492,7 +494,12 @@
   <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('js/sb-admin-2.js')}}"></script>
-
+  <script> 
+    document.addEventListener('livewire:load', () => { 
+      window.livewire.on('newfocus', inputname => { document.getElementById("dobField").focus(); }) 
+      window.livewire.on('focusDateRenouvellement', inputname => { document.getElementById("focusDateRenouvellement").focus(); }) 
+      }); 
+    </script>
 </body>
 
 </html>

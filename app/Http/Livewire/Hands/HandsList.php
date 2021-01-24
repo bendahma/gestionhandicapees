@@ -31,7 +31,7 @@ class HandsList extends Component
         $this->dateNaiss = '';
         $this->commune = '';
         $this->perPage = 10;
-
+        $this->emit('newfocus');
     }
 
     public function render()
@@ -40,6 +40,7 @@ class HandsList extends Component
         $hands = $this->paiementStatus == 'suspendu' ? Hand::search($this->searchHand,$this->dateNaiss,$this->commune)->with(['status','paieinformation','renouvellementdossier'])->onlyTrashed()->paginate($this->perPage)
                                                      : ($this->paiementStatus == 'mondate' ? Hand::search($this->searchHand,$this->dateNaiss,$this->commune)->with(['status','paieinformation','renouvellementdossier'])->paginate($this->perPage)
                                                                                            : Hand::search($this->searchHand,$this->dateNaiss,$this->commune)->with(['status','paieinformation','renouvellementdossier'])->withTrashed()->paginate($this->perPage));
+        $this->emit('focusDateRenouvellement');
         return view('livewire.hands.hands-list')->with('hands',$hands);
     }
 }

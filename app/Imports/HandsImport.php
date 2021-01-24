@@ -83,7 +83,7 @@ class HandsImport implements ToModel
 
         // UPLOAD HAND CURRENT SITUATION --------------------------------------------------------------------------------------------------------
         $status->status = isset($row[16]) ? $row[16] : NULL;
-        $status->dateSupprission = isset($row[17]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[17]) : NULL;
+        $status->dateSupprission = !empty($row[17]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[17]) : NULL;
         $status->motifAr = isset($row[18]) ? $row[18] : NULL;
         $hand->status()->save($status);
 
@@ -110,7 +110,7 @@ class HandsImport implements ToModel
         // UPLOAD RENOUVELLEMENT DOSSIER ANNUEL
         $renouvellement->dossierRenouvelle = isset($row[15]) ? $row[15] : NULL;
         $renouvellement->DateRenouvellement = NULL;
-        $renouvellement->AnneeRenouvelement = isset($row[15]) ? '2020' : NULL;
+        $renouvellement->AnneeRenouvelement = isset($row[15]) ? date('Y') : NULL;
         $hand->renouvellementdossier()->save($renouvellement);
         
         return $hand; 

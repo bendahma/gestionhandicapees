@@ -24,8 +24,8 @@
                           <option value="07">Juil</option>
                           <option value="08">Aout</option>
                           <option value="09">Septembre</option>
-                          <option value="10">Novembre</option>
-                          <option value="11">Octobre</option>
+                          <option value="10">Octobre</option>
+                          <option value="11">Novembre</option>
                           <option value="12">Decembre</option>
                       </select>
                   </div>

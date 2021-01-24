@@ -85,4 +85,10 @@ class StaticticsController extends Controller
         $template->saveAs(storage_path($output));
         return response()->download(storage_path($output));
     }
+
+    public function StatistiqueMondate(){
+
+
+        return view('admin.statistics.statistiqueMondate');
+    }
 }

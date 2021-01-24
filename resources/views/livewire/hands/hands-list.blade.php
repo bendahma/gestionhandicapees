@@ -1,21 +1,20 @@
 <div class="">
     <div class="row mb-3">
         <div class="col-lg-3">
-            <input type="date" name="" id="" wire:model.bounce.200ms="dateNaiss" class="form-control">
+            <input type="date" name="" id="dobField" wire:model="dateNaiss" class="form-control" autofocus >
         </div>
         <div class="col-lg-3">
-            <input type="text" name="" id="" placeholder="Recherche ..." wire:model.bounce.0ms="searchHand" class="form-control">
+            <input type="text" name="" id="" placeholder="Recherche ..." wire:model="searchHand" class="form-control">
         </div>
         <div class="col-lg-3">
             <x-list-commune />
         </div>
         <div class="col-lg-1">
-            <select class="custom-select" wire:model.bounce.0ms="perPage">
+            <select class="custom-select" wire:model="perPage">
                   <option value="10">10</option>
                   <option value="100">100</option>
                   <option value="500">500</option>
                   <option value="1000">1000</option>
-                  <option value="10000">Tous</option>
             </select>
         </div>
         <div class="col-lg-2">

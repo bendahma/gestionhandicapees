@@ -163,5 +163,11 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/list/{paieId}','PaieMensuelleController@listMensuelle')->name('list');
         });
     });
+
+    Route::prefix('statistique/')->group(function(){
+        Route::name('statistique.')->group(function(){
+            Route::get('mondate','StaticticsController@StatistiqueMondate')->name('mondate');
+        });
+    });
     
 });

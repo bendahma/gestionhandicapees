@@ -217,6 +217,7 @@ class PaieMensuelleController extends Controller
                 ->groupBy('codeCommune')
                 ->having('total', '>=', '0')
                 ->get();
+       
         $nbrt =0;
         foreach ($hands as $h) {
             $nbrt+=$h->total;
