@@ -19,6 +19,7 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use App\PaieInformation;
 use App\CartHand;
 use App\CarteNational;
+use App\Commune;
 use App\SecuriteSociale;
 class HandNonRenouvelle implements FromCollection, WithMapping, WithHeadings
 {
@@ -38,9 +39,11 @@ class HandNonRenouvelle implements FromCollection, WithMapping, WithHeadings
 
     public function map($hand): array
     {   
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
 
         return [
             $hand->id,
+            $commune->nomCommuneFr,
             $hand->nameFr ,
             $hand->dob ,
             $hand->address ,
@@ -61,6 +64,7 @@ class HandNonRenouvelle implements FromCollection, WithMapping, WithHeadings
 
             [
                 'id',
+                'commune',
                 'nameFr',
                 'dob',
                 'Address',

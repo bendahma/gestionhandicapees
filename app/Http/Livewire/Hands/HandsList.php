@@ -11,6 +11,7 @@ class HandsList extends Component
 {
     use WithPagination;
  
+    protected $listeners = ['refrsh'=>'$refresh'];
 
     public $paiementStatus = '';
     public $searchHand = '';
@@ -19,12 +20,13 @@ class HandsList extends Component
     public $commune = '';
     public $type = '';
     public $perPage = 10;
-
+    // public $hands = [];
     public function mount($actions,$type = null){
         $this->actions = $actions;
         $this->type = $type;
-
+        
     }
+
 
     public function videRecherche(){
         $this->searchHand = '';
@@ -32,6 +34,7 @@ class HandsList extends Component
         $this->commune = '';
         $this->perPage = 10;
         $this->emit('newfocus');
+        $this->emit('refrsh');
     }
 
     public function render()

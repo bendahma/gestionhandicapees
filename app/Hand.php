@@ -105,7 +105,7 @@ class Hand extends Model
     public function HandSuspenduArrete(){
         $hands = Hand::onlyTrashed()->whereHas('status',function($s){
             $s->where('status', 'suspendu')->orWhere('status', 'arrete');
-        })->get();
+        })->with('paieinformation')->get();
 
         return $hands;
     }

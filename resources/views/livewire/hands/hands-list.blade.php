@@ -37,7 +37,7 @@
       </thead>
       <tbody>
         @forelse ($hands as $n => $hand)
-          <tr>
+          <tr class=" {{empty($hand->cartehand->natureHandFr) || !isset($hand->cartehand->natureHandFr) ? 'bg-warning' : ( $hand->msnfcf == 1 ? 'bg-primary' : '' ) }} " >
               <td>{{$n = $n + 1}}</td>
             <td>
                 @if (Auth::user()->isAdmin() && $hand->status->status == 'En cours')

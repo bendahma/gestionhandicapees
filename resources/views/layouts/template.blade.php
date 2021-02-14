@@ -435,6 +435,7 @@
           @yield('uploadDossierAnnuel')
           @yield('rappelFaitList')
           @yield('statTables')
+          @yield('msnfcf')
         </div>
         <!-- End of Main Content -->
 
@@ -497,9 +498,10 @@
   <script src="{{asset('js/sb-admin-2.js')}}"></script>
   <script> 
     document.addEventListener('livewire:load', () => { 
-      window.livewire.on('newfocus', inputname => { document.getElementById("dobField").focus(); }),
-      window.livewire.on('focusDateRenouvellement', inputname => { document.getElementById("focusDateRenouvellement").focus(); }) 
-
+      window.livewire.on('newfocus', inputname => { document.getElementById("dobField").focus(); })
+    });
+    document.addEventListener('livewire:load', () => { 
+      window.livewire.on('focusDateRenouvellement', inputname => { document.getElementById("focusDateRenouvellement").focus(); })
     });
     </script>
 </body>

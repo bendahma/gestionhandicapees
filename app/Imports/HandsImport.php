@@ -14,7 +14,7 @@ use App\Commune;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class HandsImport implements ToModel
-{
+{ 
     /**
     * @param array $row
     *

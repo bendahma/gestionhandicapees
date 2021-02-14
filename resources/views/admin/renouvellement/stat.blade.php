@@ -6,6 +6,10 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Statistique du Renouvellement des Dossiers Annuel Pour l'Année </h1>
             <a href="{{route('renouvellement.NonRenouvelleDownload')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i> Télécharger Non Renouvelle</a>
+            <a href="{{route('renouvellement.suspenduAll')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+              <i class="fas fa-file-excel"></i> 
+               Suspendu Tous
+            </a>
 
             
           </div>
@@ -85,35 +89,29 @@
                  </tr>
                </thead>
                <tbody>
-                 @php
-                     $j=0;
-                 @endphp
+                 
                   @for ($i = 4601; $i<=4628;$i++)
-                        @if(isset($handRen[$i]))
+                        {{-- @if(isset($handRen[$i])) --}}
                               <tr>
                                   <td>
-                                    {{$communes[$j]->nomCommuneFr}}
+                                    {{$communes[$i-4601]->nomCommuneFr}}
                                   </td>
                                   <td>{{$handsGrp[$i]->count()}}</td>
                                   <td>{{$HandRen[$i]->count()}}</td>
                                   <td>{{$handsGrp[$i]->count() - $HandRen[$i]->count()}}</td>
-                                  <td> <a href="{{ route('renouvellement.listnonrenouvelle',$communes[$j]->codeCommune)}}" class="btn btn-primary btn-block">Details</a> </td>
+                                  <td> <a href="{{ route('renouvellement.listnonrenouvelle',$communes[$i-4601]->codeCommune)}}" class="btn btn-primary btn-block">Details</a> </td>
                                   <td>
                                     @if (Auth::user()->isAdmin())
                                       <form action="{{route('renouvellement.suspendu')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="codeCommune" value='{{$communes[$j]->codeCommune}}'>
+                                        <input type="hidden" name="codeCommune" value='{{$communes[$i-4601]->codeCommune}}'>
                                         <input type="hidden" name="dateSuspension" value="{{date('Y-m').'-01'}}">
                                         <input type="submit" value="Suspendu" class="btn btn-danger btn-block">
                                       </form>
                                     @endif
                                   </td>
                               </tr>
-                         @endif
-                              @php
-                                  $j++;
-                              @endphp
-                        
+                          {{-- @endif --}}
                   @endfor
                    
                </tbody>

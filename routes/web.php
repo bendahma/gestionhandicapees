@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/hands/restore/{hand}', "HandsInfoController@restore")->name('hands.restore');
     Route::get('/hands/editSuspensionInfo/{id}', "HandsInfoController@editHandSuspensionInfo")->name('hands.editSuspensionInfo');
     Route::patch('/hands/UpdateSuspendu', "HandsInfoController@updateHandSuspensionInfo")->name('hands.updateSuspensionInfo');
+    Route::post('/msnfcf','HandsInfoController@Msnfcf')->name('hands.msnfcf');
     Route::resource('/hands' , 'HandsInfoController');
 
     Route::resource('/upload' , 'UploadHandInfoController');
@@ -116,13 +117,14 @@ Route::middleware(['auth'])->group(function(){
             Route::delete('suspension/delete/{history}', 'HistoryPaiementController@DeleteHistoriqueSuspension')->name('DeleteHistoireSuspension');        
         });
     });
-
+    
     Route::prefix('renouvellement')->group(function(){
         Route::name('renouvellement.')->group(function(){
             Route::put('DossierRemi/{id}', 'RenouvelementDossierController@DossierRemi')->name('DossierRemi');
             Route::get('statistique', 'RenouvelementDossierController@Statistique')->name('statistique');
             Route::get('Init', 'RenouvelementDossierController@Init')->name('intia');
             Route::post('suspendu', 'RenouvelementDossierController@suspenduNonRenouvelle')->name('suspendu');
+            Route::get('suspenduTous', 'RenouvelementDossierController@suspenduTousNonRenouvelle')->name('suspenduAll');
             Route::get('listnonrenouvelle/{codeComune}', 'RenouvelementDossierController@ListNonRenouvelle')->name('listnonrenouvelle');
             Route::get('listnonrenouvelleTouts/', 'RenouvelementDossierController@ListNonRenouvelleToutes')->name('renouvelleTous');
             Route::get('listnonrenouvelle/NonRenouvelle/download', 'RenouvelementDossierController@export')->name('NonRenouvelleDownload');

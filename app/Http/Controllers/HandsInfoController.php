@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\MsnfcfImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Hand;
 use App\CartHand;
@@ -359,6 +361,15 @@ class HandsInfoController extends Controller
 
     public function updateHandSuspensionInfo(Request $request){
         //
+    }
+
+    
+
+    public function Msnfcf(Request $request){
+
+        Excel::import(new MsnfcfImport, $request->file('msnfcf'));
+        session()->flash('success','Rappel saisie avec success');
+        return redirect()->back();
     }
 
 

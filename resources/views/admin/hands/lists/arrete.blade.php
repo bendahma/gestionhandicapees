@@ -31,6 +31,8 @@
               <th>N°</th>
               <th>Nom & Prenom</th>
               <th>Date Naissance</th>
+              <th>ِCommune</th>
+              <th>ccp</th>
               <th>Date suspension</th>
               <th>Motif</th>
               <th>Obs</th>
@@ -42,7 +44,10 @@
               <tr>
                 <td>{{ $k = $k + 1 }}</td>
                 <td>{{$hand->nameFr}}</td>
+               
                 <td>{{date('d/m/Y', strtotime($hand->dob))}}</td>
+                <td>{{$hand->codeCommune}}</td>
+                <td>{{$hand->paieinformation->CCP}}</td>
                 <td>{{$hand->status->dateSupprission}}</td>
                 <td>{{$hand->status->motifAr}}</td>
                 <td dir="rtl" style="text-align: right">{{$hand->status->motifAr == 'AUTRE' ? $hand->status->autreMotif : ''}}</td>

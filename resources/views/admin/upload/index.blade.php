@@ -23,6 +23,7 @@
                         <label for="">Suspendu</label>
                         <input type="file" name="suspenduHandList" id="paieinfofile" class="form-control mb-5" >
                     </div>
+                    
                     <hr>
                     <div class="row mt-3">
                         <div class="col-lg-2">
@@ -83,6 +84,34 @@
                     <div class="form-group">
                         <label for="">Liste Des Rappels Des Handicapées</label>
                         <input type="file" name="listRappelHand" id="" class="form-control mb-5" >
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-2">
+                            <input type="submit" value="Upload file" class="btn btn-success btn-block">
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="reset" value="Clean" class="btn btn-danger btn-block">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+@endsection
+@section('msnfcf')
+    <hr>
+    <div class="container">
+        <div class="card card-default">
+            <div class="card-header">
+                Platform Msnfcf
+            </div>
+            <div class="card-body">
+                <form action="{{route('hands.msnfcf')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">Msnfcf</label>
+                        <input type="file" name="msnfcf" id="" class="form-control mb-5" >
                     </div>
                     <div class="row mt-3">
                         <div class="col-lg-2">
