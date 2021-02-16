@@ -51,6 +51,8 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::post('Saisie' , 'RappelController@Saisie')->name('Saisie');
             Route::get('{rappel}/{hand}' , 'RappelController@findInfo')->name('findInfo');
             Route::patch('confirm/{rappel}' , 'RappelController@ConfirmRappel')->name('confirm');
+            Route::get('/documents','RappelController@Documents')->name('documents');
+            Route::post('/documents/telecharge','RappelController@Download')->name('download');
             Route::resource('/' , 'RappelController');
         });
     });

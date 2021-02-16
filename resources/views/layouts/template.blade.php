@@ -93,7 +93,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('paie.index')}}" target="_blank">
             <i class="fas fa-dollar-sign"></i>
-            <span>Listes Des Mondatés</span>
+            <span>Listes Des Mandatés</span>
           </a>
         </li>
         <li class="nav-item">
@@ -144,12 +144,12 @@
           </div>
         </li>
         @if (Auth::user()->isAdmin())
-            <!-- Divider -->
+           
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Finance
         </div>
-        <!-- Paiement Mensuelle -->
+       
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#paieMensuelle" aria-expanded="true" aria-controls="paieMensuelle">
             <i class="fas fa-money-check-alt"></i>
@@ -177,6 +177,8 @@
                   <a class="collapse-item" href="{{route('rappel.create')}}" target="_blank">Saisie Rappel</a>
                   <a class="collapse-item" href="{{route('rappel.add')}}" target="_blank">Ajouter Rappel</a>
                   <a class="collapse-item" href="" target="_blank">Traitement du Rappel</a>
+                  <a class="collapse-item" href="{{route('rappel.documents')}}" target="_blank">Télécharger Document</a>
+
               @endif
             </div>
           </div>
@@ -220,7 +222,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
               <button class="collapse-item btn btn-link" onclick="MonthlyStaticticsHandaler()">Statistique Mensuelle</button>
-              <a href=" {{route('statistique.mondate')}} " class="collapse-item">Statistique Mondaté</a>
+              <a href=" {{route('statistique.mondate')}} " class="collapse-item">Statistique Mandaté</a>
             </div>
           </div>
           
@@ -233,7 +235,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-list-ol"></i>
-            <span>Listes des mondatés</span>
+            <span>Listes des mandatés</span>
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -247,7 +249,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('listhands.filtre')}}">
             <i class="fas fa-list-ol"></i>
-            <span>Liste Mondaté Filtre</span>
+            <span>Liste Mandaté Filtre</span>
           </a>
         </li>
         @if(Auth::user()->isAdmin())
