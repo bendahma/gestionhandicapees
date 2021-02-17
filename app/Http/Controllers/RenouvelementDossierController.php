@@ -77,27 +77,29 @@ class RenouvelementDossierController extends Controller
 
 
     public function suspenduTousNonRenouvelle(){
-        
+
         $history = new HandSuspentionHistory();
 
         $handNonRen = Hand::whereHas('renouvellementdossier',function($query){
                 $query->where('dossierRenouvelle' ,0);
                 })->whereHas('status',function($query){
                                 $query->where('status','En cours');
-                 })->get();
+                })->get();
 
+        $dateSupprission = date('Y-m').'-01' ;
+        
         foreach ($handNonRen as $hand) {
 
             $hand->status->update([
                 'status' => 'Suspendu',
-                'dateSupprission' => '2021',
+                'dateSupprission' => $dateSupprission,
                 'motifAr' => 'DOSSIER ANNUEL'
             ]); 
             
             $history->create([
                 'status'=>'Suspendu',
                 'motif'=>'DOSSIER ANNUEL',
-                'dateSupprission'=>$request->dateSuspension,
+                'dateSupprission'=>$dateSupprission,
                 'hand_id'=>$hand->id
             ]);
  
@@ -105,8 +107,8 @@ class RenouvelementDossierController extends Controller
 
         }
 
-        session()->flash('success','Les Handicapées Non Renouvelle Son Dossier Annuel Ont été Suspendu Avec Success');
-        Artisan::call('cache:clear');
+        session()->flash('success','Tous les handicapées non renouvelle leur dossier annuel sont suspendu avec success');
+        
         return redirect(route('renouvellement.statistique'));
     }
 
@@ -141,7 +143,7 @@ class RenouvelementDossierController extends Controller
         }
 
         session()->flash('success','Les Handicapées Non Renouvelle Son Dossier Annuel Ont été Suspendu Avec Success');
-        Artisan::call('cache:clear');
+        
         return redirect(route('renouvellement.statistique'));
                 
     }

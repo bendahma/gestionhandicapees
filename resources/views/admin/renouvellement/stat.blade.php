@@ -5,12 +5,15 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Statistique du Renouvellement des Dossiers Annuel Pour l'Année </h1>
-            <a href="{{route('renouvellement.NonRenouvelleDownload')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i> Télécharger Non Renouvelle</a>
-            <a href="{{route('renouvellement.suspenduAll')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-              <i class="fas fa-file-excel"></i> 
-               Suspendu Tous
-            </a>
-
+            <div class="">
+              <a href="{{route('renouvellement.suspenduAll')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                <i class="far fa-trash-alt"></i>
+                 Suspendu Tous
+              </a>
+              <a href="{{route('renouvellement.NonRenouvelleDownload')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file-excel"></i> <i class="fas fa-download fa-sm text-white-50"></i> Télécharger Non Renouvelle</a>
+  
+            </div>
+           
             
           </div>
 
