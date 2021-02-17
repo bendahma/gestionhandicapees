@@ -218,4 +218,22 @@ class RappelController extends Controller
         session()->flash('success','Rappel saisie avec success');
         return redirect()->back();
     }
+
+    public function Documents(){
+       return view('admin.rappel.documents');
+    }
+
+    public function Download(Request $request){
+
+      switch ($request->has('document')) {
+         case 'decision':
+            dd($request->all());
+            break;
+         
+         default:
+            # code...
+            break;
+      }
+       
+    }
 }

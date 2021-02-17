@@ -1,10 +1,10 @@
 <div class="">
     <div class="row mb-3">
         <div class="col-lg-3">
-            <input type="date" name="" id="dobField" wire:model="dateNaiss" class="form-control" autofocus >
+            <input type="date" name="" id="dobField" wire:model.debounce.300ms="dateNaiss" class="form-control" autofocus >
         </div>
         <div class="col-lg-3">
-            <input type="text" name="" id="" placeholder="Recherche ..." wire:model="searchHand" class="form-control">
+            <input type="text" name="" id="" placeholder="Recherche ..." wire:model.debounce.300ms="searchHand" class="form-control">
         </div>
         <div class="col-lg-3">
             <x-list-commune />

@@ -121,16 +121,39 @@ class Hand extends Model
 
     public static function search($search,$dateNaiss,$commune){
 
+      if(empty($search) && empty($dateNaiss) && empty($commune)) { return static::query(); }
+      else if( empty($dateNaiss) && empty($commune) ) {  return static::query()->where('nameFr','like','%'.$search.'%')
+                                                                       ->orWhereHas('paieinformation',function($q) use($search) { $q->where('CCP','like','%'.$search.'%'); })
+                                                                       ->orWhereHas('securitesociale',function($q) use($search) { $q->where('NSS','like','%'.$search.'%'); });}
+      else if(empty($search) && empty($commune)) { return static::query()->where('dob',$dateNaiss); }
+      else if(empty($search) && empty($dateNaiss)) { return static::query()->where('codeCommune',$commune) ; }
+      else if(empty($search)) { return static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune);  }
+      else if(empty($dateNaiss) ) { return static::query()->where('codeCommune',$commune)
+                                                   ->where('nameFr','like','%'.$search.'%')
+                                                   ->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+                                                   ->orWhereHas('securitesociale',function($q) use($search) { $q->where('NSS','like','%'.$search.'%'); });}
+      else if(empty($commune)) { return static::query()->where('dob',$dateNaiss)
+                                                ->where('nameFr','like','%'.$search.'%')
+                                                ->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+                                                ->orWhereHas('securitesociale',function($q) use($search) { $q->where('NSS','like','%'.$search.'%'); });}
+
+      else { static::query()->where('dob',$dateNaiss)
+                            ->where('codeCommune',$commune)
+                            ->where('nameFr','like','%'.$search.'%')
+                            ->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+                            ->orWhereHas('securitesociale',function($q) use($search) { $q->where('NSS','like','%'.$search.'%'); });}
+
+      
         
-        return ((empty($search) && empty($dateNaiss) && empty($commune)) ? static::query()
-                : (empty($dateNaiss) && empty($commune) ? static::query()->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })                                                                     
-                : (empty($search) && empty($commune) ? static::query()->where('dob',$dateNaiss) 
-                : ( empty($search) && empty($dateNaiss) ?  static::query()->where('codeCommune',$commune)  
-                : (empty($search) ? static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune) 
-                : (empty($dateNaiss) ? static::query()->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
-                : (empty($commune) ? static::query()->where('dob',$dateNaiss)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
-                : static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })   ))))))
-                );
+      //   return ((empty($search) && empty($dateNaiss) && empty($commune)) ? static::query()
+      //           : (empty($dateNaiss) && empty($commune) ? static::query()->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })                                                                     
+      //           : (empty($search) && empty($commune) ? static::query()->where('dob',$dateNaiss) 
+      //           : ( empty($search) && empty($dateNaiss) ?  static::query()->where('codeCommune',$commune)  
+      //           : (empty($search) ? static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune) 
+      //           : (empty($dateNaiss) ? static::query()->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+      //           : (empty($commune) ? static::query()->where('dob',$dateNaiss)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); }) 
+      //           : static::query()->where('dob',$dateNaiss)->where('codeCommune',$commune)->where('nameFr','like','%'.$search.'%')->orWhereHas('paieinformation',function($q) use($search){ $q->where('CCP','like','%'.$search.'%'); })   ))))))
+      //           );
                 
                                      
     }
