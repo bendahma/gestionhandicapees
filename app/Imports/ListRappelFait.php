@@ -17,9 +17,13 @@ class ListRappelFait  implements ToModel
         if(!isset($row[0])){
             return NULL;
         }
-
-        $paieinfo = PaieInformation::where('CCP',$row[0])->first();
-        $hand_id = $paieinfo->hand_id;
-        dump($hand_id);
+        try {
+            $paieinfo = PaieInformation::where('CCP',$row[0])->first();
+            $hand_id = $paieinfo->hand_id;
+            dump($row[0]);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+        
     }
 }

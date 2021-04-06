@@ -15,10 +15,15 @@
                 </a>
             @break
         @case('decision')
-            <a class="btn btn-outline-success border-0 mx-auto" href="{{route('decision.telecharger', [$hand->id,$type])}}" style="font-size: 1.4rem"> 
-                <span style=""><i class="fas fa-file-download"></i></span>
-                <span style="font-size:0.9rem; font-weight:700">Télécharger</span>
-              </a>
+              <div class="form-group">
+                <select class="custom-select text-dark" onchange="window.location.href=this.value;" style="color:black;font-weight:700">
+                  <option selected disabled >Selectionée</option>
+                  <option value="{{route('decision.telecharger', [$hand->id,'reglement'])}}" style="color:black;font-weight:700">Télécharger</option>
+                  @if ($hand->status->status == 'En cours')
+                    <option value="{{route('decision.renouvellement', $hand->id)}}" style="color:black;font-weight:700">Décision Du Dossier Annuel</option>
+                  @endif
+                </select>
+              </div>
               @break
 
         @case('convocation')

@@ -52,7 +52,8 @@
                                     <form action="{{route('rappel.confirm',$r->rappel_id)}}" method="POST">
                                           @method('PATCH')
                                           @csrf
-                                          <button tyle="submit" class="btn btn-link" style="font-size: 1.5rem; "> <span style="color:rgb(64, 14, 243); cursor: pointer;"><i class="far fa-check-circle"></i></span></button>
+                                          <button tyle="submit" class="btn btn-link" style="font-size: 1.5rem; "> <span style="color:rgb(64, 14, 243); cursor: pointer;">
+                                             <i class="far fa-check-circle"></i></span></button>
                                     </form> 
                                  @endif
                             

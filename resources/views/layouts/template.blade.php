@@ -31,7 +31,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
@@ -47,7 +47,7 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
           <a class="nav-link" href="/dashboard">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-fw fa-tachometer-alt fa-2x" style="font-size:1.3em"></i>
             <span>Accueil</span></a>
         </li>
 
@@ -56,15 +56,17 @@
         <div class="sidebar-heading">
           dossiers
         </div>
-        <li class="nav-item">
+
+        <li class="nav-item active" >
           <a class="nav-link" href="{{route('hands.create')}}">
-            <i class="fas fa-pen"></i>
-            <span>Nouveau Handicapées</span></a>
+            <i class="fas fa-pen"  style="font-size:1.3em"></i>
+            <span class="mt-2">NOUVEAUX</span></a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dossierAnnuel" aria-expanded="true" aria-controls="dossierAnnuel">
-            <i class="far fa-file-alt"></i>
-            <span>Dossier Annuel</span>
+            <i class="far fa-file-alt"  style="font-size:1.3em"></i>
+            <span class="mt-2">RENOUVELLE</span>
           </a>
           <div id="dossierAnnuel" class="collapse" aria-labelledby="dossierAnnuel" data-parent="#dossierAnnuel">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -74,32 +76,22 @@
             </div>
           </div>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#handCrud" aria-expanded="true" aria-controls="handCrud">
-            <i class="fas fa-pen"></i>
-            <span>Gestion Handicapées</span>
-          </a>
-          <div id="handCrud" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Operation Hand</h6>
-              <a class="collapse-item" href="{{route('hands.create')}}" target="_blank" >Ajouter Nouveau</a>
-            </div>
-          </div>
-        </li> --}}
+
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Paiement
         </div>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="{{route('paie.index')}}" target="_blank">
-            <i class="fas fa-dollar-sign"></i>
-            <span>Listes Des Mandatés</span>
+            <i class="fas fa-dollar-sign"  style="font-size:1.3em"></i> <i class="fas fa-dollar-sign"  style="font-size:1.3em"></i>
+            <span class="mt-2">MONDATES</span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="{{route('historique.index')}}" target="_blank">
-            <i class="fas fa-history"></i>
-            <span>Historique Des Paiements</span>
+            <i class="fas fa-history"  style="font-size:1.3em"></i>
+            <span class="mt-2">Historique</span>
           </a>
         </li>
         
@@ -107,15 +99,15 @@
         <div class="sidebar-heading">
           Papiers officiels
         </div>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="{{route('convocation.index')}}" target="_blank">
-            <i class="fas fa-envelope-open-text"></i>
+            <i class="fas fa-envelope-open-text"  style="font-size:1.3em"></i>
             <span>Convocation </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#attestation" aria-expanded="true" aria-controls="cd">
-            <i class="far fa-file-word"></i>
+            <i class="far fa-file-word"  style="font-size:1.3em"></i>
             <span>Attestation</span>
           </a>
           <div id="attestation" class="collapse" aria-labelledby="attestation" data-parent="#attestation">
@@ -128,7 +120,7 @@
           </div>
         </li>
         
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#decision" aria-expanded="true" aria-controls="cd">
             <i class="far fa-file-word"></i>
             <span>Désicion</span>
@@ -150,9 +142,9 @@
           Finance
         </div>
        
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#paieMensuelle" aria-expanded="true" aria-controls="paieMensuelle">
-            <i class="fas fa-money-check-alt"></i>
+            <i class="fas fa-money-check-alt" style="font-size:1.3em"></i>
             <span>Paiement</span>
           </a>
           <div id="paieMensuelle"  class="collapse" aria-labelledby="headingTwo" data-parent="#paieMensuelle" >
@@ -163,9 +155,10 @@
             </div>
           </div>
         </li>
-        <li class="nav-item">
+        @endif
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#RappelMenu" aria-expanded="true" aria-controls="RappelMenu">
-            <i class="fas fa-calendar-week"></i>
+            <i class="fas fa-calendar-week" style="font-size:1.3em"></i>
             <span>Rappel</span>
           </a>
           <div id="RappelMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
@@ -183,16 +176,17 @@
             </div>
           </div>
         </li>
-        <li class="nav-item">
+       
+        <li class="nav-item active" >
           <a class="nav-link collapsed" href="{{route('cds.index')}}" target="_blank">
-            <i class="fas fa-compact-disc"></i>
+            <i class="fas fa-compact-disc" style="font-size:1.3em"></i>
             <span>CD</span>
           </a>
         </li>
         
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#CfTresor" aria-expanded="true" aria-controls="CfTresor">
-            <i class="fas fa-align-center"></i>
+            <i class="fas fa-align-center" style="font-size:1.3em"></i>
             <span class="" >Données CF et Trésor</span>
           </a>
           <div id="CfTresor" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
@@ -203,7 +197,7 @@
             </div>
           </div>
         </li>
-        @endif
+     
         
         
         
@@ -212,10 +206,10 @@
         <!-- Heading -->
         <div class="sidebar-heading">
           Statistique
-        </div>
-        <li class="nav-item">
+        </div> 
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#statistics" aria-expanded="true" aria-controls="statistics">
-                <i class="fas fa-history"></i>
+                <i class="fas fa-history" style="font-size:1.3em"></i>
                 <span>Statistique </span>
           </a>
           <div id="statistics" class="collapse" aria-labelledby="headingTwo" data-parent="#RappelMenu">
@@ -232,9 +226,9 @@
         <div class="sidebar-heading">
           LISTES DES HAND
         </div>
-        <li class="nav-item">
+        <li class="nav-item active" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-list-ol"></i>
+            <i class="fas fa-list-ol" style="font-size:1.3em"></i>
             <span>Listes des mandatés</span>
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -246,9 +240,9 @@
             </div>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="{{route('listhands.filtre')}}">
-            <i class="fas fa-list-ol"></i>
+            <i class="fas fa-list-ol " style="font-size:1.3em"></i>
             <span>Liste Mandaté Filtre</span>
           </a>
         </li>
@@ -259,9 +253,9 @@
               Gestion Du Budget
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-folder" style="font-size:1.3em"></i>
                 <span>Budget</span>
               </a>
               <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -280,9 +274,9 @@
           Source des données
         </div>
         @if (Auth::user()->isAdmin())
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#upload" aria-expanded="true" aria-controls="upload">
-              <i class="fas fa-file-upload"></i>
+              <i class="fas fa-file-upload" style="font-size:1.3em"></i>
               <span>Import</span>
             </a> 
             <div id="upload" class="collapse" aria-labelledby="headingTwo" data-parent="#upload">
@@ -294,9 +288,9 @@
           </li>
         @endif
 
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#download" aria-expanded="true" aria-controls="download">
-            <i class="fas fa-file-upload"></i>
+            <i class="fas fa-file-upload" style="font-size:1.3em"></i>
             <span>Export</span>
           </a>
           <div id="download" class="collapse" aria-labelledby="headingTwo" data-parent="#download">
@@ -312,9 +306,9 @@
             <div class="sidebar-heading">
               DATABASE
             </div>
-            <li class="nav-item">
+            <li class="nav-item active">
                   <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
-                    <i class="fas fa-database"></i>
+                    <i class="fas fa-database" style="font-size:1.3em"></i>
                     <span>Base Du Données</span>
                 </a>
             </li>

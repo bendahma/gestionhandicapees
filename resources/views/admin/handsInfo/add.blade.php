@@ -300,34 +300,33 @@
                             </div>
                         </div>
                    
-                    
+                    @if(!isset($hand))
                     <h4 class="text-danger font-weight-bold">Etat Du paiement</h4>
-                        <hr>
-                        <div class="row mt-1">
-                            <div class="col-lg-4">
+                    <hr>
+                    <div class="row mt-1">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="name" class="font-weight-bold">Etat Du Paiement</label>
+                                <select name="statusPaiement" class="form-control" id="PaieStatusHand">
+                                    <option value="En cours" {{isset($hand) && $hand->status->status == 'En cours' ? 'selected' : ''}} >En cours</option>
+                                    <option value="En attente" {{isset($hand) && $hand->status->status == 'En attente' ? 'selected' : ''}}>En Attente</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" id="raisonId" style="display: none">
                                 <div class="form-group">
-                                    <label for="name" class="font-weight-bold">Etat Du Paiement</label>
-                                    <select name="statusPaiement" class="form-control" id="PaieStatusHand">
-                                        <option value="En cours" {{isset($hand) && $hand->status->status == 'En cours' ? 'selected' : ''}} >En cours</option>
-                                        <option value="En attente" {{isset($hand) && $hand->status->status == 'En attente' ? 'selected' : ''}}>En Attente</option>
-                                    </select>
-                                    </div>
+                                    <label for="" class="font-weight-bold">Raison</label>
+                                    <input type="text" class="form-control" id="" name="raisonEnAttente" value="">
                                 </div>
-                                <div class="col-lg-4" id="raisonId" style="display: none">
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-bold">Raison</label>
-                                        <input type="text" class="form-control" id="" name="raisonEnAttente" value="">
-                                    </div>
-                                    </div>
-                                    <div class="col" id="DateCommissionPensionId" style="display: none">
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-bold">Date Comission Pension</label>
-                                        <input type="date" class="form-control " id="" name="EnAttentedateComissionPension" placeholder="Date Premier Pension ..." value="{{isset($hand) ? $hand->paieinformation->datePremierPension : ''}}">
-                                    </div>
                                 </div>
-                                
-                        </div>
-                    
+                                <div class="col" id="DateCommissionPensionId" style="display: none">
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Date Comission Pension</label>
+                                    <input type="date" class="form-control " id="" name="EnAttentedateComissionPension" placeholder="Date Premier Pension ..." value="{{isset($hand) ? $hand->paieinformation->datePremierPension : ''}}">
+                                </div>
+                            </div>  
+                    </div>
+                    @endif
                     <hr>
                     <div class="row">
                         <div class="col">

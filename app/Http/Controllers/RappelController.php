@@ -145,14 +145,13 @@ class RappelController extends Controller
 
     public function findInfo(Rappel $rappel,Hand $hand)
     {
-        return view('admin.rappel.add')->with('hand',$hand)
+        return view('admin.rappel.edit')->with('hand',$hand)
                                        ->with('rappel',$rappel)
                                        ->with('paie',PaieInformation::all());
     }
 
-    public function update(Request $request, Rappel $rappel)
+    public function updateRappel(Request $request,Rappel $rappel)
     {
-
         $dateDebut = $request->dateDebut;
         $dateFin = $request->dateFin;
         $d1 = new DateTime($dateDebut);
@@ -168,8 +167,8 @@ class RappelController extends Controller
         }else if($dateDebut > $dateSeprator){
             $montant = $nbrMois * 10000;
         }else{
-            $firstDif = ($dateTimeDebut->diff($dateTimeSeperator)->m) + ($dateTimeDebut->diff($dateTimeSeperator)->y*12) + 1; 
-            $secondDif = ($dateTimeSeperatorF->diff($dateTimeFin)->m) + ($dateTimeSeperatorF->diff($dateTimeFin)->y*12) + 1; 
+            $firstDif = ($d1->diff($dateTimeSeperator)->m) + ($d1->diff($dateTimeSeperator)->y*12) + 1; 
+            $secondDif = ($dateTimeSeperatorF->diff($d2)->m) + ($dateTimeSeperatorF->diff($d2)->y*12) + 1; 
             $montant = ($firstDif * 4000) + ($secondDif * 10000);
         }
         $rappel->update([
@@ -181,7 +180,7 @@ class RappelController extends Controller
 
         session()->flash('success','Le rappel a été modifier avec success');
 
-        return redirect(route('rappel.index'));
+        return redirect()->route('rappel.list');
     }
 
     public function destroy(Rappel $rappel)

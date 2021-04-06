@@ -1,6 +1,7 @@
 <?php
 
-Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/', "MainController@index")->name('index');
 
@@ -53,6 +54,7 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::patch('confirm/{rappel}' , 'RappelController@ConfirmRappel')->name('confirm');
             Route::get('/documents','RappelController@Documents')->name('documents');
             Route::post('/documents/telecharge','RappelController@Download')->name('download');
+            Route::patch('/update/{rappel}','RappelController@updateRappel')->name('updateRappel');
             Route::resource('/' , 'RappelController');
         });
     });
@@ -108,6 +110,7 @@ Route::middleware(['auth'])->group(function(){
         Route::name('decision')->group(function(){
             Route::get('/{listType}', 'DecisionController@index');
             Route::get('/telecharger/{hand}/{papier}', 'DecisionController@Download')->name('.telecharger');
+            Route::get('/telecharger/reglement/renouvellement/{hand}', 'DecisionController@RenouvellementDossier')->name('.renouvellement');
         });
     });
         

@@ -13,7 +13,15 @@
          <div>
           
           @if($hand->status->status == 'En cours')
-              <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="{{route('decision.telecharger', [$hand->id,'reglement'])}}"> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du Réglement </a> 
+          <div class="form-group">
+            <label for="" style="color:black;font-weight:700">Decision réglement</label>
+            <select class="custom-select text-dark" onchange="window.location.href=this.value;" style="color:black;font-weight:700">
+              <option selected disabled >Selectionée</option>
+              <option value="{{route('decision.telecharger', [$hand->id,'reglement'])}}" style="color:black;font-weight:700">Décision Du Réglement</option>
+              <option value="{{route('decision.renouvellement', $hand->id)}}" style="color:black;font-weight:700">Décision Du Dossier Annuel</option>
+            </select>
+          </div>
+              {{-- <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href=""> <span style="color:rgb(255, 255, 255)"><i class="fas fa-file-download"></i></span> Décision Du Réglement </a>  --}}
           @endif
           @if($hand->status->status == 'Suspendu')
               <a class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" href="{{route('convocation.suspension',$hand->id)}}"> 

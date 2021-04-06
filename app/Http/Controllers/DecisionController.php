@@ -148,4 +148,47 @@ class DecisionController extends Controller
         $template->saveAs(storage_path($output));
         return response()->download(storage_path($output))->deleteFileAfterSend(true);
     }
+
+    public function RenouvellementDossier($id){
+        $templateDecisionRegleDixMille = new \PhpOffice\PhpWord\TemplateProcessor(dirname(dirname(__DIR__)) . '\Templates\DecisionRegle10000Renouvellementٌ.docx');
+        $hand = Hand::withTrashed()->where('id',$id)->first();
+        $status = new HandPaieStatus();
+        $card = new CartHand();
+        $handInfo = $hand->CheckBasicInfoExsistsForDecision($hand);
+        $PaieStatus = $status->CheckPaieStatusInfoExists($hand->id);
+
+        if(!$handInfo){
+            session()->flash('error','Erreur, il faut remplir les informations du handicapée avant Télécharger la décision');
+            return redirect(route('hands.edit', $hand));
+        }
+
+        $commune = Commune::where('codeCommune',$hand->codeCommune)->first();
+        
+        $status = $hand->status->status;
+
+        $history = HandSuspentionHistory::where('hand_id',$hand->id)->latest('id')->first();
+
+        if($status != 'En cours'){
+            session()->flash('error','Vous ne pouver pas Télecharger la decision du paiement, L\'handicapée n\'est pas mondate.');
+            return redirect()->back();
+        }
+
+        $template = $templateDecisionRegleDixMille;
+        $template->setValue('nomAr',$hand->nomAr);
+        $template->setValue('prenomAr',$hand->prenomAr);
+        $template->setValue('dob',$hand->dob);
+        $template->setValue('addressAr',$hand->addressAr);
+        $template->setValue('communeAr',$commune->nomCommuneAr);
+        $template->setValue('nature',$hand->cartehand->natureHandAr);
+        $template->setValue('numero',$hand->cartehand->numeroCart);
+        $template->setValue('dateCart',$hand->cartehand->dateCarte);
+        $template->setValue('dateSupp',$history->dateSupprission);
+        $template->setValue('dateRemi',$history->dateRemi);
+        
+        $output = "Décision Régle " . $hand->nameFr .".docx";
+        ob_end_clean();
+        ob_start();
+        $template->saveAs(storage_path($output));
+        return response()->download(storage_path($output))->deleteFileAfterSend(true);
+    }
 }
