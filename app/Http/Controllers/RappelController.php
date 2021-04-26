@@ -213,7 +213,7 @@ class RappelController extends Controller
     public function rappelFait(Request $request){
 
         Excel::import(new ListRappelFait, $request->file('listRappelHand'));
-        dd('1');
+        
         session()->flash('success','Rappel saisie avec success');
         return redirect()->back();
     }

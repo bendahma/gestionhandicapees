@@ -6,7 +6,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use App\PaieInformation;
 use App\Hand;
 use App\Rappel;
-
+use DB;
 class ListRappelFait  implements ToModel
 {
     /**
@@ -20,10 +20,22 @@ class ListRappelFait  implements ToModel
         try {
             $paieinfo = PaieInformation::where('CCP',$row[0])->first();
             $hand_id = $paieinfo->hand_id;
-            dump($row[0]);
+            $nombreMois = $row[1];
+           
+            $rappelId = DB::table('rappels')
+                        ->join('hand_rappel','hand_rappel.rappel_id','rappels.id')
+                        ->join('hands','hand_rappel.hand_id','hands.id')
+                        ->select('rappels.*')
+                        ->where('hands.id',$hand_id)    
+                        ->where('rappels.nombreMois',$nombreMois)    
+                        ->first();
+            $rappel = Rappel::find($rappelId->id);
+            $rappel->update([
+                'RappelFait'=>1
+            ]);       
         } catch (\Throwable $th) {
-            dd($th);
+            dump($row[0]);
         }
-        
+       return $rappel ;
     }
 }
