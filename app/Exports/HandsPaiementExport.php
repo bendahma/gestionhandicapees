@@ -48,6 +48,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
             "*".$hand->securitesociale->NSS ,
             $hand->addressAr,
             $commune->nomCommuneAr,
+            $hand->status->status,
            
             
         ];
@@ -77,6 +78,7 @@ class HandsPaiementExport implements FromCollection, WithMapping, WithHeadings
             'N° Securite Sociale',
             'العنوان',
             'البلدية',
+            'status',
             ]
         ];
     }

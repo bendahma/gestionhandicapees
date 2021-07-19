@@ -114,7 +114,7 @@ class PaieMensuelleController extends Controller
         $moisN = date('m');
         $mois = MoisAnnee::find($moisN);
         $nbrHandCount = $nbrHand->count();
-        $VSAC = $nbrHandCount * 18000;
+        $VSAC = $nbrHandCount * 20000;
         $MSAC = ($VSAC * 5)/100;
         $ChiffreEnLettre = new ChiffreEnLettres();
         $ChiffreEnLettreOutput= $ChiffreEnLettre->Conversion($MSAC);

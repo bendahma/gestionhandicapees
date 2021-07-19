@@ -3,7 +3,7 @@
 return [
 
     'MontantPaie' => 10000,
-    'MontantAssurance' => 900
+    'MontantAssurance' => 1000
 
 ]
 

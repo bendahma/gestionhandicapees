@@ -104,7 +104,7 @@
     <div class="container">
         <div class="card card-default">
             <div class="card-header">
-                Platform Msnfcf
+                 Platform Msnfcf <a class="btn btn-outline-danger mr-0" href="{{route('hands.MsnfcfReinit')}}">Reinitialization</a>
             </div>
             <div class="card-body">
                 <form action="{{route('hands.msnfcf')}}" method="POST" enctype="multipart/form-data">

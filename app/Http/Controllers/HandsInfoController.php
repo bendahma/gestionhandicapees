@@ -16,6 +16,7 @@ use App\Rappel;
 use App\HandSuspentionHistory;
 use App\Commune;
 use App\RenouvellementDossier;
+use DB;
 
 use DateTime;
 use Artisan;
@@ -366,11 +367,47 @@ class HandsInfoController extends Controller
     
 
     public function Msnfcf(Request $request){
-
         Excel::import(new MsnfcfImport, $request->file('msnfcf'));
         session()->flash('success','Rappel saisie avec success');
         return redirect()->back();
     }
 
+    public function MsnfcfReinit(){
+        DB::table('hands')->update(array('msnfcf' => 0));
+        return back()->with('success','MSNFCF reinitialized successfully') ;
+    }
+
+    public function cleanData(){
+        $results = DB::select( DB::raw("SELECT * FROM paie_information WHERE RIP LIKE '*%' ") );
+        foreach ($results as $r) {
+            $i = PaieInformation::where('RIP',$r->RIP)->first();
+            $i->RIP = str_replace('*', '', $r->RIP);
+            $i->save();
+        }
+        dd('Operation Completed Successfully');
+    }
+
+
+    public function checkRipCCP(){
+
+        // $a = 'How are you?';
+
+        // if (strpos($a, 'are') !== false) {
+        //     echo 'true';
+        // }
+
+        // $arr = explode("/", $string, 2);
+        // $first = $arr[0];   
+
+        $results = PaieInformation::all();
+        foreach ($results as $r) {
+            $ccpc = explode("C", $$r->CCP, 2);
+            $ccp = $ccpc[0];   
+            if (strpos($r->RIP, $ccp) !== false) {
+                dump($r->RIP . '   ' . $ccp);
+            }
+        }
+        dd('Operation Completed Successfully');
+    }
 
 }

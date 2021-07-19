@@ -16,7 +16,6 @@ class MsnfcfImport implements ToModel
     {
         $h = PaieInformation::where('CCP',$row[0])->first();
         $hand = Hand::withTrashed()->where('id',$h->hand_id)->first();
-        // dd($hand);
         $hand->msnfcf=1;
         $hand->save();
     }

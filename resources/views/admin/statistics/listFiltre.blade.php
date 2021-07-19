@@ -2,11 +2,8 @@
 
 @section('List-Filtre')
     <div class="container-fluid">
-        <h4 style="color:darkred; font-weight:700">Liste des Dandicapées Mondate</h4>
+        <h4 style="color:darkred; font-weight:700">Liste des Handicapées Mondate</h4>
         <div class="card card-default">
-            <div class="card-header">
-                <h6>Choisi les Critères du sélection</h6>
-            </div>
             <div class="card-body">
                 <form action="{{route('listhands.FiltreListeHand')}}" method="post">
                     @csrf
@@ -15,17 +12,9 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="allNature" id="Tous" name="natures[]">
-                                    <label class="form-check-label" for="Tous">
-                                      Tous
-                                    </label>
-                                  </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="moteur"  name="natures[]" id="moteur">
                                     <label class="form-check-label" for="moteur">
-                                      Moteur
+                                      MOTEUR
                                     </label>
                                   </div>
                             </div>
@@ -33,7 +22,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="mental" name="natures[]" id="mental">
                                     <label class="form-check-label" for="mental">
-                                      Mental
+                                      MENTAL
                                     </label>
                                   </div>
                             </div>
@@ -41,7 +30,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="visuel" id="visuel" name="natures[]">
                                     <label class="form-check-label" for="visuel">
-                                      Visuel
+                                      VISUEL
                                     </label>
                                   </div>
                             </div>
@@ -50,7 +39,7 @@
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input"  value="auditif" id="auditif" name="natures[]">
                                         <label class="form-check-label" for="auditif">
-                                          Auditif
+                                          AUDITIF
                                         </label>
                                       </div>
                                 </div>
@@ -60,7 +49,7 @@
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input"  value="poly" id="poly" name="natures[]">
                                         <label class="form-check-label" for="poly">
-                                          Poly
+                                          POLY
                                         </label>
                                       </div>
                                 </div>
@@ -72,15 +61,6 @@
                     <div class="form-group">
                         <label for="" style="color: black; font-weight:700">COMMUNE</label>
                         <div class="row">
-                            <div class="col">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="allCommune" id="allCommune" name="communes[]">
-                                    <label class="form-check-label" for="allCommune">
-                                      Tous
-                                    </label>
-                                  </div>
-                            </div>
-                            
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="AIN TEMOUCHENT" id="Ain Temouchent" name="communes[]">
@@ -123,7 +103,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"></div>
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="OULED KIHEL" id="OULED-KIHEL" name="communes[]">
@@ -166,7 +145,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"></div>
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="M'SAID" id="M'SAID" name="communes[]">
@@ -209,7 +187,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"></div>
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="AIN EL ARBAA" id="AIN EL ARBAA" name="communes[]">
@@ -252,7 +229,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"></div>
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="AIN TOLBA" id="AIN TOLBA" name="communes[]">
@@ -295,7 +271,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"></div>
                             <div class="col">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  value="EMIR ABDELKADER" id="EMIR AEK" name="communes[]">
@@ -379,15 +354,7 @@
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="" id="Tous" name="sexs">
-                                    <label class="form-check-label" for="Tous">
-                                      Tous
-                                    </label>
-                                  </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="" id="HOMME" name="HOMME">
+                                    <input type="radio" class="form-check-input"  value="Homme" id="HOMME" name="sex">
                                     <label class="form-check-label" for="HOMME">
                                       HOMME
                                     </label>
@@ -395,7 +362,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input"  value="" id="FEMME" name="FEMME">
+                                    <input type="radio" class="form-check-input"  value="Femme" id="FEMME" name="sex">
                                     <label class="form-check-label" for="FEMME">
                                       FEMME
                                     </label>

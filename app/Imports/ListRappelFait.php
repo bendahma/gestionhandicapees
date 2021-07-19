@@ -34,7 +34,7 @@ class ListRappelFait  implements ToModel
                 'RappelFait'=>1
             ]);       
         } catch (\Throwable $th) {
-            dump($row[0]);
+            dd($row[0]);
         }
        return $rappel ;
     }

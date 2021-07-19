@@ -34,11 +34,19 @@ class UsersTableSeeder extends Seeder
         //         'UserRole' => 'ASSISTANCE',
         //         'nameAr' => 'عكرمة كلثوم',
         //     ]);
+        // DB::table('users')->insert([
+        //         'name' => 'DASS Ain Temouchent',
+        //         'username' => 'dass_46',
+        //         'email' => 'dass@contact.com',
+        //         'password' => Hash::make('dass_46'),
+        //         'UserRole' => 'ASSISTANCE',
+        //         'nameAr' => '',
+        //     ]);
         DB::table('users')->insert([
                 'name' => 'DASS Ain Temouchent',
-                'username' => 'dass_46',
-                'email' => 'dass@contact.com',
-                'password' => Hash::make('dass_46'),
+                'username' => 'dass46',
+                'email' => 'bureauCarteHand@dass.com',
+                'password' => Hash::make('dass46'),
                 'UserRole' => 'ASSISTANCE',
                 'nameAr' => '',
             ]);

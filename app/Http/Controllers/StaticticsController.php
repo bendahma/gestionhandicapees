@@ -10,6 +10,11 @@ use App\Commune;
 use DB;
 class StaticticsController extends Controller
 {
+
+    public function index(){
+        return view('admin.statistics.index');
+    }
+
     public function StatistiqueMensuelle(Request $request){
 
         $StatHand = DB::table('hands')
@@ -90,6 +95,9 @@ class StaticticsController extends Controller
 
     public function StatistiqueMondate(){
 
+        $mondateFemme = Hand::whereIn('sex',['F','Femme'])->count();
+        $mondateHomme = Hand::whereIn('sex',['H','Homme'])->count();
+
         $mentalFemme = Hand::whereIn('sex',['F','Femme'])->whereHas('cartehand',function($q){
             $q->where('natureHandFr','mental');
         })->count();
@@ -112,6 +120,8 @@ class StaticticsController extends Controller
             $q->where('natureHandFr','reversion');
         })->count();
         $stats = [
+                    'mondateFemme'=>$mondateFemme,
+                    'mondateHomme'=>$mondateHomme,
                     'mentalFemme'=>$mentalFemme,
                     'mentalHomme'=>$mentalHomme,
                     'moteurFemme'=>$moteurFemme,

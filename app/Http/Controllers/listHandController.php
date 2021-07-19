@@ -53,32 +53,13 @@ class listHandController extends Controller
     }
 
     public function FiltreListeHand(Request $request){
-        // Communes
-
-        if($request->communes == NULL || $request->communes[0] == 'allCommune'){
-                $communechoice = false;
-                $communes='';
-        }
-
-        $communechoice = true;
-        $communes = collect($request->communes);
-                        
-        
-        // NATURE
-        if($request->natures == NULL || $request->natures[0] == 'allNature'){
-            $naturechoice = false;
-                $nature='';
-        }
-
         $naturechoice = true;
-        $nature = collect($request->natures);
-        
-        // SEX
-        
-        dump($communechoice);
-        dump($communes);
-        dump($naturechoice);
-        dump($nature);
+        $communechoice = true;
+
+        // Communes
+        $communechoice = $request->has('communes') == NULL ? false : collect($request->communes) ;
+        $natureschoice = $request->has('natures') == NULL ? false : collect($request->natures);
+       
     }
 
     public function exportHandsMondate(Request $request) 

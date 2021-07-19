@@ -4,14 +4,41 @@
     <div class="container-fluid">
         <div class="card card-default shadow">
             <div class="card-header">
-                <h4>Statistique Des Mondatés Par Nature et Sex</h4>
+                <h4>1. Tableau des handicappées mondatés par sex</h4>
+            </div>
+            <div class="card-body">
+                <table cellspacing="0"  class="table text-center  table-bordered">
+                    <thead>
+                        <tr class="h6">
+                            <th id="cel" class="" >Homme</th>
+                            <th id="cel" class="" >Femme</th>
+                            <th id="cel" class="" ></th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td> {{$stats['mondateHomme']}} </td>
+                            <td> {{$stats['mondateFemme']}} </td>
+                            <td style="font-weight:bold; font-size:1.2rem "> {{$stats['mondateFemme'] + $stats['mondateHomme'] }} </td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card card-default shadow">
+            <div class="card-header">
+                <h4>2. Tableau des handicappées mondatés par nature d'handicape</h4>
             </div>
             <div class="card-body">
                 <table cellspacing="0"  class="table text-center  table-bordered">
                     <thead>
                         <tr class="h5">
-                            <th id="rmc" class="" colspan="2">Montal</th>
-                            <th id="cel" class="" colspan="2">Moteur</th>
+                            <th id="cel" class="" colspan="2">MENTAL</th>
+                            <th id="cel" class="" colspan="2">MOTEUR</th>
                             <th id="cel" class="" colspan="2">POLY</th>
                             <th id="cel" class="">Reversion</th>
                         </tr>
@@ -50,7 +77,7 @@
         <br>
         <div class="card card-default shadow">
             <div class="card-header">
-                <h4>Statistique Des Mondatés Par Commune</h4>
+                <h4>3. Statistique Des Mondatés Par Commune</h4>
             </div>
             <div class="card-body">
                 <table cellspacing="0"  class="table text-center  table-bordered">

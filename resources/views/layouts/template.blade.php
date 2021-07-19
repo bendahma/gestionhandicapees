@@ -228,8 +228,8 @@
         </div>
         <li class="nav-item active" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-list-ol" style="font-size:1.3em"></i>
-            <span>Listes des mandatés</span>
+            <i class="fas fa-file-download" style="font-size:1.3em"></i>
+            <span>Listes Handicapées</span>
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -243,7 +243,7 @@
         <li class="nav-item active">
           <a class="nav-link collapsed" href="{{route('listhands.filtre')}}">
             <i class="fas fa-list-ol " style="font-size:1.3em"></i>
-            <span>Liste Mandaté Filtre</span>
+            <span>Liste Mandaté </span>
           </a>
         </li>
         @if(Auth::user()->isAdmin())
@@ -310,6 +310,12 @@
                   <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
                     <i class="fas fa-database" style="font-size:1.3em"></i>
                     <span>Base Du Données</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                  <a class="nav-link collapsed" href="http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=gestionhand" target="_blank">
+                    <i class="fas fa-database" style="font-size:1.3em"></i>
+                    <span>Etat de </span>
                 </a>
             </li>
         @endif

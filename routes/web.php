@@ -64,6 +64,9 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::resource('/','CfTresorController');
         });
     });
+
+    Route::get('/cleanData','HandsInfoController@cleanData');
+    Route::get('/checkRipCCP','HandsInfoController@checkRipCCP');
     
 });
 
@@ -77,6 +80,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/hands/editSuspensionInfo/{id}', "HandsInfoController@editHandSuspensionInfo")->name('hands.editSuspensionInfo');
     Route::patch('/hands/UpdateSuspendu', "HandsInfoController@updateHandSuspensionInfo")->name('hands.updateSuspensionInfo');
     Route::post('/msnfcf','HandsInfoController@Msnfcf')->name('hands.msnfcf');
+    Route::get('/msnfcf/reint','HandsInfoController@MsnfcfReinit')->name('hands.MsnfcfReinit');
     Route::resource('/hands' , 'HandsInfoController');
 
     Route::resource('/upload' , 'UploadHandInfoController');
@@ -172,9 +176,10 @@ Route::middleware(['auth'])->group(function(){
         });
     });
 
-    Route::prefix('statistique/')->group(function(){
+    Route::prefix('statistique')->group(function(){
         Route::name('statistique.')->group(function(){
-            Route::get('mondate','StaticticsController@StatistiqueMondate')->name('mondate');
+            Route::get('/','StaticticsController@index')->name('index');
+            Route::get('/mondate','StaticticsController@StatistiqueMondate')->name('mondate');
         });
     });
     
